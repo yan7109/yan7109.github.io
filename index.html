@@ -9,7 +9,6 @@
 <style>
   body {
     margin: 0;
-    padding: 0;
     background: #ffffff;
     color: #111;
     font-family: Georgia, "Times New Roman", serif;
@@ -18,28 +17,8 @@
 
   .container {
     max-width: 720px;
-    margin: 80px auto;
+    margin: 64px auto;
     padding: 0 20px;
-  }
-
-  h1 {
-    font-size: 2.3rem;
-    font-weight: normal;
-    margin-bottom: 0.5rem;
-  }
-
-  p {
-    margin: 1.2rem 0;
-    font-size: 1.05rem;
-  }
-
-  a {
-    color: #2a6dbb;
-    text-decoration: none;
-  }
-
-  a:hover {
-    text-decoration: underline;
   }
 
   nav {
@@ -49,17 +28,54 @@
 
   nav a {
     margin-right: 14px;
+    color: #2a6dbb;
+    text-decoration: none;
+  }
+
+  nav a:hover {
+    text-decoration: underline;
+  }
+
+  h1 {
+    font-size: 2.3rem;
+    font-weight: normal;
+    margin: 1.2rem 0 0.6rem;
+  }
+
+  p {
+    margin: 1.15rem 0;
+    font-size: 1.05rem;
   }
 
   .muted {
     color: #666;
   }
 
-  .photo {
-    width: 120px;
-    border-radius: 8px;
-    margin-bottom: 1.2rem;
+  /* Profile image behavior */
+  .hero {
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto 1.6rem;
+  }
+
+  .hero img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
     display: block;
+  }
+
+  /* Mobile full-bleed effect */
+  @media (max-width: 760px) {
+    .hero {
+      max-width: none;
+      margin-left: -20px;
+      margin-right: -20px;
+    }
+
+    .hero img {
+      border-radius: 0;
+    }
   }
 
   footer {
@@ -71,6 +87,7 @@
 </head>
 
 <body>
+
 <div class="container">
 
 <nav>
@@ -79,7 +96,13 @@
   <a href="#">Projects</a>
 </nav>
 
-<img src="profile.jpg" alt="Derek Yan" class="photo">
+</div>
+
+<div class="hero">
+  <img src="profile.jpg" alt="Derek Yan">
+</div>
+
+<div class="container">
 
 <h1>Derek Z. H. Yan</h1>
 
@@ -92,15 +115,16 @@ I’m a founder and technologist working at the intersection of artificial intel
 </p>
 
 <p>
-My work spans machine learning, computer vision, edge inference, developer platforms, and human-centered product design. I care deeply about building AI tools that save people time, reduce friction, and expand creative freedom.
+My work spans machine learning, computer vision, edge inference, developer platforms, and human-centered product design. I care deeply about building AI tools that save time, reduce friction, and expand creative freedom.
 </p>
 
 <p>
-In May 2025, Polarr was acquired by Pixieset, where I now serve as Director of Engineering. Alongside this, I take photos of my family and friends, advise founders on startup exits and M&A, and experiment with new foundation models.
+In May 2025, Polarr was acquired by Pixieset, where I now serve as Director of Engineering. Alongside this, I advise founders on startup exits and M&A, and experiment with neural networks.
 </p>
 
 <p>
 You can find me on 
+<a href="https://github.com/yan7109">GitHub</a>, 
 <a href="https://www.linkedin.com/in/derekzhyan/">LinkedIn</a>, 
 view my photography at 
 <a href="https://derekyan.pixieset.com">derekyan.pixieset.com</a>, 
@@ -113,5 +137,6 @@ or email me at
 </footer>
 
 </div>
+
 </body>
 </html>
