@@ -17,12 +17,12 @@
 
   .container {
     max-width: 720px;
-    margin: 64px auto;
+    margin: 36px auto;
     padding: 0 20px;
   }
 
   nav {
-    margin-bottom: 2.5rem;
+    margin-bottom: 0.7rem;
     font-size: 0.95rem;
   }
 
@@ -36,41 +36,26 @@
     text-decoration: underline;
   }
 
-  h1 {
-    font-size: 2.3rem;
-    font-weight: normal;
-    margin: 1.2rem 0 0.6rem;
-  }
-
-  p {
-    margin: 1.15rem 0;
-    font-size: 1.05rem;
-  }
-
-  .muted {
-    color: #666;
-  }
-
-  /* Profile image behavior */
+  /* Desktop hero (column width) */
   .hero {
-    width: 100%;
     max-width: 720px;
-    margin: 0 auto 1.6rem;
+    margin: 0 auto 0.8rem;
+    padding: 0 20px;
   }
 
   .hero img {
     width: 100%;
     height: auto;
-    border-radius: 6px;
     display: block;
+    border-radius: 6px;
   }
 
-  /* Mobile full-bleed effect */
+  /* Mobile full-bleed */
   @media (max-width: 760px) {
     .hero {
       max-width: none;
-      margin-left: -20px;
-      margin-right: -20px;
+      padding: 0;
+      margin: 0 0 0.7rem;
     }
 
     .hero img {
@@ -78,8 +63,23 @@
     }
   }
 
+  h1 {
+    font-size: 2.3rem;
+    font-weight: normal;
+    margin: 0.6rem 0 0.3rem;
+  }
+
+  p {
+    margin: 0.9rem 0;
+    font-size: 1.05rem;
+  }
+
+  .muted {
+    color: #666;
+  }
+
   footer {
-    margin-top: 3rem;
+    margin-top: 2.2rem;
     font-size: 0.9rem;
     color: #777;
   }
@@ -89,13 +89,11 @@
 <body>
 
 <div class="container">
-
-<nav>
-  <a href="#">Home</a>
-  <a href="#">Writing</a>
-  <a href="#">Projects</a>
-</nav>
-
+  <nav>
+    <a href="/">Home</a>
+    <a href="https://medium.com/@derekzhyan" target="_blank" rel="noopener">Writing</a>
+    <a href="https://derekyanphotography.pixieset.com" target="_blank" rel="noopener">Photography</a>
+  </nav>
 </div>
 
 <div class="hero">
@@ -111,7 +109,14 @@ Founder, CTO, software engineer.
 </p>
 
 <p>
-I’m a founder and technologist working at the intersection of artificial intelligence, product design, and creative software. I co-founded Polarr, where I served as CTO and built AI-powered photo and video tools used by millions, and shipped computer vision systems across mobile, desktop, and embedded platforms (Samsung, LG, Xiaomi, OPPO, Lenovo, and others).
+I’m a founder and technologist working at the intersection of artificial intelligence, product design, and creative software. I co-founded 
+<a href="https://www.polarr.com">Polarr</a>, where I served as CTO and built AI-powered <a href="https://apps.apple.com/us/app/polarr-photo-filters-editor/id988173374">photo</a> and <a href="https://apps.apple.com/us/app/24fps-aesthetic-video-effects/id1341136787">video</a> tools used by millions, and shipped <a href="https://techcrunch.com/2019/03/14/ai-photo-startup-polarr-raises-an-11-5-million-series-a/">on-device computer vision</a> technology across mobile, desktop, and embedded platforms including 
+<a href="https://www.samsung.com">Samsung</a>, 
+<a href="https://www.lg.com">LG</a>,
+<a href="https://www.westerndigital.com">Western Digital</a>,  
+<a href="https://www.mi.com">Xiaomi</a>, 
+<a href="https://www.oppo.com">OPPO</a>, 
+<a href="https://www.lenovo.com">Lenovo</a>, and others.
 </p>
 
 <p>
@@ -119,15 +124,16 @@ My work spans machine learning, computer vision, edge inference, developer platf
 </p>
 
 <p>
-In May 2025, Polarr was acquired by Pixieset, where I now serve as Director of Engineering. Alongside this, I advise founders on startup exits and M&A, and experiment with neural networks.
+In May 2025, Polarr was acquired by 
+<a href="https://www.pixieset.com">Pixieset</a>, where I now serve as Director of Engineering. Alongside this, I advise founders on startup exits and M&A, mess around with deep learning models, and take photos of my families and friends.
 </p>
 
 <p>
 You can find me on 
 <a href="https://github.com/yan7109">GitHub</a>, 
 <a href="https://www.linkedin.com/in/derekzhyan/">LinkedIn</a>, 
-view my photography at 
-<a href="https://derekyan.pixieset.com">derekyan.pixieset.com</a>, 
+view my  
+<a href="https://derekyanphotography.pixieset.com">photography</a>, 
 or email me at 
 <a href="mailto:derek@polarr.co">derek@polarr.co</a>.
 </p>
