@@ -3,215 +3,22 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <title>Startup M&A - Derek Z. H. Yan</title>
-
-<style>
-  body {
-    margin: 0;
-    background: #ffffff;
-    color: #111;
-    font-family: Georgia, "Times New Roman", serif;
-    line-height: 1.7;
-  }
-
-  .container {
-    max-width: 720px;
-    margin: 36px auto;
-    padding: 0 20px;
-  }
-
-  nav {
-    margin-bottom: 0.7rem;
-    font-size: 0.95rem;
-  }
-
-  nav a {
-    margin-right: 14px;
-    color: #2a6dbb;
-    text-decoration: none;
-  }
-
-  nav a:hover {
-    text-decoration: underline;
-  }
-
-  h1 {
-    font-size: 2.3rem;
-    font-weight: normal;
-    margin: 1.5rem 0 0.3rem;
-  }
-
-  h2 {
-    font-size: 1.3rem;
-    font-weight: normal;
-    margin: 2.2rem 0 0.8rem;
-    color: #222;
-  }
-
-  p {
-    margin: 0.9rem 0;
-    font-size: 1.05rem;
-  }
-
-  .muted {
-    color: #666;
-  }
-
-  details {
-    margin: 0.8rem 0;
-    border: 1px solid #e0e0e0;
-    border-radius: 4px;
-    background: #fafafa;
-  }
-
-  details[open] {
-    background: #fff;
-  }
-
-  summary {
-    padding: 0.8rem 1rem;
-    cursor: pointer;
-    font-size: 1.05rem;
-    font-weight: normal;
-    color: #222;
-    list-style: none;
-  }
-
-  summary::-webkit-details-marker {
-    display: none;
-  }
-
-  summary::before {
-    content: "+ ";
-    color: #888;
-    font-family: monospace;
-  }
-
-  details[open] summary::before {
-    content: "- ";
-  }
-
-  summary:hover {
-    background: #f5f5f5;
-  }
-
-  .chapters {
-    padding: 0 1rem 1rem 1rem;
-  }
-
-  .chapter {
-    margin: 0.7rem 0;
-    padding-left: 1.5rem;
-    position: relative;
-  }
-
-  .chapter-num {
-    position: absolute;
-    left: 0;
-    color: #999;
-    font-size: 0.9rem;
-  }
-
-  .chapter-title {
-    font-size: 0.95rem;
-    color: #333;
-  }
-
-  .chapter-desc {
-    font-size: 0.85rem;
-    color: #666;
-    margin-top: 0.2rem;
-    line-height: 1.5;
-  }
-
-  .part-intro {
-    padding: 0 1rem 0.5rem 1rem;
-    font-size: 0.9rem;
-    color: #555;
-    font-style: italic;
-    border-bottom: 1px solid #eee;
-    margin-bottom: 0.5rem;
-  }
-
-  .contact {
-    background: #f7f7f7;
-    padding: 1.5rem;
-    border-radius: 4px;
-    margin: 2rem 0;
-    font-size: 0.95rem;
-  }
-
-  .contact-form {
-    margin-top: 1rem;
-  }
-
-  .form-group {
-    margin-bottom: 1rem;
-  }
-
-  .form-group label {
-    display: block;
-    margin-bottom: 0.3rem;
-    font-size: 0.9rem;
-    color: #333;
-  }
-
-  .form-group input,
-  .form-group textarea {
-    width: 100%;
-    padding: 0.6rem 0.8rem;
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 0.95rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    background: #fff;
-  }
-
-  .form-group input:focus,
-  .form-group textarea:focus {
-    outline: none;
-    border-color: #2a6dbb;
-  }
-
-  .form-group textarea {
-    min-height: 120px;
-    resize: vertical;
-  }
-
-  .form-submit {
-    background: #2a6dbb;
-    color: #fff;
-    border: none;
-    padding: 0.7rem 1.5rem;
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 0.95rem;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-
-  .form-submit:hover {
-    background: #1e5a9e;
-  }
-
-  footer {
-    margin-top: 2.2rem;
-    font-size: 0.9rem;
-    color: #777;
-  }
-</style>
+<link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
 <div class="container">
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="startup-ma.html">Startup M&A</a>
-    <a href="https://medium.com/@derekzhyan" target="_blank" rel="noopener">Past Writing</a>
-    <a href="https://derekyanphotography.pixieset.com" target="_blank" rel="noopener">Photography</a>
-    <a href="contact.html">Contact</a>
+  <nav id="nav">
+    <span class="nav-track">
+      <a href="index.html">Home</a>
+      <a href="startup-ma.html">Startup M&A</a>
+      <a href="https://medium.com/@derekzhyan" target="_blank" rel="noopener">Past Writing</a>
+      <a href="https://derekyanphotography.pixieset.com" target="_blank" rel="noopener">Photography</a>
+      <a href="contact.html">Contact</a>
+      <span class="nav-spacer"></span>
+    </span>
   </nav>
 </div>
 
@@ -248,11 +55,11 @@ I desperately wished a book like this existed at the time.
 </p>
 
 <p>
-Companies that go out actively looking for a buyer almost never find one. The skills required to sell a business are fundamentally different from the skills required to build it. Almost no resources exist to help founders make that transition. Worse, it will likely be the loneliest period of your life. Your team must be kept in the dark. Your investors may turn openly adversarial. Even your cofounders can end up on the other side of the table. And at home, your spouse may quietly wonder (or even openly beseech you) if you’ve lost your mind. In this environment, even the smallest inequity in the cap table or the tiniest crack in governance can suddenly surface—and blow up directly in your face.
+Companies that go out actively looking for a buyer almost never find one. The skills required to sell a business are fundamentally different from the skills required to build it. Almost no resources exist to help founders make that transition. Worse, it will likely be the loneliest period of your life. Your team must be kept in the dark. Your investors may turn openly adversarial. Even your cofounders can end up on the other side of the table. And at home, your spouse may quietly wonder (or even openly beseech you) if you've lost your mind. In this environment, even the smallest inequity in the cap table or the tiniest crack in governance can suddenly surface—and blow up directly in your face.
 </p>
 
 <p>
-This is the book I needed back then: a record of every mistake, antipattern, and dead end I wouldn’t wish on my worst enemy.
+This is the book I needed back then: a record of every mistake, antipattern, and dead end I wouldn't wish on my worst enemy.
 </p>
 
 <h2>Chapter Synopsis</h2>
@@ -566,15 +373,15 @@ This is the book I needed back then: a record of every mistake, antipattern, and
 
 <h2>To Fellow Entrepreneurs</h2>
 <p>
-Most founders don’t struggle during M&A because they lack effort or talent, they struggle because the M&A path is opaque, emotionally draining, rarely talked about honestly, and to be frank, different for everybody. Reality often falls far short of the expectations we place on ourselves, even if it's a great outcome.
+Most founders don't struggle during M&A because they lack effort or talent, they struggle because the M&A path is opaque, emotionally draining, rarely talked about honestly, and to be frank, different for everybody. Reality often falls far short of the expectations we place on ourselves, even if it's a great outcome.
 </p>
 
 <p>
-If you’re navigating an exit, thinking about one, or quietly wrestling with uncertainty about your company’s future, you don’t have to carry that alone.
+If you're navigating an exit, thinking about one, or quietly wrestling with uncertainty about your company's future, you don't have to carry that alone.
 </p>
 
 <p>
-I can’t promise answers. But I’m happy to help, share what I learned the hard way, or simply be a sounding board. I can't promise to respond every email inquiry, but I'll do my best.
+I can't promise answers. But I'm happy to help, share what I learned the hard way, or simply be a sounding board. I can't promise to respond every email inquiry, but I'll do my best.
 </p>
 
 <p>
@@ -585,8 +392,6 @@ Do not hesitate to reach out.
 <strong>The Toughest Sell: A Founder's Guide to Startup Exits</strong><br>
 The manuscript of the book is currently under literary representation and being pitched to publishers, so I'm no longer able to share it publicly at this time. That said, if you're genuinely interested in reading it or discussing the ideas, drop me a note. I'm always happy to chat.
 
-<!--
--->
 <form class="contact-form" id="contactForm" action="https://formspree.io/f/xrekpgbw" method="POST">
   <div class="form-group">
     <label for="name">Name *</label>
@@ -606,18 +411,19 @@ The manuscript of the book is currently under literary representation and being 
 
 <script>
 document.getElementById('contactForm').addEventListener('submit', function(e) {
-  var form = this;
-  var submitBtn = form.querySelector('.form-submit');
+  var submitBtn = this.querySelector('.form-submit');
   submitBtn.textContent = 'Sending...';
   submitBtn.disabled = true;
 });
 </script>
 
 <footer>
-&copy; Derek Z. H. Yan — views expressed are my own.
+&copy; Derek Z. H. Yan &mdash; views expressed are my own.
 </footer>
 
 </div>
+
+<script src="nav.js"></script>
 
 </body>
 </html>

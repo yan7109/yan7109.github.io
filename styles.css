@@ -1,0 +1,245 @@
+/* Base */
+body {
+  margin: 0;
+  background: #ffffff;
+  color: #111;
+  font-family: Georgia, "Times New Roman", serif;
+  line-height: 1.7;
+}
+
+.container {
+  max-width: 720px;
+  margin: 36px auto;
+  padding: 0 20px;
+}
+
+/* Navigation */
+nav {
+  margin-bottom: 0.7rem;
+  font-size: 0.95rem;
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+nav::-webkit-scrollbar {
+  display: none;
+}
+
+nav .nav-track {
+  display: inline-block;
+}
+
+nav a {
+  margin-right: 14px;
+  color: #2a6dbb;
+  text-decoration: none;
+  display: inline-block;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+nav .nav-spacer {
+  display: inline-block;
+  width: 30px;
+}
+
+/* Typography */
+h1 {
+  font-size: 2.3rem;
+  font-weight: normal;
+  margin: 1.5rem 0 0.3rem;
+}
+
+h2 {
+  font-size: 1.3rem;
+  font-weight: normal;
+  margin: 2.2rem 0 0.8rem;
+  color: #222;
+}
+
+p {
+  margin: 0.9rem 0;
+  font-size: 1.05rem;
+}
+
+.muted {
+  color: #666;
+}
+
+/* Hero (index page) */
+.hero {
+  max-width: 720px;
+  margin: 0 auto 0.8rem;
+  padding: 0 20px;
+}
+
+.hero img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 6px;
+}
+
+@media (max-width: 760px) {
+  .hero {
+    max-width: none;
+    padding: 0;
+    margin: 0 0 0.7rem;
+  }
+
+  .hero img {
+    border-radius: 0;
+  }
+}
+
+/* Collapsible sections (startup-ma page) */
+details {
+  margin: 0.8rem 0;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  background: #fafafa;
+}
+
+details[open] {
+  background: #fff;
+}
+
+summary {
+  padding: 0.8rem 1rem;
+  cursor: pointer;
+  font-size: 1.05rem;
+  font-weight: normal;
+  color: #222;
+  list-style: none;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+summary::before {
+  content: "+ ";
+  color: #888;
+  font-family: monospace;
+}
+
+details[open] summary::before {
+  content: "- ";
+}
+
+summary:hover {
+  background: #f5f5f5;
+}
+
+.chapters {
+  padding: 0 1rem 1rem 1rem;
+}
+
+.chapter {
+  margin: 0.7rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.chapter-num {
+  position: absolute;
+  left: 0;
+  color: #999;
+  font-size: 0.9rem;
+}
+
+.chapter-title {
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.chapter-desc {
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 0.2rem;
+  line-height: 1.5;
+}
+
+.part-intro {
+  padding: 0 1rem 0.5rem 1rem;
+  font-size: 0.9rem;
+  color: #555;
+  font-style: italic;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 0.5rem;
+}
+
+/* Contact box */
+.contact {
+  background: #f7f7f7;
+  padding: 1.5rem;
+  border-radius: 4px;
+  margin: 2rem 0;
+  font-size: 0.95rem;
+}
+
+/* Forms */
+.contact-form {
+  margin-top: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.95rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background: #fff;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #2a6dbb;
+}
+
+.form-group textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.form-submit {
+  background: #2a6dbb;
+  color: #fff;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.95rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.form-submit:hover {
+  background: #1e5a9e;
+}
+
+/* Footer */
+footer {
+  margin-top: 2.2rem;
+  font-size: 0.9rem;
+  color: #777;
+}
