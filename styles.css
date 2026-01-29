@@ -1,10 +1,18 @@
 /* Base */
 body {
   margin: 0;
-  background: #ffffff;
-  color: #111;
+  background: #121212;
+  color: #e0e0e0;
   font-family: Georgia, "Times New Roman", serif;
   line-height: 1.7;
+}
+
+a {
+  color: #6db3f2;
+}
+
+a:hover {
+  color: #9ccfff;
 }
 
 .container {
@@ -24,6 +32,14 @@ nav {
   -ms-overflow-style: none;
 }
 
+@media (max-width: 760px) {
+  nav {
+    margin-left: -20px;
+    margin-right: -20px;
+    padding-left: 20px;
+  }
+}
+
 nav::-webkit-scrollbar {
   display: none;
 }
@@ -34,13 +50,14 @@ nav .nav-track {
 
 nav a {
   margin-right: 14px;
-  color: #2a6dbb;
+  color: #6db3f2;
   text-decoration: none;
   display: inline-block;
 }
 
 nav a:hover {
   text-decoration: underline;
+  color: #9ccfff;
 }
 
 nav .nav-spacer {
@@ -53,13 +70,14 @@ h1 {
   font-size: 2.3rem;
   font-weight: normal;
   margin: 1.5rem 0 0.3rem;
+  color: #f0f0f0;
 }
 
 h2 {
   font-size: 1.3rem;
   font-weight: normal;
   margin: 2.2rem 0 0.8rem;
-  color: #222;
+  color: #d0d0d0;
 }
 
 p {
@@ -68,7 +86,7 @@ p {
 }
 
 .muted {
-  color: #666;
+  color: #888;
 }
 
 /* Hero (index page) */
@@ -100,13 +118,13 @@ p {
 /* Collapsible sections (startup-ma page) */
 details {
   margin: 0.8rem 0;
-  border: 1px solid #e0e0e0;
+  border: 1px solid #333;
   border-radius: 4px;
-  background: #fafafa;
+  background: #1a1a1a;
 }
 
 details[open] {
-  background: #fff;
+  background: #1e1e1e;
 }
 
 summary {
@@ -114,7 +132,7 @@ summary {
   cursor: pointer;
   font-size: 1.05rem;
   font-weight: normal;
-  color: #222;
+  color: #d0d0d0;
   list-style: none;
 }
 
@@ -124,7 +142,7 @@ summary::-webkit-details-marker {
 
 summary::before {
   content: "+ ";
-  color: #888;
+  color: #666;
   font-family: monospace;
 }
 
@@ -133,7 +151,7 @@ details[open] summary::before {
 }
 
 summary:hover {
-  background: #f5f5f5;
+  background: #252525;
 }
 
 .chapters {
@@ -149,18 +167,18 @@ summary:hover {
 .chapter-num {
   position: absolute;
   left: 0;
-  color: #999;
+  color: #666;
   font-size: 0.9rem;
 }
 
 .chapter-title {
   font-size: 0.95rem;
-  color: #333;
+  color: #c0c0c0;
 }
 
 .chapter-desc {
   font-size: 0.85rem;
-  color: #666;
+  color: #888;
   margin-top: 0.2rem;
   line-height: 1.5;
 }
@@ -168,19 +186,20 @@ summary:hover {
 .part-intro {
   padding: 0 1rem 0.5rem 1rem;
   font-size: 0.9rem;
-  color: #555;
+  color: #999;
   font-style: italic;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #333;
   margin-bottom: 0.5rem;
 }
 
 /* Contact box */
 .contact {
-  background: #f7f7f7;
+  background: #1a1a1a;
   padding: 1.5rem;
   border-radius: 4px;
   margin: 2rem 0;
   font-size: 0.95rem;
+  border: 1px solid #333;
 }
 
 /* Forms */
@@ -196,7 +215,7 @@ summary:hover {
   display: block;
   margin-bottom: 0.3rem;
   font-size: 0.9rem;
-  color: #333;
+  color: #c0c0c0;
 }
 
 .form-group input,
@@ -205,16 +224,17 @@ summary:hover {
   padding: 0.6rem 0.8rem;
   font-family: Georgia, "Times New Roman", serif;
   font-size: 0.95rem;
-  border: 1px solid #ccc;
+  border: 1px solid #444;
   border-radius: 4px;
   box-sizing: border-box;
-  background: #fff;
+  background: #1e1e1e;
+  color: #e0e0e0;
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
   outline: none;
-  border-color: #2a6dbb;
+  border-color: #6db3f2;
 }
 
 .form-group textarea {
@@ -223,23 +243,24 @@ summary:hover {
 }
 
 .form-submit {
-  background: #2a6dbb;
-  color: #fff;
+  background: #6db3f2;
+  color: #121212;
   border: none;
   padding: 0.7rem 1.5rem;
   font-family: Georgia, "Times New Roman", serif;
   font-size: 0.95rem;
   border-radius: 4px;
   cursor: pointer;
+  font-weight: 500;
 }
 
 .form-submit:hover {
-  background: #1e5a9e;
+  background: #9ccfff;
 }
 
 /* Footer */
 footer {
   margin-top: 2.2rem;
   font-size: 0.9rem;
-  color: #777;
+  color: #666;
 }
