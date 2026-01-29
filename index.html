@@ -3,98 +3,22 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <title>Derek Z. H. Yan</title>
-
-<style>
-  body {
-    margin: 0;
-    background: #ffffff;
-    color: #111;
-    font-family: Georgia, "Times New Roman", serif;
-    line-height: 1.7;
-  }
-
-  .container {
-    max-width: 720px;
-    margin: 36px auto;
-    padding: 0 20px;
-  }
-
-  nav {
-    margin-bottom: 0.7rem;
-    font-size: 0.95rem;
-  }
-
-  nav a {
-    margin-right: 14px;
-    color: #2a6dbb;
-    text-decoration: none;
-  }
-
-  nav a:hover {
-    text-decoration: underline;
-  }
-
-  /* Desktop hero (column width) */
-  .hero {
-    max-width: 720px;
-    margin: 0 auto 0.8rem;
-    padding: 0 20px;
-  }
-
-  .hero img {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 6px;
-  }
-
-  /* Mobile full-bleed */
-  @media (max-width: 760px) {
-    .hero {
-      max-width: none;
-      padding: 0;
-      margin: 0 0 0.7rem;
-    }
-
-    .hero img {
-      border-radius: 0;
-    }
-  }
-
-  h1 {
-    font-size: 2.3rem;
-    font-weight: normal;
-    margin: 0.6rem 0 0.3rem;
-  }
-
-  p {
-    margin: 0.9rem 0;
-    font-size: 1.05rem;
-  }
-
-  .muted {
-    color: #666;
-  }
-
-  footer {
-    margin-top: 2.2rem;
-    font-size: 0.9rem;
-    color: #777;
-  }
-</style>
+<link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
 <div class="container">
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="startup-ma.html">Startup M&A</a>
-    <a href="https://medium.com/@derekzhyan" target="_blank" rel="noopener">Past Writing</a>
-    <a href="https://derekyanphotography.pixieset.com" target="_blank" rel="noopener">Photography</a>
-    <a href="contact.html">Contact</a>
+  <nav id="nav">
+    <span class="nav-track">
+      <a href="index.html">Home</a>
+      <a href="startup-ma.html">Startup M&A</a>
+      <a href="https://medium.com/@derekzhyan" target="_blank" rel="noopener">Past Writing</a>
+      <a href="https://derekyanphotography.pixieset.com" target="_blank" rel="noopener">Photography</a>
+      <a href="contact.html">Contact</a>
+      <span class="nav-spacer"></span>
+    </span>
   </nav>
 </div>
 
@@ -111,13 +35,13 @@ Founder, CTO, software engineer.
 </p>
 
 <p>
-I’m a founder and technologist working at the intersection of artificial intelligence, product design, and creative software. I co-founded 
-<a href="https://www.polarr.com">Polarr</a>, where I served as CTO and built AI-powered <a href="https://apps.apple.com/us/app/polarr-photo-filters-editor/id988173374">photo</a> and <a href="https://apps.apple.com/us/app/24fps-aesthetic-video-effects/id1341136787">video</a> tools used by millions, and shipped <a href="https://techcrunch.com/2019/03/14/ai-photo-startup-polarr-raises-an-11-5-million-series-a/">on-device computer vision</a> technology across mobile, desktop, and embedded platforms including 
-<a href="https://www.samsung.com">Samsung</a>, 
+I'm a founder and technologist working at the intersection of artificial intelligence, product design, and creative software. I co-founded
+<a href="https://www.polarr.com">Polarr</a>, where I served as CTO and built AI-powered <a href="https://apps.apple.com/us/app/polarr-photo-filters-editor/id988173374">photo</a> and <a href="https://apps.apple.com/us/app/24fps-aesthetic-video-effects/id1341136787">video</a> tools used by millions, and shipped <a href="https://techcrunch.com/2019/03/14/ai-photo-startup-polarr-raises-an-11-5-million-series-a/">on-device computer vision</a> technology across mobile, desktop, and embedded platforms including
+<a href="https://www.samsung.com">Samsung</a>,
 <a href="https://www.lg.com">LG</a>,
-<a href="https://www.westerndigital.com">Western Digital</a>,  
-<a href="https://www.mi.com">Xiaomi</a>, 
-<a href="https://www.oppo.com">OPPO</a>, 
+<a href="https://www.westerndigital.com">Western Digital</a>,
+<a href="https://www.mi.com">Xiaomi</a>,
+<a href="https://www.oppo.com">OPPO</a>,
 <a href="https://www.lenovo.com">Lenovo</a>, and others.
 </p>
 
@@ -126,23 +50,25 @@ My work spans machine learning, computer vision, edge inference, developer platf
 </p>
 
 <p>
-In May 2025, Polarr was acquired by 
+In May 2025, Polarr was acquired by
 <a href="https://www.pixieset.com">Pixieset</a>, where I now serve as Director of Engineering. Alongside this, I advise founders on startup exits and M&A, mess around with deep learning models, and take photos of my families and friends and spend <a href="https://next.polarr.com">very little time editing them</a>.
 </p>
 
 <p>
-You can find me on 
-<a href="https://www.linkedin.com/in/derekzhyan/">LinkedIn</a>, 
-view my  
-<a href="https://derekyanphotography.pixieset.com">photography</a>, 
-or 
+You can find me on
+<a href="https://www.linkedin.com/in/derekzhyan/">LinkedIn</a>,
+view my
+<a href="https://derekyanphotography.pixieset.com">photography</a>,
+or
 <a href="contact.html">reach out</a>.</p>
 
 <footer>
-© Derek Z. H. Yan — views expressed are my own.
+&copy; Derek Z. H. Yan &mdash; views expressed are my own.
 </footer>
 
 </div>
+
+<script src="nav.js"></script>
 
 </body>
 </html>
