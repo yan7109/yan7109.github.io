@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Contact - Derek Z. H. Yan</title>
+
+<style>
+  body {
+    margin: 0;
+    background: #ffffff;
+    color: #111;
+    font-family: Georgia, "Times New Roman", serif;
+    line-height: 1.7;
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 36px auto;
+    padding: 0 20px;
+  }
+
+  nav {
+    margin-bottom: 0.7rem;
+    font-size: 0.95rem;
+  }
+
+  nav a {
+    margin-right: 14px;
+    color: #2a6dbb;
+    text-decoration: none;
+  }
+
+  nav a:hover {
+    text-decoration: underline;
+  }
+
+  h1 {
+    font-size: 2.3rem;
+    font-weight: normal;
+    margin: 1.5rem 0 0.3rem;
+  }
+
+  p {
+    margin: 0.9rem 0;
+    font-size: 1.05rem;
+  }
+
+  .muted {
+    color: #666;
+  }
+
+  .contact-form {
+    margin-top: 1.5rem;
+  }
+
+  .form-group {
+    margin-bottom: 1rem;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 0.3rem;
+    font-size: 0.9rem;
+    color: #333;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.6rem 0.8rem;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.95rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background: #fff;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: #2a6dbb;
+  }
+
+  .form-group textarea {
+    min-height: 150px;
+    resize: vertical;
+  }
+
+  .form-submit {
+    background: #2a6dbb;
+    color: #fff;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.95rem;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .form-submit:hover {
+    background: #1e5a9e;
+  }
+
+  footer {
+    margin-top: 2.2rem;
+    font-size: 0.9rem;
+    color: #777;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="startup-ma.html">Startup M&A</a>
+    <a href="https://medium.com/@derekzhyan" target="_blank" rel="noopener">Past Writing</a>
+    <a href="https://derekyanphotography.pixieset.com" target="_blank" rel="noopener">Photography</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</div>
+
+<div class="container">
+
+<h1>Contact</h1>
+
+<p>
+Drop me a note below if there's anything I can be of help.
+</p>
+
+<form class="contact-form" id="contactForm" action="https://formspree.io/f/xrekpgbw" method="POST">
+  <div class="form-group">
+    <label for="name">Name *</label>
+    <input type="text" id="name" name="name" required>
+  </div>
+  <div class="form-group">
+    <label for="email">Email *</label>
+    <input type="email" id="email" name="email" required>
+  </div>
+  <div class="form-group">
+    <label for="message">Message *</label>
+    <textarea id="message" name="message" required></textarea>
+  </div>
+  <button type="submit" class="form-submit">Send</button>
+</form>
+
+<script>
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+  var form = this;
+  var submitBtn = form.querySelector('.form-submit');
+  submitBtn.textContent = 'Sending...';
+  submitBtn.disabled = true;
+});
+</script>
+
+<footer>
+&copy; Derek Z. H. Yan — views expressed are my own.
+</footer>
+
+</div>
+
+</body>
+</html>
