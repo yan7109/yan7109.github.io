@@ -29,3 +29,5 @@ node_modules/
 *.docx
 *.doc
 *.txt
+*.pdf
+!robots.txt

@@ -1,0 +1,7 @@
+# robots.txt for yan7109.github.io
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://yan7109.github.io/sitemap.xml
