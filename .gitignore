@@ -31,3 +31,16 @@ node_modules/
 *.txt
 *.pdf
 !robots.txt
+
+# Secrets and credentials
+.env
+.env.*
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+credentials.json
+secrets.json
+config.local.js
+*.secret
