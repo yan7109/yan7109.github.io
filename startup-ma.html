@@ -25,49 +25,89 @@
 
 <div class="container">
 
-<h1>Startup M&A</h1>
+<h1>The Toughest Sell</h1>
 
-<p class="muted">The Toughest Sell - Even When You Have Willing Buyers: a Founder's Guide to Startup Exits</p>
+<p class="muted">A Founder's Guide to Startup Exits</p>
 
 <p>
-It was the morning of May 15th, 2024. My mom's 60th birthday. Instead of planning a birthday message, I was obsessively checking my phone for an important email. After years of meetings, sleepless nights, and careful planning, I was expecting an acquisition term sheet from a $50 billion market cap company.
+Companies that go out looking for a buyer almost never find one. Even those with term sheets rarely close. We had everything going for us, strong inbound interest, enterprise contracts, products used by tens of millions, a technical team... And it still took four years, over a hundred conversations, and a couple of near-death experiences.
+</p>
+
+<!-- Assessment Section -->
+<div id="assessment-section" class="assessment-box">
+<h2>Should You Sell, and Can You?</h2>
+
+<p>
+This 2-minute assessment will help you understand where you stand and what your realistic path might look like.
+</p>
+
+<!-- Intro (shown before starting) -->
+<div id="q-intro">
+  <button class="q-start-btn" onclick="startQuestionnaire()">Take the Assessment</button>
+</div>
+
+<!-- Question Section -->
+<div id="question-section" class="hidden">
+  <div class="q-progress">
+    <div class="q-progress-bar">
+      <div class="q-progress-fill" id="progress-fill"></div>
+    </div>
+    <div class="q-progress-text" id="progress-text">Question 1 of 10</div>
+  </div>
+
+  <div id="question-container">
+    <h3 id="question-text"></h3>
+    <div id="answers-container"></div>
+  </div>
+
+  <button class="q-back-btn hidden" id="back-btn" onclick="goBack()">Back</button>
+</div>
+
+<!-- Results Section -->
+<div id="results-section" class="hidden">
+  <div id="burnout-warning" class="q-warning hidden">
+    <strong>A note of caution:</strong> Selling because you're exhausted rarely ends well. M&A is one of the most stressful things you'll ever do—it won't give you the relief you're looking for. Consider whether you can take a break, hire help, or reduce your role instead.
+    <br><br>
+    <strong>Read:</strong> Chapter 2 - "An Exit is Not the Silver Bullet You've Been Looking for"
+  </div>
+
+  <div class="q-result-box">
+    <h3 id="result-title"></h3>
+    <div id="result-description"></div>
+
+    <div class="q-chapters">
+      <strong>Recommended Reading</strong>
+      <div id="chapters-list"></div>
+    </div>
+  </div>
+
+  <button class="q-restart-btn" onclick="restartQuestionnaire()">Retake Assessment</button>
+</div>
+</div>
+
+<h2>Why I Wrote This Book</h2>
+
+<p>
+It was May 15th, 2024. My mom's 60th birthday. Instead of planning a birthday message, I was checking my phone for an acquisition term sheet from a $50 billion company.
 </p>
 
 <p>
-They had strong interest to buy our company back in 2021. My cofounder and I made the mistake of not following up with their founders after a positive first meeting. At that time we actually had a ton of inbound interests for acquisition, they all loved our product and technology. We hired reputable bankers who promised life-changing outcomes. Long and behold, the market soured. Despite having over a hundred conversations and a over dozens of high-leverage executive-level meetings, the only offer we got was a full stock deal from another startup that wanted our cash balance and recurring revenue.
+They had shown strong interest back in 2021. My cofounder and I made the mistake of not following up after a positive first meeting. At the time we had tons of inbound interest—everyone loved our product. We hired bankers who promised life-changing outcomes. Then the market soured. Despite dozens of executive meetings, the only offer we got was a full stock deal from another startup that just wanted our cash.
 </p>
 
 <p>
-That morning, after a swim at the YMCA, my Apple Watch buzzed mid-dead-hang. I let go of the bar to read the message. My heart sank. It wasn't a yes or no. It was a vague, long-winded email saying they needed more time. Our team, our board, my family had mentally committed to this deal. At that instant, the possibility of potentially winding down a company that had raised thirteen million dollars and was once a Silicon Valley darling felt brutally real.
+That morning, my Apple Watch buzzed mid-workout. I let go of the pull-up bar to read it. My heart sank. Not a yes or no—just a vague email saying they needed more time. The possibility of winding down a company that had raised $13 million felt brutally real.
 </p>
 
 <p>
-I stood there, thinking. What now?
-</p>
-
-<h2>Why I Wrote a Book on M&A</h2>
-
-<p>
-We decided to test the M&A market in late 2021 after having had a number of serious acquisition inquiries. We thought it would be straightforward. We had decent revenue, was profitable, a lean and technical team, great product and technology, and strong partnerships. Instead, it took almost four years before we finally found the right buyer.
-</p>
-
-<p>
-I desperately wished a book like this existed at the time.
-</p>
-
-<p>
-Companies that go out actively looking for a buyer almost never find one. The skills required to sell a business are fundamentally different from the skills required to build it. Almost no resources exist to help founders make that transition. Worse, it will likely be the loneliest period of your life. Your team must be kept in the dark. Your investors may turn openly adversarial. Even your cofounders can end up on the other side of the table. And at home, your spouse may quietly wonder (or even openly beseech you) if you've lost your mind. In this environment, even the smallest inequity in the cap table or the tiniest crack in governance can suddenly surface—and blow up directly in your face.
-</p>
-
-<p>
-This is the book I needed back then: a record of every mistake, antipattern, and dead end I wouldn't wish on my worst enemy.
+It took almost four years before we finally found the right buyer. I desperately wished a book like this existed at the time. This is the book I needed: a record of every mistake, antipattern, and dead end I wouldn't wish on my worst enemy.
 </p>
 
 <h2>Chapter Synopsis</h2>
 
 <details>
   <summary>Part I: Before You Begin</summary>
-  <p class="part-intro">The things they never told you. Preparation that should start years before you need it.</p>
+  <p class="part-intro">Preparation that should start years before you need it.</p>
   <div class="chapters">
     <div class="chapter">
       <span class="chapter-num">1.</span>
@@ -169,7 +209,7 @@ This is the book I needed back then: a record of every mistake, antipattern, and
 
 <details>
   <summary>Part II: The Opening Moves</summary>
-  <p class="part-intro">Finding the signal from all the noise. First conversations and what they actually mean.</p>
+  <p class="part-intro">First conversations and what they actually mean.</p>
   <div class="chapters">
     <div class="chapter">
       <span class="chapter-num">20.</span>
@@ -226,7 +266,7 @@ This is the book I needed back then: a record of every mistake, antipattern, and
 
 <details>
   <summary>Part III: The Middle Game</summary>
-  <p class="part-intro">Finding calm in the midst of chaos. Due diligence, negotiations, and the waiting.</p>
+  <p class="part-intro">Due diligence, negotiations, and the waiting.</p>
   <div class="chapters">
     <div class="chapter">
       <span class="chapter-num">30.</span>
@@ -258,7 +298,7 @@ This is the book I needed back then: a record of every mistake, antipattern, and
 
 <details>
   <summary>Part IV: Managing a Losing Position</summary>
-  <p class="part-intro">What to do when all hope is lost. Because most processes end here.</p>
+  <p class="part-intro">What to do when all hope is lost.</p>
   <div class="chapters">
     <div class="chapter">
       <span class="chapter-num">35.</span>
@@ -295,7 +335,7 @@ This is the book I needed back then: a record of every mistake, antipattern, and
 
 <details>
   <summary>Part V: The End Game</summary>
-  <p class="part-intro">Execute, execute, execute. When you finally have a term sheet.</p>
+  <p class="part-intro">When you finally have a term sheet.</p>
   <div class="chapters">
     <div class="chapter">
       <span class="chapter-num">41.</span>
@@ -352,7 +392,7 @@ This is the book I needed back then: a record of every mistake, antipattern, and
 
 <details>
   <summary>Part VI: Aftermath</summary>
-  <p class="part-intro">Finding closure. What happens after the deal is done.</p>
+  <p class="part-intro">What happens after the deal is done.</p>
   <div class="chapters">
     <div class="chapter">
       <span class="chapter-num">51.</span>
@@ -372,28 +412,12 @@ This is the book I needed back then: a record of every mistake, antipattern, and
   </div>
 </details>
 
-<h2>To Fellow Entrepreneurs</h2>
-<p>
-Most founders don't struggle during M&A because they lack effort or talent, they struggle because the M&A path is opaque, emotionally draining, rarely talked about honestly, and to be frank, different for everybody. Reality often falls far short of the expectations we place on ourselves, even if it's a great outcome.
-</p>
-
-<p>
-If you're navigating an exit, thinking about one, or quietly wrestling with uncertainty about your company's future, you don't have to carry that alone.
-</p>
-
-<p>
-I can't promise answers. But I'm happy to help, share what I learned the hard way, or simply be a sounding board. I can't promise to respond every email inquiry, but I'll do my best.
-</p>
-
-<p>
-Do not hesitate to reach out.
-</p>
-
 <div class="contact">
-<strong>The Toughest Sell: A Founder's Guide to Startup Exits</strong><br>
-The manuscript of the book is currently under literary representation and being pitched to publishers, so I'm no longer able to share it publicly at this time. That said, if you're genuinely interested in reading it or discussing the ideas, drop me a note. I'm always happy to chat.
+<strong>Get the Book</strong><br>
+The manuscript is under literary representation and being pitched to publishers. If you're interested in reading it or discussing the ideas, drop me a note.
 
 <form class="contact-form" id="contactForm" action="https://formspree.io/f/xrekpgbw" method="POST">
+  <input type="hidden" name="_subject" value="Startup M&A Book Inquiry">
   <div class="form-group">
     <label for="name">Name *</label>
     <input type="text" id="name" name="name" required>
@@ -410,14 +434,6 @@ The manuscript of the book is currently under literary representation and being 
 </form>
 </div>
 
-<script>
-document.getElementById('contactForm').addEventListener('submit', function(e) {
-  var submitBtn = this.querySelector('.form-submit');
-  submitBtn.textContent = 'Sending...';
-  submitBtn.disabled = true;
-});
-</script>
-
 <footer>
 &copy; Derek Z. H. Yan &mdash; views expressed are my own.
 </footer>
@@ -425,6 +441,347 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
 </div>
 
 <script src="nav.js"></script>
+<script>
+const questions = [
+  {
+    id: 'runway',
+    text: 'How long can your company operate at current burn rate?',
+    answers: [
+      { value: 'less_than_6_months', label: 'Less than 6 months' },
+      { value: '6_to_12_months', label: '6-12 months' },
+      { value: '12_to_18_months', label: '12-18 months' },
+      { value: 'over_18_months', label: 'More than 18 months (or profitable)' }
+    ]
+  },
+  {
+    id: 'interest',
+    text: 'Have potential acquirers reached out to you?',
+    answers: [
+      { value: 'written_offer', label: 'Yes, we have a written offer or term sheet' },
+      { value: 'serious_conversations', label: 'Yes, we\'ve had serious conversations with executives' },
+      { value: 'exploratory', label: 'We\'ve had exploratory calls but nothing concrete' },
+      { value: 'none', label: 'No acquisition interest' }
+    ]
+  },
+  {
+    id: 'relationships',
+    text: 'Do you have existing business relationships with companies that could acquire you?',
+    answers: [
+      { value: 'deeply_integrated', label: 'Yes, deeply integrated (partnerships, licensing, distribution)' },
+      { value: 'commercial', label: 'Yes, commercial relationships (customer, vendor)' },
+      { value: 'know_people', label: 'Know people but no business relationship' },
+      { value: 'none', label: 'No relationships with potential acquirers' }
+    ]
+  },
+  {
+    id: 'motivation',
+    text: 'Why are you considering an exit?',
+    answers: [
+      { value: 'inbound_interest', label: 'We received compelling inbound interest' },
+      { value: 'growth_outpacing', label: 'Growth is outpacing our ability to manage' },
+      { value: 'liquidity', label: 'Team and/or investors need liquidity' },
+      { value: 'exhausted', label: 'I\'m exhausted and need a change' },
+      { value: 'company_failing', label: 'The company is struggling and this is a last resort' }
+    ]
+  },
+  {
+    id: 'alignment',
+    text: 'How aligned are your cofounders and board on pursuing an exit?',
+    answers: [
+      { value: 'fully_aligned', label: 'Fully aligned and actively supportive' },
+      { value: 'generally_supportive', label: 'Generally supportive with some concerns' },
+      { value: 'mixed', label: 'Mixed—some want to sell, others don\'t' },
+      { value: 'adversarial', label: 'Significant conflict or adversarial dynamics' }
+    ]
+  },
+  {
+    id: 'revenue',
+    text: 'What is your company\'s annual recurring revenue?',
+    answers: [
+      { value: 'under_500k', label: 'Less than $500K' },
+      { value: '500k_to_2m', label: '$500K - $2M' },
+      { value: '2m_to_10m', label: '$2M - $10M' },
+      { value: 'over_10m', label: 'More than $10M' }
+    ]
+  },
+  {
+    id: 'growth',
+    text: 'How would you describe your company\'s trajectory?',
+    answers: [
+      { value: 'high_growth', label: 'Growing fast (50%+ YoY) and/or profitable' },
+      { value: 'moderate_growth', label: 'Growing moderately (10-50% YoY)' },
+      { value: 'flat', label: 'Flat or slow growth' },
+      { value: 'declining', label: 'Revenue declining' }
+    ]
+  },
+  {
+    id: 'differentiation',
+    text: 'What makes your company valuable to a potential acquirer?',
+    answers: [
+      { value: 'proprietary_tech', label: 'Proprietary technology that\'s hard to replicate' },
+      { value: 'specialized_team', label: 'Specialized team with rare expertise' },
+      { value: 'customer_relationships', label: 'Valuable customer relationships or contracts' },
+      { value: 'brand_position', label: 'Strong brand or market position' },
+      { value: 'nothing_unique', label: 'Honestly, nothing that stands out' }
+    ]
+  },
+  {
+    id: 'commitment',
+    text: 'Would you work at the acquiring company for 2+ years?',
+    answers: [
+      { value: 'excited', label: 'Yes, I\'d be excited about the right opportunity' },
+      { value: 'conditional', label: 'Yes, if the fit and terms are right' },
+      { value: 'reluctant', label: 'Only if absolutely required' },
+      { value: 'no', label: 'No, I want a clean exit' }
+    ]
+  },
+  {
+    id: 'readiness',
+    text: 'Are there issues that could complicate a deal?',
+    answers: [
+      { value: 'clean', label: 'No significant issues—clean cap table, aligned team' },
+      { value: 'minor_issues', label: 'Some minor issues we could address' },
+      { value: 'remote_issues', label: 'Remote team, messy cap table, or pending issues' },
+      { value: 'major_issues', label: 'Litigation, adversarial ex-cofounders, major problems' }
+    ]
+  }
+];
+
+const outcomes = {
+  extend_runway: {
+    title: 'Extend Your Runway First',
+    description: `
+      <p>M&A takes 12-18 months minimum. With your current runway, you don't have enough time to find a buyer—even if you had an offer today, closing takes months.</p>
+      <p><strong>Your priority:</strong> Cut costs, increase revenue, or raise a bridge round. Once you have 12+ months runway, revisit M&A.</p>
+    `,
+    chapters: [
+      { num: 1, title: 'Chances Are, It is Already Too Late' },
+      { num: 9, title: 'Prepare for the Most Likely Case of No Acceptable Offer' },
+      { num: 11, title: 'Get Your Personal Finances in Order' }
+    ]
+  },
+  address_alignment: {
+    title: 'Address Internal Alignment First',
+    description: `
+      <p>M&A will amplify every crack in your relationships with cofounders and board members. Misalignment here will torpedo deals—buyers can sense it.</p>
+      <p><strong>Your priority:</strong> Have the hard conversations now. Align on expectations, retention split, and what "acceptable" looks like before engaging with buyers.</p>
+    `,
+    chapters: [
+      { num: 12, title: 'Herding Cats: Aligning Spouses, Cofounders, Investors, and Employees' },
+      { num: 6, title: 'Know Thyself' },
+      { num: 38, title: 'Managing Stakeholders When You Can\'t Sell' }
+    ]
+  },
+  build_relationships: {
+    title: 'Focus on Building Relationships',
+    description: `
+      <p>Companies are bought, not sold. Without existing relationships with potential acquirers, cold outreach rarely works. The good news: you have time to build these.</p>
+      <p><strong>Your priority:</strong> Build partnerships, stay visible, and plant seeds. Every potential acquirer should know who you are before you need them to buy you.</p>
+    `,
+    chapters: [
+      { num: 5, title: 'Manufacturing an M&A Market When None is There' },
+      { num: 14, title: 'Come Up with an Outreach List of Potential Acquirers' },
+      { num: 23, title: 'Activate Outbound, Plant the Seed' }
+    ]
+  },
+  strong_position: {
+    title: 'You\'re in a Strong Position—M&A is Optional',
+    description: `
+      <p>You have leverage most founders dream of. M&A is just one option—you could also raise at favorable terms, hire professional management, or keep building.</p>
+      <p><strong>Consider:</strong> Is selling actually what you want? You're not in a position where you need to sell, so make sure the motivation is right.</p>
+    `,
+    chapters: [
+      { num: 7, title: 'Sell for the Right Reasons' },
+      { num: 4, title: 'Caught Off Guard: Handling M&A Inquiries Before You\'re Ready' },
+      { num: 6, title: 'Know Thyself' }
+    ]
+  },
+  engage_carefully: {
+    title: 'You Have Actionable Interest—Engage Carefully',
+    description: `
+      <p>This is the strongest position to be in. With actionable interest, you have leverage to run a proper process and discover your true market value.</p>
+      <p><strong>Your priority:</strong> Don't take the first offer. Inform your board, reach out to other potential acquirers, and consider hiring a banker to manage the process.</p>
+    `,
+    chapters: [
+      { num: 21, title: 'Engage Inbound, Lean In and Learn' },
+      { num: 22, title: 'The Inside View from an Inbound Reach Out' },
+      { num: 16, title: 'Should You Hire a Banker?' }
+    ]
+  },
+  prepare_house: {
+    title: 'Prepare Your House Before Engaging',
+    description: `
+      <p>You have market access, but issues with your company could derail deals or hurt your valuation. Buyers can smell dysfunction.</p>
+      <p><strong>Your priority:</strong> Clean up before engaging seriously. Address cap table issues, resolve any personnel problems, and get your data room in order.</p>
+    `,
+    chapters: [
+      { num: 13, title: 'Paint the Walls: Nobody Buys a Fixer-Upper' },
+      { num: 18, title: 'Get Your (Data) Room in Order' },
+      { num: 19, title: 'Checklist Before Engaging with Potential Buyers' }
+    ]
+  },
+  long_road: {
+    title: 'Prepare for a Long Road',
+    description: `
+      <p>M&A is possible for you, but it won't be quick or easy. The average process takes 1-2 years with many false starts.</p>
+      <p><strong>Your priority:</strong> Rewire your expectations. Assume no deal will happen and build accordingly. Keep the business running while you explore—most deals fall through.</p>
+    `,
+    chapters: [
+      { num: 8, title: 'Rewire Your Brain: Getting Into Exit Mode' },
+      { num: 9, title: 'Prepare for the Most Likely Case of No Acceptable Offer' },
+      { num: 20, title: 'Don\'t Forget You Still Have a Company to Run' }
+    ]
+  },
+  consider_alternatives: {
+    title: 'Consider Alternatives to M&A',
+    description: `
+      <p>Given your situation, finding a buyer will be extremely difficult. This isn't failure—it's just the reality of the M&A market.</p>
+      <p><strong>Your options:</strong></p>
+      <ul>
+        <li>Wind down gracefully and return remaining cash to investors</li>
+        <li>Pivot to something with more traction</li>
+        <li>Run as a lifestyle business if profitable</li>
+      </ul>
+    `,
+    chapters: [
+      { num: 40, title: 'It\'s Okay to Shut it All Down, But Do it On Your Own Terms' },
+      { num: 35, title: 'It\'s Not You, Not Your Bankers, Not Your Board, It\'s the Market' },
+      { num: 6, title: 'Know Thyself' }
+    ]
+  }
+};
+
+let currentQuestion = 0;
+let answers = {};
+
+function startQuestionnaire() {
+  document.getElementById('q-intro').classList.add('hidden');
+  document.getElementById('question-section').classList.remove('hidden');
+  showQuestion(0);
+}
+
+function showQuestion(index) {
+  currentQuestion = index;
+  const question = questions[index];
+
+  document.getElementById('progress-fill').style.width = ((index + 1) / questions.length * 100) + '%';
+  document.getElementById('progress-text').textContent = `Question ${index + 1} of ${questions.length}`;
+  document.getElementById('question-text').textContent = question.text;
+
+  const container = document.getElementById('answers-container');
+  container.innerHTML = '';
+
+  question.answers.forEach(answer => {
+    const btn = document.createElement('button');
+    btn.className = 'q-answer-btn' + (answers[question.id] === answer.value ? ' selected' : '');
+    btn.textContent = answer.label;
+    btn.onclick = function() { selectAnswer(question.id, answer.value, this); };
+    container.appendChild(btn);
+  });
+
+  document.getElementById('back-btn').classList.toggle('hidden', index === 0);
+}
+
+function selectAnswer(questionId, value, element) {
+  answers[questionId] = value;
+  document.querySelectorAll('.q-answer-btn').forEach(btn => btn.classList.remove('selected'));
+  element.classList.add('selected');
+
+  setTimeout(() => {
+    // Check for early termination conditions
+    const earlyOutcome = checkEarlyTermination();
+    if (earlyOutcome) {
+      showResults(earlyOutcome);
+    } else if (currentQuestion < questions.length - 1) {
+      showQuestion(currentQuestion + 1);
+    } else {
+      showResults();
+    }
+  }, 200);
+}
+
+function checkEarlyTermination() {
+  // After Q1 (runway): if < 6 months, terminate immediately
+  if (answers.runway === 'less_than_6_months') {
+    return 'extend_runway';
+  }
+
+  // After Q4 (motivation): if company failing + not long runway, terminate
+  if (answers.motivation === 'company_failing' &&
+      answers.runway && answers.runway !== 'over_18_months') {
+    return 'consider_alternatives';
+  }
+
+  // After Q5 (alignment): if adversarial, terminate
+  if (answers.alignment === 'adversarial') {
+    return 'address_alignment';
+  }
+
+  return null;
+}
+
+function goBack() {
+  if (currentQuestion > 0) showQuestion(currentQuestion - 1);
+}
+
+function calculateOutcome(answers) {
+  // Early termination cases (also handled by checkEarlyTermination for skipping)
+  if (answers.runway === 'less_than_6_months') return 'extend_runway';
+  if (answers.alignment === 'adversarial') return 'address_alignment';
+  if (answers.motivation === 'company_failing' && answers.runway !== 'over_18_months') return 'consider_alternatives';
+
+  const hasActionableOffer = answers.interest === 'written_offer';
+  const hasInterest = ['written_offer', 'serious_conversations'].includes(answers.interest);
+  const hasRelationships = ['deeply_integrated', 'commercial'].includes(answers.relationships);
+  const isStrong = answers.growth === 'high_growth' && answers.runway === 'over_18_months';
+
+  if (hasActionableOffer && answers.readiness !== 'major_issues') return 'engage_carefully';
+  if (!hasInterest && !hasRelationships) return isStrong ? 'strong_position' : 'build_relationships';
+  if (isStrong && !hasInterest) return 'strong_position';
+  if ((hasInterest || hasRelationships) && ['remote_issues', 'major_issues'].includes(answers.readiness)) return 'prepare_house';
+  if (answers.growth === 'declining' && answers.differentiation === 'nothing_unique') return 'consider_alternatives';
+
+  return 'long_road';
+}
+
+function showResults(earlyOutcome) {
+  document.getElementById('question-section').classList.add('hidden');
+  document.getElementById('results-section').classList.remove('hidden');
+
+  const outcomeKey = earlyOutcome || calculateOutcome(answers);
+  const outcome = outcomes[outcomeKey];
+
+  if (answers.motivation === 'exhausted') {
+    document.getElementById('burnout-warning').classList.remove('hidden');
+  }
+
+  document.getElementById('result-title').textContent = outcome.title;
+  document.getElementById('result-description').innerHTML = outcome.description;
+
+  const chaptersList = document.getElementById('chapters-list');
+  chaptersList.innerHTML = '';
+  outcome.chapters.forEach(ch => {
+    const div = document.createElement('div');
+    div.className = 'q-chapter-item';
+    div.innerHTML = `<span class="q-chapter-num">Ch. ${ch.num}</span> ${ch.title}`;
+    chaptersList.appendChild(div);
+  });
+}
+
+function restartQuestionnaire() {
+  answers = {};
+  currentQuestion = 0;
+  document.getElementById('results-section').classList.add('hidden');
+  document.getElementById('burnout-warning').classList.add('hidden');
+  document.getElementById('q-intro').classList.remove('hidden');
+}
+
+document.getElementById('contactForm').addEventListener('submit', function() {
+  var btn = this.querySelector('.form-submit');
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+});
+</script>
 
 </body>
 </html>

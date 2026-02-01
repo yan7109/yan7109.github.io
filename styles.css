@@ -264,3 +264,222 @@ footer {
   font-size: 0.9rem;
   color: #666;
 }
+
+/* Questionnaire */
+.hidden {
+  display: none !important;
+}
+
+.intro-list {
+  margin: 1rem 0 1.5rem;
+  padding-left: 1.2rem;
+}
+
+.intro-list li {
+  margin: 0.5rem 0;
+  color: #c0c0c0;
+}
+
+/* Assessment section box */
+.assessment-box {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 4px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+}
+
+.assessment-box h2 {
+  margin-top: 0;
+}
+
+.assessment-box > p {
+  margin-bottom: 1rem;
+}
+
+.q-start-btn {
+  background: #6db3f2;
+  color: #121212;
+  border: none;
+  padding: 0.9rem 2rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.05rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  margin-top: 0.5rem;
+}
+
+.q-start-btn:hover {
+  background: #9ccfff;
+}
+
+/* Progress bar */
+.q-progress {
+  margin-bottom: 1.5rem;
+}
+
+.q-progress-bar {
+  height: 4px;
+  background: #333;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.q-progress-fill {
+  height: 100%;
+  background: #6db3f2;
+  transition: width 0.3s ease;
+  width: 10%;
+}
+
+.q-progress-text {
+  font-size: 0.85rem;
+  color: #888;
+  margin-top: 0.5rem;
+}
+
+/* Question container */
+#question-container h2 {
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+/* Answer buttons */
+.q-answer-btn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 4px;
+  padding: 1rem 1.2rem;
+  margin-bottom: 0.7rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1rem;
+  color: #e0e0e0;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.q-answer-btn:hover {
+  background: #252525;
+  border-color: #6db3f2;
+}
+
+.q-answer-btn.selected {
+  background: #1e3a5f;
+  border-color: #6db3f2;
+}
+
+/* Back button */
+.q-back-btn {
+  background: transparent;
+  border: 1px solid #444;
+  color: #888;
+  padding: 0.6rem 1.2rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.q-back-btn:hover {
+  border-color: #666;
+  color: #c0c0c0;
+}
+
+/* Warning banner */
+.q-warning {
+  background: #3d2a1a;
+  border: 1px solid #6b4423;
+  border-radius: 4px;
+  padding: 1.2rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+  color: #e0c0a0;
+  line-height: 1.6;
+}
+
+/* Results */
+#results-section h1 {
+  margin-top: 0;
+}
+
+#result-description {
+  margin-bottom: 2rem;
+}
+
+#result-description ul {
+  padding-left: 1.2rem;
+  margin: 0.8rem 0;
+}
+
+#result-description li {
+  margin: 0.4rem 0;
+}
+
+/* Result box */
+.q-result-box {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 4px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.q-result-box h3 {
+  margin-top: 0;
+  font-size: 1.3rem;
+  color: #f0f0f0;
+}
+
+/* Recommended chapters */
+.q-chapters {
+  background: #222;
+  border: 1px solid #333;
+  border-radius: 4px;
+  padding: 1rem 1.2rem;
+  margin-top: 1.2rem;
+}
+
+.q-chapters h2 {
+  font-size: 1.1rem;
+  margin: 0 0 1rem;
+  color: #c0c0c0;
+}
+
+.q-chapter-item {
+  padding: 0.6rem 0;
+  border-bottom: 1px solid #2a2a2a;
+  font-size: 0.95rem;
+}
+
+.q-chapter-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.q-chapter-num {
+  color: #6db3f2;
+  margin-right: 0.5rem;
+}
+
+/* Restart button */
+.q-restart-btn {
+  background: transparent;
+  border: 1px solid #444;
+  color: #888;
+  padding: 0.6rem 1.2rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.q-restart-btn:hover {
+  border-color: #666;
+  color: #c0c0c0;
+}
