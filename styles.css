@@ -483,3 +483,286 @@ footer {
   border-color: #666;
   color: #c0c0c0;
 }
+
+/* Resources Section */
+.resources-section {
+  margin: 2rem 0;
+}
+
+.resources-section h2 {
+  margin-bottom: 1rem;
+}
+
+.resources-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+@media (max-width: 600px) {
+  .resources-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.resource-card {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 4px;
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.resource-card:hover {
+  border-color: #444;
+  background: #1e1e1e;
+}
+
+.resource-title {
+  font-size: 1rem;
+  color: #e0e0e0;
+  margin-bottom: 0.5rem;
+}
+
+.resource-desc {
+  font-size: 0.85rem;
+  color: #888;
+  line-height: 1.5;
+  flex-grow: 1;
+  margin-bottom: 0.8rem;
+}
+
+.resource-link {
+  font-size: 0.9rem;
+  color: #6db3f2;
+  text-decoration: none;
+}
+
+.resource-link:hover {
+  color: #9ccfff;
+  text-decoration: underline;
+}
+
+/* Resource Page Styles */
+.resource-page {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.resource-page h1 {
+  margin-bottom: 0.5rem;
+}
+
+.resource-intro {
+  color: #999;
+  font-size: 0.95rem;
+  margin-bottom: 2rem;
+  font-style: italic;
+}
+
+.checklist-section {
+  margin: 1.5rem 0;
+}
+
+.checklist-section h2 {
+  font-size: 1.1rem;
+  color: #6db3f2;
+  margin-bottom: 0.8rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid #333;
+}
+
+.checklist-item {
+  display: flex;
+  align-items: flex-start;
+  margin: 0.6rem 0;
+  padding: 0.5rem 0;
+}
+
+.checklist-box {
+  width: 18px;
+  height: 18px;
+  border: 1px solid #555;
+  border-radius: 3px;
+  margin-right: 0.8rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.checklist-text {
+  font-size: 0.95rem;
+  color: #c0c0c0;
+  line-height: 1.5;
+}
+
+.checklist-text.sub-item {
+  padding-left: 1.5rem;
+  color: #999;
+  font-size: 0.9rem;
+}
+
+.email-template {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 4px;
+  padding: 1.2rem;
+  margin: 1rem 0;
+  font-family: monospace;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #c0c0c0;
+}
+
+.email-template .subject {
+  color: #6db3f2;
+  margin-bottom: 1rem;
+}
+
+.email-template .placeholder {
+  color: #e8a838;
+}
+
+.deck-section {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 4px;
+  padding: 1.2rem;
+  margin: 1rem 0;
+}
+
+.deck-section h3 {
+  font-size: 1rem;
+  color: #e0e0e0;
+  margin-bottom: 0.5rem;
+}
+
+.deck-section p {
+  font-size: 0.9rem;
+  color: #999;
+  margin: 0.3rem 0;
+}
+
+.resource-footer {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #333;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.resource-footer a {
+  color: #6db3f2;
+}
+
+/* Full-width resource card */
+.resource-card-full {
+  grid-column: 1 / -1;
+}
+
+/* Tools Section */
+.tools-section {
+  margin: 2rem 0;
+}
+
+.tools-section h2 {
+  margin-bottom: 1rem;
+}
+
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+@media (max-width: 600px) {
+  .tools-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.tool-card {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 4px;
+  padding: 1.2rem;
+}
+
+.tool-card:hover {
+  border-color: #444;
+  background: #1e1e1e;
+}
+
+.tool-card-full {
+  grid-column: 1 / -1;
+}
+
+.tool-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.tool-title {
+  font-size: 1rem;
+  color: #e0e0e0;
+  margin-bottom: 0.5rem;
+}
+
+.tool-desc {
+  font-size: 0.85rem;
+  color: #888;
+  line-height: 1.5;
+}
+
+.tool-start-btn {
+  background: transparent;
+  border: 1px solid #6db3f2;
+  color: #6db3f2;
+  padding: 0.5rem 1rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.tool-start-btn:hover {
+  background: #6db3f2;
+  color: #121212;
+}
+
+.tool-content {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #333;
+}
+
+/* Connect Section */
+.connect-section {
+  margin: 2rem 0;
+}
+
+.connect-section h2 {
+  margin-bottom: 0.5rem;
+}
+
+.connect-section p {
+  color: #888;
+  font-size: 0.95rem;
+  margin-bottom: 0.8rem;
+}
+
+.connect-link {
+  font-size: 0.9rem;
+  color: #6db3f2;
+  text-decoration: none;
+}
+
+.connect-link:hover {
+  color: #9ccfff;
+  text-decoration: underline;
+}
+
