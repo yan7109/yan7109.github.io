@@ -130,7 +130,7 @@
 
 <div class="container">
 
-<h1>The Toughest Sell</h1>
+<h1>Startup M&A</h1>
 
 <p>
 Companies that go out looking for a buyer almost <em>always</em> never find one. Even those with term sheets rarely close. We had everything going for us, strong inbound interest, enterprise contracts, products used by tens of millions, a technical team... And it still took four years, over a hundred conversations, and a couple of near-death experiences.
@@ -278,6 +278,106 @@ I wrote a book on this whole bloody experience, hopefully to help founders think
         </div>
 
         <button class="q-restart-btn" onclick="restartValuationAssessment()">Retake Assessment</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Vet Your Inbound Assessment -->
+  <div class="tool-card tool-card-full" id="inbound-tool-card">
+    <div class="tool-header" id="inbound-tool-header" onclick="startInboundAssessment()">
+      <div>
+        <div class="tool-title">Vet Your Inbound</div>
+        <div class="tool-desc">Evaluate whether an acquisition inquiry is real interest or a fishing expedition.</div>
+      </div>
+      <button class="tool-start-btn" id="inbound-start-btn" onclick="startInboundAssessment()">Take Assessment</button>
+    </div>
+    <div class="tool-content hidden" id="inbound-tool-content">
+      <!-- Question Section -->
+      <div id="inbound-question-section" class="hidden">
+        <div class="q-progress">
+          <div class="q-progress-bar">
+            <div class="q-progress-fill" id="inbound-progress-fill"></div>
+          </div>
+          <div class="q-progress-text" id="inbound-progress-text">Question 1 of 8</div>
+        </div>
+
+        <div id="inbound-question-container">
+          <h3 id="inbound-question-text"></h3>
+          <p id="inbound-question-hint" class="q-hint"></p>
+          <div id="inbound-answers-container"></div>
+        </div>
+
+        <button class="q-back-btn hidden" id="inbound-back-btn" onclick="inboundGoBack()">Back</button>
+      </div>
+
+      <!-- Results Section -->
+      <div id="inbound-results-section" class="hidden">
+        <div id="inbound-warnings"></div>
+
+        <div class="q-result-box">
+          <div class="inbound-signal-badge" id="inbound-signal-badge"></div>
+          <h3 id="inbound-result-title"></h3>
+          <div id="inbound-result-description"></div>
+
+          <div class="inbound-next-steps" id="inbound-next-steps">
+            <strong>Suggested Next Steps</strong>
+            <div id="inbound-steps-list"></div>
+          </div>
+
+          <div class="q-chapters">
+            <strong>Recommended Reading</strong>
+            <p class="q-chapters-intro">From <a href="ma-book.html">The Toughest Sell</a>, my upcoming book on startup M&A:</p>
+            <div id="inbound-chapters-list"></div>
+          </div>
+        </div>
+
+        <button class="q-restart-btn" onclick="restartInboundAssessment()">Evaluate Another Inquiry</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Do You Need a Banker? Assessment -->
+  <div class="tool-card tool-card-full" id="banker-tool-card">
+    <div class="tool-header" id="banker-tool-header" onclick="startBankerAssessment()">
+      <div>
+        <div class="tool-title">Do You Need a Banker?</div>
+        <div class="tool-desc">Determine whether hiring an investment banker will help or hurt your M&A process.</div>
+      </div>
+      <button class="tool-start-btn" id="banker-start-btn" onclick="startBankerAssessment()">Take Assessment</button>
+    </div>
+    <div class="tool-content hidden" id="banker-tool-content">
+      <!-- Question Section -->
+      <div id="banker-question-section" class="hidden">
+        <div class="q-progress">
+          <div class="q-progress-bar">
+            <div class="q-progress-fill" id="banker-progress-fill"></div>
+          </div>
+          <div class="q-progress-text" id="banker-progress-text">Question 1 of 10</div>
+        </div>
+
+        <div id="banker-question-container">
+          <h3 id="banker-question-text"></h3>
+          <p id="banker-question-hint" class="q-hint"></p>
+          <div id="banker-answers-container"></div>
+        </div>
+
+        <button class="q-back-btn hidden" id="banker-back-btn" onclick="bankerGoBack()">Back</button>
+      </div>
+
+      <!-- Results Section -->
+      <div id="banker-results-section" class="hidden">
+        <div class="q-result-box">
+          <h3 id="banker-result-title"></h3>
+          <div id="banker-result-description"></div>
+
+          <div class="q-chapters">
+            <strong>Recommended Reading</strong>
+            <p class="q-chapters-intro">From <a href="ma-book.html">The Toughest Sell</a>, my upcoming book on startup M&A:</p>
+            <div id="banker-chapters-list"></div>
+          </div>
+        </div>
+
+        <button class="q-restart-btn" onclick="restartBankerAssessment()">Retake Assessment</button>
       </div>
     </div>
   </div>
@@ -1730,6 +1830,1326 @@ function restartValuationAssessment() {
   // Reset visibility of optional sections
   document.getElementById('valuation-range-box').style.display = 'block';
   document.getElementById('valuation-factors').style.display = 'block';
+}
+
+// ==========================================
+// VET YOUR INBOUND ASSESSMENT
+// ==========================================
+
+const inboundQuestions = [
+  {
+    id: 'source',
+    text: 'Who reached out to you?',
+    hint: 'The seniority and role of the person reaching out is one of the strongest signals of real intent.',
+    answers: [
+      { value: 'ceo_founder', label: 'CEO or Founder' },
+      { value: 'c_level', label: 'C-level executive (CTO, CFO, COO, etc.)' },
+      { value: 'vp_gm', label: 'VP or GM of a business unit' },
+      { value: 'corp_dev', label: 'Corp Dev or M&A team member' },
+      { value: 'pm_em', label: 'Product Manager, Engineering Manager, or similar' },
+      { value: 'pe_analyst', label: 'PE/VC analyst or associate' },
+      { value: 'banker', label: 'Investment banker representing another company' },
+      { value: 'unknown', label: 'Unknown or can\'t determine' }
+    ]
+  },
+  {
+    id: 'channel',
+    text: 'How did they reach you?',
+    answers: [
+      { value: 'board_intro', label: 'Warm intro from your board member or investor' },
+      { value: 'mutual_intro', label: 'Warm intro from a mutual contact' },
+      { value: 'existing_relationship', label: 'Direct outreach—we have an existing relationship' },
+      { value: 'cold_outreach', label: 'Cold email or LinkedIn message' },
+      { value: 'conference', label: 'Met at a conference or event' },
+      { value: 'through_banker', label: 'Through a banker or advisor' }
+    ]
+  },
+  {
+    id: 'company_type',
+    text: 'What type of company is reaching out?',
+    answers: [
+      { value: 'big_tech', label: 'Big tech (Google, Apple, Microsoft, Meta, Amazon, etc.)' },
+      { value: 'large_public', label: 'Large public company (not big tech)' },
+      { value: 'growth_startup', label: 'Well-funded growth-stage startup' },
+      { value: 'pe_firm', label: 'Private equity firm' },
+      { value: 'strategic_midsize', label: 'Strategic corporate (mid-size, private)' },
+      { value: 'small_unknown', label: 'Smaller company or unknown' }
+    ]
+  },
+  {
+    id: 'stated_intent',
+    text: 'What did they say they want?',
+    answers: [
+      { value: 'explicit_acquisition', label: 'Explicitly mentioned acquisition interest' },
+      { value: 'exploratory', label: '"Exploratory conversation" or "getting to know you"' },
+      { value: 'partnership', label: 'Partnership or collaboration discussion' },
+      { value: 'investment', label: 'Investment discussion' },
+      { value: 'vague', label: 'Vague or unclear intent' }
+    ]
+  },
+  {
+    id: 'specificity',
+    text: 'How specific was their interest?',
+    hint: 'Specificity signals real homework has been done—generic praise often means mass outreach.',
+    answers: [
+      { value: 'very_specific', label: 'Mentioned specific product, technology, or team they\'re interested in' },
+      { value: 'referenced_news', label: 'Referenced recent news, announcement, or something specific about us' },
+      { value: 'generic_praise', label: 'Generic "love what you\'re doing" or "impressed by your work"' },
+      { value: 'template', label: 'Clearly a template or form letter' }
+    ]
+  },
+  {
+    id: 'focus_area',
+    text: 'What are they asking about?',
+    hint: 'What they focus on reveals what they actually want to acquire.',
+    answers: [
+      { value: 'team', label: 'Our team—org structure, key people, who would come over' },
+      { value: 'technology', label: 'Our technology or IP specifically' },
+      { value: 'business', label: 'Our revenue, customers, and business metrics' },
+      { value: 'strategic_fit', label: 'Strategic fit and how we\'d integrate with their roadmap' },
+      { value: 'general', label: 'General "tell me about your company"' }
+    ]
+  },
+  {
+    id: 'acq_history',
+    text: 'Do they have acquisition history?',
+    answers: [
+      { value: 'serial', label: 'Yes—serial acquirer (10+ acquisitions in recent years)' },
+      { value: 'occasional', label: 'Yes—occasional acquirer (a few acquisitions)' },
+      { value: 'acquihire_known', label: 'They\'re known for acquihires specifically' },
+      { value: 'first_time', label: 'First-time acquirer or unknown history' },
+      { value: 'not_sure', label: 'Not sure—haven\'t researched yet' }
+    ]
+  },
+  {
+    id: 'existing_relationship',
+    text: 'Do you have an existing business relationship with them?',
+    answers: [
+      { value: 'customer_partner', label: 'Yes—they\'re a customer, partner, or vendor' },
+      { value: 'licensing', label: 'Yes—we have a licensing or integration deal' },
+      { value: 'talked_before', label: 'We\'ve talked before but no formal relationship' },
+      { value: 'no_relationship', label: 'No prior relationship' }
+    ]
+  }
+];
+
+const inboundOutcomes = {
+  // HIGH SIGNAL outcomes
+  strategic_ceo_outreach: {
+    signal: 'high',
+    title: 'High Signal: CEO/Founder Direct Outreach',
+    description: `
+      <p>When a CEO or founder reaches out directly about acquisition, <strong>this is the highest-signal inbound you can receive</strong>. They don't waste time on fishing expeditions—their time is too valuable.</p>
+      <p>This doesn't mean a deal will happen, but it means there's genuine interest at the decision-making level. The person reaching out can actually make this happen.</p>
+    `,
+    nextSteps: [
+      'Take the meeting seriously—prepare as if this is real',
+      'Research their acquisition history and recent deals',
+      'Understand their strategic priorities before the call',
+      'Don\'t oversell—listen more than you talk',
+      'Inform your board, but keep the circle small for now'
+    ],
+    chapters: [
+      { num: 21, title: 'Engage Inbound, Lean In and Learn' },
+      { num: 22, title: 'The Inside View from an Inbound Reach Out' },
+      { num: 26, title: 'First Meetings Are Typically Smoke Tests' }
+    ]
+  },
+  warm_strategic: {
+    signal: 'high',
+    title: 'High Signal: Warm Intro with Strategic Intent',
+    description: `
+      <p>A warm introduction combined with senior-level contact and specific interest is a strong signal. <strong>Someone with credibility vouched for this conversation</strong>, and the acquirer did their homework.</p>
+      <p>The warm intro also means you have a backchannel—your introducer can often provide context on what's really going on inside the acquiring company.</p>
+    `,
+    nextSteps: [
+      'Thank your introducer and ask for any context they have',
+      'Research the company\'s strategic priorities and recent moves',
+      'Prepare thoughtful questions about their interest',
+      'Take the meeting—this is worth your time',
+      'Keep your introducer updated (they have reputation at stake too)'
+    ],
+    chapters: [
+      { num: 21, title: 'Engage Inbound, Lean In and Learn' },
+      { num: 22, title: 'The Inside View from an Inbound Reach Out' },
+      { num: 4, title: 'Caught Off Guard: Handling M&A Inquiries Before You\'re Ready' }
+    ]
+  },
+  active_acquirer: {
+    signal: 'high',
+    title: 'High Signal: Active Acquirer with Clear Intent',
+    description: `
+      <p>This company has a track record of completing acquisitions and has reached out with clear intent. <strong>They know how to buy companies</strong>, which means the process is more likely to be professional and reach a conclusion.</p>
+      <p>Serial acquirers also tend to move faster and have clearer internal processes. They've done this before.</p>
+    `,
+    nextSteps: [
+      'Research their recent acquisitions—what did they pay? How did integration go?',
+      'Talk to founders they\'ve acquired if possible',
+      'Understand their typical deal structure and timeline',
+      'Be prepared for a more structured process',
+      'They\'ll likely have a playbook—learn what it is'
+    ],
+    chapters: [
+      { num: 21, title: 'Engage Inbound, Lean In and Learn' },
+      { num: 26, title: 'First Meetings Are Typically Smoke Tests' },
+      { num: 30, title: 'The $$$ Expectation Alignment Conversation' }
+    ]
+  },
+  pe_thesis_fit: {
+    signal: 'high',
+    title: 'High Signal: PE Firm with Thesis Fit',
+    description: `
+      <p>When a PE firm reaches out and their investment thesis aligns with your space, this can be serious interest. <strong>PE firms are methodical</strong>—they research sectors deeply before reaching out.</p>
+      <p>However, PE interest is different from strategic interest. They're focused on financial returns, not product integration. Expect detailed financial scrutiny and a focus on EBITDA and growth predictability.</p>
+    `,
+    nextSteps: [
+      'Understand their investment thesis and portfolio',
+      'Be prepared for detailed financial questions',
+      'Know your EBITDA, growth rate, and unit economics cold',
+      'Understand their typical hold period and exit strategy',
+      'Ask about their operating partners and value-add approach'
+    ],
+    chapters: [
+      { num: 21, title: 'Engage Inbound, Lean In and Learn' },
+      { num: 10, title: 'Valuation Fantasies and the Art of Disappointment' },
+      { num: 31, title: 'Initial Due Diligence' }
+    ]
+  },
+
+  // MEDIUM SIGNAL outcomes
+  corp_dev_real: {
+    signal: 'medium',
+    title: 'Medium Signal: Corp Dev with Good Indicators',
+    description: `
+      <p>Corp Dev outreach can be real, but it requires more validation. <strong>Corp Dev teams are often tasked with "market mapping"</strong>—talking to many companies to understand a space, not necessarily to buy.</p>
+      <p>The positive signals here (warm intro, specific interest, or existing relationship) suggest this might be more than mapping. But stay alert for signs this is just information gathering.</p>
+    `,
+    nextSteps: [
+      'Take the meeting, but manage your time investment',
+      'Ask directly: "Is there active budget and sponsorship for this?"',
+      'Find out who the internal sponsor is (which executive is pushing this)',
+      'Ask about their timeline and process',
+      'Don\'t share sensitive information until you understand their intent'
+    ],
+    warnings: [
+      'Corp Dev often does "market mapping" with no intent to buy'
+    ],
+    chapters: [
+      { num: 22, title: 'The Inside View from an Inbound Reach Out' },
+      { num: 21, title: 'Engage Inbound, Lean In and Learn' },
+      { num: 26, title: 'First Meetings Are Typically Smoke Tests' }
+    ]
+  },
+  acquihire_signals: {
+    signal: 'medium',
+    title: 'Medium Signal: Likely an Acquihire',
+    description: `
+      <p>The focus on your team and people—rather than your product or revenue—suggests this is likely an <strong>acquihire</strong>: they want to buy your talent, not your business.</p>
+      <p>Acquihires can be good outcomes, but set expectations accordingly. The valuation will be based on headcount and retention packages, not revenue multiples. Most of the deal value will be in retention bonuses tied to key people staying.</p>
+    `,
+    nextSteps: [
+      'Be honest with yourself about whether this is what you want',
+      'Understand that 70-90% of value will be retention, not upfront',
+      'Know which team members would be essential to the deal',
+      'Talk to founders who\'ve done acquihires with this company',
+      'Align with your team before going deep—they\'ll need to buy in'
+    ],
+    warnings: [
+      'Acquihire valuations are based on headcount, not revenue multiples'
+    ],
+    chapters: [
+      { num: 22, title: 'The Inside View from an Inbound Reach Out' },
+      { num: 10, title: 'Valuation Fantasies and the Art of Disappointment' },
+      { num: 32, title: 'Key Employee Interviews' }
+    ]
+  },
+  partnership_probe: {
+    signal: 'medium',
+    title: 'Medium Signal: Partnership as M&A Cover',
+    description: `
+      <p>"Partnership discussions" are sometimes a cover for M&A exploration. Companies use this framing to <strong>get a meeting without triggering alarm bells</strong>—it's less threatening than saying "we might want to buy you."</p>
+      <p>This could go either way. Take the meeting, but pay attention to where the conversation goes. If they keep steering toward your team, cap table, or strategic plans, M&A might be the real agenda.</p>
+    `,
+    nextSteps: [
+      'Take the meeting with an open mind',
+      'Pay attention to what questions they actually ask',
+      'If M&A comes up, don\'t act surprised—lean in',
+      'A real partnership could also be valuable on its own',
+      'Either outcome (partnership or M&A) can be good—stay flexible'
+    ],
+    chapters: [
+      { num: 21, title: 'Engage Inbound, Lean In and Learn' },
+      { num: 5, title: 'Manufacturing an M&A Market When None is There' },
+      { num: 22, title: 'The Inside View from an Inbound Reach Out' }
+    ]
+  },
+  needs_validation: {
+    signal: 'medium',
+    title: 'Medium Signal: Worth a Call to Learn More',
+    description: `
+      <p>The signals here are mixed—not clearly a fishing expedition, but not clearly serious either. <strong>A single call can help you determine which this is.</strong></p>
+      <p>Go in with specific questions designed to separate real interest from casual exploration. Don't over-invest time until you understand their intent and authority.</p>
+    `,
+    nextSteps: [
+      'Take a 30-minute call—low cost to learn more',
+      'Ask directly about budget, timeline, and internal sponsorship',
+      'Find out who else is involved in the decision',
+      'Gauge their knowledge of your space and company',
+      'Trust your instincts after the call'
+    ],
+    chapters: [
+      { num: 21, title: 'Engage Inbound, Lean In and Learn' },
+      { num: 26, title: 'First Meetings Are Typically Smoke Tests' },
+      { num: 22, title: 'The Inside View from an Inbound Reach Out' }
+    ]
+  },
+
+  // LOW SIGNAL outcomes
+  fishing_expedition: {
+    signal: 'low',
+    title: 'Low Signal: Likely a Fishing Expedition',
+    description: `
+      <p>Cold outreach from a junior person with generic interest is the classic <strong>fishing expedition</strong>. Corp Dev teams, PE analysts, and bankers send hundreds of these emails. Most lead nowhere.</p>
+      <p>This doesn't mean you should ignore it entirely—sometimes real interest starts with a junior person doing research. But invest minimal time until you see stronger signals.</p>
+    `,
+    nextSteps: [
+      'Reply politely but don\'t clear your calendar',
+      'Ask qualifying questions before agreeing to a call',
+      'Find out who the senior sponsor is',
+      'Request more specifics about their interest',
+      'If they can\'t answer basic questions, deprioritize'
+    ],
+    warnings: [
+      'Most cold Corp Dev outreach is market mapping, not real interest'
+    ],
+    chapters: [
+      { num: 22, title: 'The Inside View from an Inbound Reach Out' },
+      { num: 21, title: 'Engage Inbound, Lean In and Learn' },
+      { num: 29, title: 'Common Pitfalls in the Opening Game' }
+    ]
+  },
+  banker_fishing: {
+    signal: 'low',
+    title: 'Low Signal: Banker Fishing for Mandates',
+    description: `
+      <p>Investment bankers reaching out on behalf of "unnamed clients" are often <strong>fishing for mandates</strong>, not representing real buyers. They want to sign you as a client, then go find buyers.</p>
+      <p>If there's a real buyer, ask who it is. A legitimate banker with a real client will tell you (under NDA if needed). Vague "we have interested parties" language is a red flag.</p>
+    `,
+    nextSteps: [
+      'Ask who the buyer is—a real banker will tell you',
+      'Be skeptical of "unnamed strategic" or "several interested parties"',
+      'Don\'t sign any engagement letters based on vague promises',
+      'If they push for exclusivity without naming buyers, decline',
+      'A real buyer would reach out directly or through a warm intro'
+    ],
+    warnings: [
+      'Bankers often fish for deals to then shop around—no real buyer yet'
+    ],
+    chapters: [
+      { num: 16, title: 'Should You Hire a Banker?' },
+      { num: 22, title: 'The Inside View from an Inbound Reach Out' },
+      { num: 29, title: 'Common Pitfalls in the Opening Game' }
+    ]
+  },
+  intel_gathering: {
+    signal: 'low',
+    title: 'Low Signal: Possible Intelligence Gathering',
+    description: `
+      <p>The combination of signals here suggests this might be <strong>competitive intelligence gathering</strong> rather than real acquisition interest. Companies sometimes use "M&A exploration" as cover to learn about competitors.</p>
+      <p>Be careful what you share. General information is fine, but don't reveal strategic plans, customer details, or technical secrets until you've validated the interest is real.</p>
+    `,
+    nextSteps: [
+      'Be polite but guarded with sensitive information',
+      'Don\'t share customer names, roadmaps, or technical details',
+      'Ask probing questions about their actual intent',
+      'If something feels off, trust your instincts',
+      'Consider whether they\'re a competitor in disguise'
+    ],
+    warnings: [
+      'Could be competitive intelligence—be careful what you share'
+    ],
+    chapters: [
+      { num: 22, title: 'The Inside View from an Inbound Reach Out' },
+      { num: 29, title: 'Common Pitfalls in the Opening Game' },
+      { num: 31, title: 'Initial Due Diligence' }
+    ]
+  },
+  too_vague: {
+    signal: 'low',
+    title: 'Low Signal: Too Vague to Evaluate',
+    description: `
+      <p>The outreach is too vague to determine real intent. <strong>Generic interest without specifics usually means this is one of many outreach emails</strong> they're sending.</p>
+      <p>Don't invest significant time until they demonstrate more serious intent. A quick email asking for specifics can help you filter this.</p>
+    `,
+    nextSteps: [
+      'Reply asking for more specifics about their interest',
+      'Ask what specifically caught their attention about your company',
+      'Request clarity on who is involved and what the timeline is',
+      'If they can\'t provide details, deprioritize',
+      'Don\'t take a meeting until they show real homework'
+    ],
+    chapters: [
+      { num: 22, title: 'The Inside View from an Inbound Reach Out' },
+      { num: 21, title: 'Engage Inbound, Lean In and Learn' },
+      { num: 29, title: 'Common Pitfalls in the Opening Game' }
+    ]
+  },
+  first_time_buyer: {
+    signal: 'low',
+    title: 'Low Signal: First-Time Acquirer Risk',
+    description: `
+      <p>Companies without acquisition experience often <strong>underestimate how hard M&A is</strong>. They may have genuine interest but lack the internal processes, budget approval, or integration capability to close a deal.</p>
+      <p>Many first-time acquirers get cold feet during diligence or can't get internal approval. Proceed with caution and don't put all your eggs in this basket.</p>
+    `,
+    nextSteps: [
+      'Ask about their internal approval process',
+      'Find out who needs to sign off and whether they\'re involved',
+      'Understand their timeline expectations (often unrealistic)',
+      'Don\'t stop other conversations—first-time buyers often fail to close',
+      'Consider whether you\'d be comfortable "teaching" them M&A'
+    ],
+    warnings: [
+      'First-time acquirers often fail to close—don\'t rely solely on this'
+    ],
+    chapters: [
+      { num: 22, title: 'The Inside View from an Inbound Reach Out' },
+      { num: 26, title: 'First Meetings Are Typically Smoke Tests' },
+      { num: 33, title: 'Surviving the Middle Game' }
+    ]
+  }
+};
+
+let inboundCurrentQuestion = 0;
+let inboundAnswers = {};
+let inboundQuestionHistory = [];
+
+function startInboundAssessment() {
+  document.getElementById('inbound-start-btn').classList.add('hidden');
+  document.getElementById('inbound-tool-content').classList.remove('hidden');
+  document.getElementById('inbound-question-section').classList.remove('hidden');
+  inboundQuestionHistory = [];
+  showInboundQuestion(0);
+}
+
+function showInboundQuestion(index) {
+  inboundCurrentQuestion = index;
+  const question = inboundQuestions[index];
+
+  document.getElementById('inbound-progress-fill').style.width = ((index + 1) / inboundQuestions.length * 100) + '%';
+  document.getElementById('inbound-progress-text').textContent = `Question ${index + 1} of ${inboundQuestions.length}`;
+  document.getElementById('inbound-question-text').textContent = question.text;
+
+  const hintEl = document.getElementById('inbound-question-hint');
+  if (question.hint) {
+    hintEl.textContent = question.hint;
+    hintEl.style.display = 'block';
+  } else {
+    hintEl.style.display = 'none';
+  }
+
+  const container = document.getElementById('inbound-answers-container');
+  container.innerHTML = '';
+
+  question.answers.forEach(answer => {
+    const btn = document.createElement('button');
+    btn.className = 'q-answer-btn' + (inboundAnswers[question.id] === answer.value ? ' selected' : '');
+    btn.textContent = answer.label;
+    btn.onclick = function() { selectInboundAnswer(question.id, answer.value, this); };
+    container.appendChild(btn);
+  });
+
+  document.getElementById('inbound-back-btn').classList.toggle('hidden', inboundQuestionHistory.length === 0);
+}
+
+function selectInboundAnswer(questionId, value, element) {
+  inboundAnswers[questionId] = value;
+  document.querySelectorAll('#inbound-answers-container .q-answer-btn').forEach(btn => btn.classList.remove('selected'));
+  element.classList.add('selected');
+
+  setTimeout(() => {
+    if (inboundCurrentQuestion < inboundQuestions.length - 1) {
+      inboundQuestionHistory.push(inboundCurrentQuestion);
+      showInboundQuestion(inboundCurrentQuestion + 1);
+    } else {
+      showInboundResults();
+    }
+  }, 200);
+}
+
+function inboundGoBack() {
+  if (inboundQuestionHistory.length > 0) {
+    const prevIndex = inboundQuestionHistory.pop();
+    showInboundQuestion(prevIndex);
+  }
+}
+
+function calculateInboundOutcome() {
+  const a = inboundAnswers;
+
+  // Signal strength factors
+  const isCeoFounder = a.source === 'ceo_founder';
+  const isCLevel = a.source === 'c_level';
+  const isVpGm = a.source === 'vp_gm';
+  const isCorpDev = a.source === 'corp_dev';
+  const isPmEm = a.source === 'pm_em';
+  const isPeAnalyst = a.source === 'pe_analyst';
+  const isBanker = a.source === 'banker';
+  const isUnknownSource = a.source === 'unknown';
+
+  const isWarmIntro = ['board_intro', 'mutual_intro'].includes(a.channel);
+  const hasExistingRelationship = a.channel === 'existing_relationship' || ['customer_partner', 'licensing'].includes(a.existing_relationship);
+  const isColdOutreach = a.channel === 'cold_outreach';
+  const isThroughBanker = a.channel === 'through_banker';
+
+  const isExplicitAcquisition = a.stated_intent === 'explicit_acquisition';
+  const isExploratory = a.stated_intent === 'exploratory';
+  const isPartnershipIntent = a.stated_intent === 'partnership';
+  const isVagueIntent = a.stated_intent === 'vague';
+
+  const isVerySpecific = a.specificity === 'very_specific';
+  const isReferencedNews = a.specificity === 'referenced_news';
+  const isGenericPraise = a.specificity === 'generic_praise';
+  const isTemplate = a.specificity === 'template';
+
+  const focusTeam = a.focus_area === 'team';
+  const focusTechnology = a.focus_area === 'technology';
+  const focusBusiness = a.focus_area === 'business';
+  const focusStrategic = a.focus_area === 'strategic_fit';
+  const focusGeneral = a.focus_area === 'general';
+
+  const isSerialAcquirer = a.acq_history === 'serial';
+  const isOccasionalAcquirer = a.acq_history === 'occasional';
+  const isAcquihireKnown = a.acq_history === 'acquihire_known';
+  const isFirstTimeAcquirer = a.acq_history === 'first_time';
+
+  const isPeFirm = a.company_type === 'pe_firm';
+  const isBigTech = a.company_type === 'big_tech';
+
+  // HIGH SIGNAL paths
+
+  // CEO/Founder direct outreach with any real signal
+  if (isCeoFounder && (isExplicitAcquisition || isVerySpecific || hasExistingRelationship)) {
+    return 'strategic_ceo_outreach';
+  }
+
+  // C-level with specific interest
+  if (isCLevel && (isExplicitAcquisition || isVerySpecific) && !isColdOutreach) {
+    return 'strategic_ceo_outreach';
+  }
+
+  // Warm intro + senior person + specific interest
+  if (isWarmIntro && (isCeoFounder || isCLevel || isVpGm) && (isVerySpecific || isReferencedNews)) {
+    return 'warm_strategic';
+  }
+
+  // Serial acquirer with clear intent
+  if (isSerialAcquirer && (isExplicitAcquisition || isVerySpecific) && !isTemplate) {
+    return 'active_acquirer';
+  }
+
+  // PE firm with specific interest
+  if (isPeFirm && (isVerySpecific || isReferencedNews) && (focusBusiness || focusStrategic)) {
+    return 'pe_thesis_fit';
+  }
+
+  // MEDIUM SIGNAL paths
+
+  // Corp dev with good signals (warm intro or existing relationship)
+  if (isCorpDev && (isWarmIntro || hasExistingRelationship) && !isTemplate) {
+    return 'corp_dev_real';
+  }
+
+  // Focus on team = likely acquihire
+  if (focusTeam && (isBigTech || isAcquihireKnown)) {
+    return 'acquihire_signals';
+  }
+
+  // Acquihire-known company reaching out
+  if (isAcquihireKnown && !focusStrategic && !focusBusiness) {
+    return 'acquihire_signals';
+  }
+
+  // Partnership discussion with some positive signals
+  if (isPartnershipIntent && (isWarmIntro || hasExistingRelationship || isCLevel || isVpGm)) {
+    return 'partnership_probe';
+  }
+
+  // Mixed signals worth validating
+  if ((isCorpDev || isVpGm) && (isExploratory || isPartnershipIntent) && !isTemplate && !isColdOutreach) {
+    return 'needs_validation';
+  }
+
+  // Existing relationship + any outreach
+  if (hasExistingRelationship && !isTemplate) {
+    return 'needs_validation';
+  }
+
+  // LOW SIGNAL paths
+
+  // Banker fishing
+  if (isBanker || isThroughBanker) {
+    if (isColdOutreach || isVagueIntent || isGenericPraise) {
+      return 'banker_fishing';
+    }
+    return 'needs_validation';
+  }
+
+  // Cold + junior + generic = fishing expedition
+  if (isColdOutreach && (isCorpDev || isPmEm || isPeAnalyst) && (isGenericPraise || isTemplate)) {
+    return 'fishing_expedition';
+  }
+
+  // Template or very generic
+  if (isTemplate || (isGenericPraise && isVagueIntent)) {
+    return 'too_vague';
+  }
+
+  // First-time acquirer risk
+  if (isFirstTimeAcquirer && !isCeoFounder && !isWarmIntro) {
+    return 'first_time_buyer';
+  }
+
+  // Unknown source + cold + vague = possible intel gathering
+  if ((isUnknownSource || isPmEm) && isColdOutreach && focusGeneral) {
+    return 'intel_gathering';
+  }
+
+  // Cold outreach with generic interest
+  if (isColdOutreach && (isGenericPraise || isVagueIntent || focusGeneral)) {
+    return 'fishing_expedition';
+  }
+
+  // Default: needs more information
+  return 'needs_validation';
+}
+
+function showInboundResults() {
+  document.getElementById('inbound-question-section').classList.add('hidden');
+  document.getElementById('inbound-results-section').classList.remove('hidden');
+
+  const outcomeKey = calculateInboundOutcome();
+  const outcome = inboundOutcomes[outcomeKey];
+
+  // Display signal badge
+  const badge = document.getElementById('inbound-signal-badge');
+  badge.textContent = outcome.signal === 'high' ? 'High Signal' : outcome.signal === 'medium' ? 'Medium Signal' : 'Low Signal';
+  badge.className = 'inbound-signal-badge signal-' + outcome.signal;
+
+  // Display warnings if any
+  const warningsContainer = document.getElementById('inbound-warnings');
+  warningsContainer.innerHTML = '';
+  if (outcome.warnings) {
+    outcome.warnings.forEach(warning => {
+      const div = document.createElement('div');
+      div.className = 'q-warning';
+      div.innerHTML = warning;
+      warningsContainer.appendChild(div);
+    });
+  }
+
+  // Display title and description
+  document.getElementById('inbound-result-title').textContent = outcome.title;
+  document.getElementById('inbound-result-description').innerHTML = outcome.description;
+
+  // Display next steps
+  const stepsList = document.getElementById('inbound-steps-list');
+  stepsList.innerHTML = '';
+  outcome.nextSteps.forEach(step => {
+    const div = document.createElement('div');
+    div.className = 'inbound-step-item';
+    div.textContent = step;
+    stepsList.appendChild(div);
+  });
+
+  // Display chapters
+  const chaptersList = document.getElementById('inbound-chapters-list');
+  chaptersList.innerHTML = '';
+  outcome.chapters.forEach(ch => {
+    const div = document.createElement('div');
+    div.className = 'q-chapter-item';
+    div.innerHTML = `<a href="ma-book.html#chapter-${ch.num}" class="q-chapter-link"><span class="q-chapter-num">Ch. ${ch.num}</span> ${ch.title}</a>`;
+    chaptersList.appendChild(div);
+  });
+}
+
+function restartInboundAssessment() {
+  inboundAnswers = {};
+  inboundCurrentQuestion = 0;
+  inboundQuestionHistory = [];
+  document.getElementById('inbound-results-section').classList.add('hidden');
+  document.getElementById('inbound-question-section').classList.add('hidden');
+  document.getElementById('inbound-tool-content').classList.add('hidden');
+  document.getElementById('inbound-start-btn').classList.remove('hidden');
+}
+
+// ==========================================
+// DO YOU NEED A BANKER? ASSESSMENT
+// ==========================================
+
+const bankerQuestions = [
+  {
+    id: 'phase',
+    text: 'Where are you in your M&A journey?',
+    answers: [
+      { value: 'exploring', label: 'Just exploring—no conversations yet' },
+      { value: 'building_relationships', label: 'Building relationships with potential acquirers' },
+      { value: 'exploratory_conversations', label: 'Had exploratory conversations, nothing concrete' },
+      { value: 'offer_in_hand', label: 'Have a term sheet or written offer' }
+    ]
+  },
+  {
+    id: 'inbound_quality',
+    text: 'How would you describe the interest you\'ve received?',
+    // Skip if exploring or have offer (offer gets its own competition question)
+    condition: (answers) => !['exploring', 'offer_in_hand'].includes(answers.phase),
+    answers: [
+      { value: 'no_interest', label: 'No real interest yet' },
+      { value: 'cold_fishing', label: 'Cold outreach from corp dev—feels like fishing' },
+      { value: 'warm_single', label: 'Warm interest from one company through existing relationships' },
+      { value: 'warm_multiple', label: 'Warm interest from multiple companies we have relationships with' },
+      { value: 'competitive', label: 'Multiple parties actively competing—genuine bidding scenario' }
+    ]
+  },
+  {
+    id: 'offer_competition',
+    text: 'Are other parties also interested in acquiring you?',
+    // Only show for those with an offer in hand
+    condition: (answers) => answers.phase === 'offer_in_hand',
+    answers: [
+      { value: 'competitive', label: 'Yes—multiple parties actively competing' },
+      { value: 'potential', label: 'There\'s interest from others we could pursue' },
+      { value: 'single_party', label: 'No—this is our only serious conversation' }
+    ]
+  },
+  {
+    id: 'relationships',
+    text: 'Do you have existing business relationships with potential acquirers?',
+    answers: [
+      { value: 'multiple_deep', label: 'Yes—licensing, partnerships, or strategic investments with multiple companies' },
+      { value: 'one_strong', label: 'Yes—one strong relationship (customer, partner, investor connection)' },
+      { value: 'loose', label: 'Loose connections—know people but no business ties' },
+      { value: 'none', label: 'No relationships with potential acquirers' }
+    ]
+  },
+  {
+    id: 'offer_acceptable',
+    text: 'If you have an offer, is it acceptable?',
+    // Only show if they have an offer in hand
+    condition: (answers) => answers.phase === 'offer_in_hand',
+    answers: [
+      { value: 'very_attractive', label: 'Very attractive—exceeds expectations' },
+      { value: 'reasonable', label: 'Reasonable—close to what we\'d accept' },
+      { value: 'below_expectations', label: 'Below expectations—would like to test the market' },
+      { value: 'not_acceptable', label: 'Not acceptable—but want to keep talking' }
+    ]
+  },
+  {
+    id: 'walkaway_power',
+    text: 'Could you walk away from a deal and be okay?',
+    answers: [
+      { value: 'yes_optional', label: 'Yes—we\'re profitable or well-funded, M&A is optional' },
+      { value: 'prefer_deal', label: 'We\'d prefer a deal but can continue operating' },
+      { value: 'need_outcome', label: 'We need some outcome in the next 12-18 months' },
+      { value: 'urgent', label: 'We need a deal urgently—running out of runway' }
+    ]
+  },
+  {
+    id: 'banker_relationships',
+    text: 'Do you have existing relationships with M&A advisors or investment bankers?',
+    answers: [
+      { value: 'worked_with', label: 'Yes—worked with them before or they know our space well' },
+      { value: 'introductions', label: 'Been introduced to a few through board or investors' },
+      { value: 'cold_approaches', label: 'Only cold approaches from bankers seeking our business' },
+      { value: 'none', label: 'No banker relationships' }
+    ]
+  },
+  {
+    id: 'process_comfort',
+    text: 'How comfortable are you managing the M&A process yourself?',
+    answers: [
+      { value: 'very_comfortable', label: 'Very comfortable—I\'ve been through M&A before' },
+      { value: 'capable', label: 'Capable—I can handle it with good legal counsel' },
+      { value: 'uncertain', label: 'Uncertain—this is new territory' },
+      { value: 'overwhelmed', label: 'Overwhelmed—already struggling to keep the business running' }
+    ]
+  },
+  {
+    id: 'deal_complexity',
+    text: 'How complex is the deal likely to be?',
+    hint: 'Bankers add the most value when complexity—not just price—is high.',
+    // Skip if exploring or just building relationships
+    condition: (answers) => ['exploratory_conversations', 'offer_in_hand'].includes(answers.phase),
+    answers: [
+      { value: 'simple_cash', label: 'Mostly cash, clean acquisition' },
+      { value: 'mixed_structure', label: 'Mix of cash, equity, earnout, or retention packages' },
+      { value: 'carveout', label: 'Asset carve-out, IP licensing, or partial sale' },
+      { value: 'cross_border', label: 'Cross-border, regulated, or multi-entity structure' }
+    ]
+  },
+  {
+    id: 'buyer_experience',
+    text: 'How experienced are the interested buyers at doing acquisitions?',
+    hint: 'Inexperienced buyers create process risk.',
+    // Skip if exploring or just building relationships
+    condition: (answers) => ['exploratory_conversations', 'offer_in_hand'].includes(answers.phase),
+    answers: [
+      { value: 'serial_acquirers', label: 'Serial acquirers with clear playbooks' },
+      { value: 'occasional', label: 'Strategic buyers who do M&A occasionally' },
+      { value: 'first_time', label: 'First-time acquirers or unclear on process' },
+      { value: 'unclear_approval', label: 'Buyer unclear on internal approval process' }
+    ]
+  },
+  {
+    id: 'stakeholder_alignment',
+    text: 'How aligned are founders, board, and major shareholders on selling?',
+    hint: 'Bankers work for the board, not founders—they can help build consensus and fairly represent company interests.',
+    answers: [
+      { value: 'fully_aligned', label: 'Fully aligned on price, timing, and outcome' },
+      { value: 'minor_differences', label: 'Minor differences, but resolvable' },
+      { value: 'significant_disagreement', label: 'Significant disagreement on timing or valuation' },
+      { value: 'misaligned_incentives', label: 'Misaligned incentives (liquidation prefs, rollover, control)' }
+    ]
+  }
+];
+
+const bankerOutcomes = {
+  // HIRE BANKER outcomes
+  hire_banker_competitive: {
+    title: 'Yes—You Have Competitive Dynamics to Leverage',
+    description: `
+      <p>With multiple parties actively competing and the leverage to walk away, you're in the ideal position to hire a banker. <strong>This is exactly when bankers create value</strong>—they can amplify existing interest, run a formal process, and maximize competitive tension.</p>
+      <p>A good banker will help you:</p>
+      <ul>
+        <li>Run a structured process that creates urgency</li>
+        <li>Manage communications with multiple parties simultaneously</li>
+        <li>Negotiate from a position of strength</li>
+        <li>Keep your focus on running the business during the process</li>
+      </ul>
+      <p>Be selective about which banker you choose—look for someone who knows your space and has relevant deal experience.</p>
+    `,
+    chapters: [
+      { num: 16, title: 'Should You Hire a Banker?' },
+      { num: 28, title: 'Should You Run an Official Process?' },
+      { num: 21, title: 'Engage Inbound, Lean In and Learn' }
+    ]
+  },
+  hire_banker_price_discovery: {
+    title: 'Yes—A Banker Can Help You Test the Market',
+    description: `
+      <p>You have an offer, but it's below expectations. A banker can help you run a targeted process to discover whether better terms are available—without risking your current deal entirely.</p>
+      <p><strong>Key consideration:</strong> The existing offer gives you leverage. A good banker will use it as a floor while exploring whether other parties will compete. However, be careful about timing—if your current buyer learns you're shopping the deal, they may walk or lower their offer.</p>
+      <p>Make sure you're prepared for the possibility that the market confirms your current offer is actually reasonable.</p>
+    `,
+    chapters: [
+      { num: 16, title: 'Should You Hire a Banker?' },
+      { num: 42, title: 'Term Sheet Received - Where to Go from Here' },
+      { num: 30, title: 'The $$$ Expectation Alignment Conversation' }
+    ]
+  },
+  hire_banker_complexity: {
+    title: 'Yes—The Deal Complexity Warrants a Banker',
+    description: `
+      <p>Complex deal structures require expertise you likely don't have. Bankers have seen these structures before—asset carve-outs, IP licensing arrangements, cross-border regulatory issues, multi-entity structures.</p>
+      <p>Even without competitive dynamics, <strong>the cost of getting it wrong far exceeds banker fees</strong>. They'll also help ensure your lawyers focus on the right issues.</p>
+      <p>Look for a banker with specific experience in your deal type. General M&A experience isn't enough for complex structures—you need someone who has closed similar deals.</p>
+    `,
+    chapters: [
+      { num: 16, title: 'Should You Hire a Banker?' },
+      { num: 17, title: 'Find a Law Firm Who Knows M&A' },
+      { num: 43, title: 'Term Sheet Signed, Start of a Thousand Paper Cuts' }
+    ]
+  },
+  hire_banker_alignment: {
+    title: 'Yes—A Banker Can Help Navigate Stakeholder Dynamics',
+    description: `
+      <p>When stakeholders aren't aligned, having founders negotiate directly creates conflict of interest concerns. <strong>Bankers work for the board and represent the company's interests</strong>—they can build consensus, present options fairly, and ensure no single party dominates the process.</p>
+      <p>This is especially valuable when:</p>
+      <ul>
+        <li>Liquidation preferences complicate who gets what</li>
+        <li>Founders and investors have different exit timelines</li>
+        <li>Board members have conflicting views on valuation</li>
+        <li>Control issues need neutral arbitration</li>
+      </ul>
+      <p>The banker becomes a neutral party who can advocate for the deal that's best for the company as a whole.</p>
+    `,
+    chapters: [
+      { num: 16, title: 'Should You Hire a Banker?' },
+      { num: 12, title: 'Herding Cats: Aligning Spouses, Cofounders, Investors, and Employees' },
+      { num: 30, title: 'The $$$ Expectation Alignment Conversation' }
+    ]
+  },
+  early_hire_banker: {
+    title: 'Yes—Ideal Conditions for a Banker',
+    description: `
+      <p>You have the combination that makes bankers most effective: <strong>competitive interest plus the leverage to walk away</strong>. This is exactly when bankers amplify value rather than just taking a fee.</p>
+      <p>A banker can run a formal process, create urgency among competing parties, and let you focus on running the business. Don't negotiate directly when you have this much leverage—use a professional.</p>
+    `,
+    chapters: [
+      { num: 16, title: 'Should You Hire a Banker?' },
+      { num: 28, title: 'Should You Run an Official Process?' },
+      { num: 21, title: 'Engage Inbound, Lean In and Learn' }
+    ]
+  },
+
+  // CONDITIONAL outcomes
+  consider_banker_formalize: {
+    title: 'Maybe—Consider a Banker to Formalize the Process',
+    description: `
+      <p>You have warm interest from multiple parties, which could develop into a competitive situation. A banker might help formalize this into a real process—but it's not essential yet.</p>
+      <p><strong>Questions to consider:</strong></p>
+      <ul>
+        <li>Are these parties genuinely interested, or just staying informed?</li>
+        <li>Do you have the bandwidth to manage multiple conversations yourself?</li>
+        <li>Would introducing a banker accelerate or complicate these relationships?</li>
+      </ul>
+      <p>If the interest is genuine and you want to run a structured process, a banker can help. But if relationships are still early, you might do better nurturing them directly first.</p>
+    `,
+    chapters: [
+      { num: 16, title: 'Should You Hire a Banker?' },
+      { num: 5, title: 'Manufacturing an M&A Market When None is There' },
+      { num: 23, title: 'Activate Outbound, Plant the Seed' }
+    ]
+  },
+  consider_banker_buyer_inexperience: {
+    title: 'Maybe—The Buyer Needs Hand-Holding',
+    description: `
+      <p>Inexperienced buyers create process risk—they may make promises they can't keep, miss diligence issues, or lose internal support mid-deal. A banker can educate them on typical M&A process, pace the deal appropriately, and identify red flags early.</p>
+      <p><strong>However</strong>, if you have a strong relationship with this buyer, you might handle this directly with good legal counsel. The question is whether introducing a banker helps or hinders the relationship.</p>
+      <p>Consider a banker if:</p>
+      <ul>
+        <li>The buyer seems disorganized or unclear on process</li>
+        <li>You're worried about their ability to close</li>
+        <li>You want someone else to manage the complexity</li>
+      </ul>
+    `,
+    chapters: [
+      { num: 16, title: 'Should You Hire a Banker?' },
+      { num: 17, title: 'Find a Law Firm Who Knows M&A' },
+      { num: 21, title: 'Engage Inbound, Lean In and Learn' }
+    ]
+  },
+  selective_banker_engagement: {
+    title: 'Maybe—Be Selective If You Engage a Banker',
+    description: `
+      <p>Your situation could benefit from a banker, but it's not essential. You have some interest and reasonable leverage—a good banker could help, but a mediocre one would just take fees.</p>
+      <p><strong>If you decide to engage a banker:</strong></p>
+      <ul>
+        <li>Look for someone who knows your specific space</li>
+        <li>Check their recent deal history—have they closed similar deals?</li>
+        <li>Negotiate their fee structure carefully</li>
+        <li>Make sure they'll actually work your deal, not hand it to junior staff</li>
+      </ul>
+      <p>The wrong banker can actually hurt your process by damaging relationships or creating unnecessary friction.</p>
+    `,
+    chapters: [
+      { num: 16, title: 'Should You Hire a Banker?' },
+      { num: 28, title: 'Should You Run an Official Process?' },
+      { num: 14, title: 'Come Up with an Outreach List of Potential Acquirers' }
+    ]
+  },
+  get_other_help_first: {
+    title: 'Not a Banker—But Get Help',
+    description: `
+      <p>You're overwhelmed, but you don't have the competitive dynamics that make bankers valuable. <strong>Hiring a banker now won't solve your problem</strong>—bankers amplify interest that exists, they don't create it.</p>
+      <p><strong>What you need instead:</strong></p>
+      <ul>
+        <li>Strong M&A legal counsel who can advise on process</li>
+        <li>An advisor or board member with M&A experience</li>
+        <li>Help running the business so you can focus on the deal</li>
+      </ul>
+      <p>Once you've built relationships with potential acquirers and have genuine interest, then consider whether a banker makes sense.</p>
+    `,
+    chapters: [
+      { num: 17, title: 'Find a Law Firm Who Knows M&A' },
+      { num: 5, title: 'Manufacturing an M&A Market When None is There' },
+      { num: 20, title: 'Don\'t Forget You Still Have a Company to Run' }
+    ]
+  },
+  early_consider_carefully: {
+    title: 'Maybe Not—You Already Have What You Need',
+    description: `
+      <p>You have an attractive offer without competitive dynamics. A banker might find other interested parties, but they might also complicate a deal that's already working.</p>
+      <p><strong>Key questions:</strong></p>
+      <ul>
+        <li>Is the current offer truly acceptable, or are you hoping for more?</li>
+        <li>Would shopping the deal risk losing your current buyer?</li>
+        <li>Do you have the time and energy for a longer process?</li>
+      </ul>
+      <p>If the offer genuinely exceeds expectations, strong legal counsel may be all you need. But if you suspect better deals exist, a banker could help you find out.</p>
+    `,
+    chapters: [
+      { num: 42, title: 'Term Sheet Received - Where to Go from Here' },
+      { num: 16, title: 'Should You Hire a Banker?' },
+      { num: 17, title: 'Find a Law Firm Who Knows M&A' }
+    ]
+  },
+
+  // DON'T HIRE outcomes
+  build_relationships_first: {
+    title: 'No—Build Relationships First',
+    description: `
+      <p><strong>Companies are bought, not sold.</strong> Without existing relationships with potential acquirers, a banker can't help you. They can amplify interest that exists—they can't manufacture it from nothing.</p>
+      <p>Your priority right now:</p>
+      <ul>
+        <li>Identify companies that could benefit from acquiring you</li>
+        <li>Build genuine business relationships (partnerships, customers, integrations)</li>
+        <li>Stay visible in your space—speak at conferences, publish thought leadership</li>
+        <li>Plant seeds that can grow into acquisition interest over time</li>
+      </ul>
+      <p>Once you have relationships and genuine interest, revisit whether a banker makes sense.</p>
+    `,
+    chapters: [
+      { num: 5, title: 'Manufacturing an M&A Market When None is There' },
+      { num: 14, title: 'Come Up with an Outreach List of Potential Acquirers' },
+      { num: 23, title: 'Activate Outbound, Plant the Seed' }
+    ]
+  },
+  early_build_first: {
+    title: 'No—Build Relationships First',
+    description: `
+      <p>You're just exploring M&A with no existing acquirer relationships. <strong>This is not banker territory.</strong> A banker cannot create interest where none exists—they can only amplify existing momentum.</p>
+      <p>Focus on building the relationships that will eventually make M&A possible:</p>
+      <ul>
+        <li>Identify strategic partners, customers, or competitors who might acquire you</li>
+        <li>Build genuine business relationships over time</li>
+        <li>Make sure potential acquirers know who you are before you need them</li>
+      </ul>
+    `,
+    chapters: [
+      { num: 5, title: 'Manufacturing an M&A Market When None is There' },
+      { num: 14, title: 'Come Up with an Outreach List of Potential Acquirers' },
+      { num: 36, title: 'There is No Shame Approaching Your Competitors' }
+    ]
+  },
+  nurture_relationship_directly: {
+    title: 'No—Nurture This Relationship Directly',
+    description: `
+      <p>You have warm interest from one company. Introducing a banker now could actually hurt you—it signals you're running a process when you're really just having a conversation.</p>
+      <p><strong>Better approach:</strong></p>
+      <ul>
+        <li>Deepen the relationship directly with the interested party</li>
+        <li>Understand what they're looking for and whether it's a real fit</li>
+        <li>Get good legal counsel lined up for when things get serious</li>
+        <li>If other parties emerge and create competition, then consider a banker</li>
+      </ul>
+      <p>A banker makes sense when you have multiple interested parties to manage. One warm lead is a relationship to nurture, not a process to run.</p>
+    `,
+    chapters: [
+      { num: 21, title: 'Engage Inbound, Lean In and Learn' },
+      { num: 5, title: 'Manufacturing an M&A Market When None is There' },
+      { num: 16, title: 'Should You Hire a Banker?' }
+    ]
+  },
+  banker_wont_help: {
+    title: 'No—A Banker Won\'t Help Here',
+    description: `
+      <p><strong>Bankers can amplify interest that already exists. They cannot create it.</strong> With no real interest and urgent pressure to close a deal, you're not in a position where a banker can help.</p>
+      <p>Harsh truth: paying a banker fee in this situation just burns runway you don't have. They'll run a process, but if buyers aren't interested, a process won't change that.</p>
+      <p><strong>Your options:</strong></p>
+      <ul>
+        <li>Extend runway any way you can—cut costs, raise a bridge, generate revenue</li>
+        <li>Approach potential acquirers directly and honestly about your situation</li>
+        <li>Consider whether winding down gracefully is better than a desperate sale</li>
+      </ul>
+    `,
+    chapters: [
+      { num: 35, title: 'It\'s Not You, Not Your Bankers, Not Your Board, It\'s the Market' },
+      { num: 40, title: 'It\'s Okay to Shut it All Down' },
+      { num: 36, title: 'There is No Shame Approaching Your Competitors' }
+    ]
+  },
+  early_not_banker_territory: {
+    title: 'No—This Isn\'t Banker Territory',
+    description: `
+      <p>You need a deal urgently but have no real interest from buyers. <strong>A banker cannot fix this.</strong> Bankers amplify existing interest—they can't manufacture demand for a company that buyers aren't interested in.</p>
+      <p>Spending money on banker fees in this situation just accelerates your runway problem. Focus instead on:</p>
+      <ul>
+        <li>Direct outreach to potential acquirers—be honest about your situation</li>
+        <li>Extending runway any way possible</li>
+        <li>Considering alternatives like winding down gracefully</li>
+      </ul>
+    `,
+    chapters: [
+      { num: 35, title: 'It\'s Not You, Not Your Bankers, Not Your Board, It\'s the Market' },
+      { num: 40, title: 'It\'s Okay to Shut it All Down' },
+      { num: 36, title: 'There is No Shame Approaching Your Competitors' }
+    ]
+  }
+};
+
+let bankerCurrentQuestion = 0;
+let bankerAnswers = {};
+let bankerQuestionHistory = [];
+
+function startBankerAssessment() {
+  document.getElementById('banker-start-btn').classList.add('hidden');
+  document.getElementById('banker-tool-content').classList.remove('hidden');
+  document.getElementById('banker-question-section').classList.remove('hidden');
+  bankerQuestionHistory = [];
+  showBankerQuestion(0);
+}
+
+function getNextBankerQuestion(fromIndex) {
+  for (let i = fromIndex + 1; i < bankerQuestions.length; i++) {
+    const question = bankerQuestions[i];
+    if (!question.condition || question.condition(bankerAnswers)) {
+      return i;
+    }
+  }
+  return -1;
+}
+
+function countApplicableBankerQuestions() {
+  let count = 0;
+  for (let i = 0; i < bankerQuestions.length; i++) {
+    const question = bankerQuestions[i];
+    if (!question.condition || question.condition(bankerAnswers)) {
+      count++;
+    }
+  }
+  return count;
+}
+
+function getCurrentBankerQuestionPosition() {
+  let position = 0;
+  for (let i = 0; i <= bankerCurrentQuestion; i++) {
+    const question = bankerQuestions[i];
+    if (!question.condition || question.condition(bankerAnswers)) {
+      position++;
+    }
+  }
+  return position;
+}
+
+function showBankerQuestion(index) {
+  bankerCurrentQuestion = index;
+  const question = bankerQuestions[index];
+
+  const totalQuestions = countApplicableBankerQuestions();
+  const currentPosition = getCurrentBankerQuestionPosition();
+
+  document.getElementById('banker-progress-fill').style.width = (currentPosition / totalQuestions * 100) + '%';
+  document.getElementById('banker-progress-text').textContent = `Question ${currentPosition} of ${totalQuestions}`;
+  document.getElementById('banker-question-text').textContent = question.text;
+
+  const hintEl = document.getElementById('banker-question-hint');
+  if (question.hint) {
+    hintEl.textContent = question.hint;
+    hintEl.style.display = 'block';
+  } else {
+    hintEl.style.display = 'none';
+  }
+
+  const container = document.getElementById('banker-answers-container');
+  container.innerHTML = '';
+
+  question.answers.forEach(answer => {
+    const btn = document.createElement('button');
+    btn.className = 'q-answer-btn' + (bankerAnswers[question.id] === answer.value ? ' selected' : '');
+    btn.textContent = answer.label;
+    btn.onclick = function() { selectBankerAnswer(question.id, answer.value, this); };
+    container.appendChild(btn);
+  });
+
+  document.getElementById('banker-back-btn').classList.toggle('hidden', bankerQuestionHistory.length === 0);
+}
+
+function selectBankerAnswer(questionId, value, element) {
+  bankerAnswers[questionId] = value;
+  document.querySelectorAll('#banker-answers-container .q-answer-btn').forEach(btn => btn.classList.remove('selected'));
+  element.classList.add('selected');
+
+  setTimeout(() => {
+    // Check for early exit conditions
+    const earlyExit = checkBankerEarlyExit();
+    if (earlyExit) {
+      showBankerResults(earlyExit);
+      return;
+    }
+
+    // Find next applicable question
+    const nextIndex = getNextBankerQuestion(bankerCurrentQuestion);
+
+    if (nextIndex !== -1) {
+      bankerQuestionHistory.push(bankerCurrentQuestion);
+      showBankerQuestion(nextIndex);
+    } else {
+      showBankerResults();
+    }
+  }, 200);
+}
+
+function checkBankerEarlyExit() {
+  const a = bankerAnswers;
+
+  // Normalize competition status from either question
+  const isCompetitive = a.inbound_quality === 'competitive' || a.offer_competition === 'competitive';
+  const hasNoRealInterest = ['no_interest', 'cold_fishing'].includes(a.inbound_quality);
+
+  // Early exit 1: Exploring + no relationships → build relationships first
+  if (a.phase === 'exploring' && a.relationships === 'none') {
+    return 'early_build_first';
+  }
+
+  // Early exit 2: Desperate + no real interest → banker won't help
+  if (a.walkaway_power === 'urgent' && a.inbound_quality && hasNoRealInterest) {
+    return 'early_not_banker_territory';
+  }
+
+  // Early exit 3: Competitive interest + leverage → hire banker
+  if (isCompetitive && ['yes_optional', 'prefer_deal'].includes(a.walkaway_power)) {
+    return 'early_hire_banker';
+  }
+
+  // Early exit 4: Offer in hand + very attractive + no competition → consider carefully
+  if (a.phase === 'offer_in_hand' &&
+      a.offer_acceptable === 'very_attractive' &&
+      !isCompetitive) {
+    return 'early_consider_carefully';
+  }
+
+  return null;
+}
+
+function calculateBankerOutcome() {
+  const a = bankerAnswers;
+
+  // Primary signals - normalize from either inbound_quality or offer_competition
+  const hasCompetitiveInterest = a.inbound_quality === 'competitive' || a.offer_competition === 'competitive';
+  const hasWarmMultiple = a.inbound_quality === 'warm_multiple' || a.offer_competition === 'potential';
+  const hasWarmSingle = a.inbound_quality === 'warm_single' || a.offer_competition === 'single_party';
+  const hasNoRealInterest = ['no_interest', 'cold_fishing'].includes(a.inbound_quality);
+  const hasLeverage = ['yes_optional', 'prefer_deal'].includes(a.walkaway_power);
+  const isDesperate = a.walkaway_power === 'urgent';
+  const hasStrongRelationships = ['multiple_deep', 'one_strong'].includes(a.relationships);
+  const hasNoRelationships = a.relationships === 'none';
+  const isExploring = a.phase === 'exploring';
+  const isBuildingRelationships = a.phase === 'building_relationships';
+  const hasOffer = a.phase === 'offer_in_hand';
+  const offerBelowExpectations = a.offer_acceptable === 'below_expectations';
+  const offerVeryAttractive = a.offer_acceptable === 'very_attractive';
+
+  // Secondary signals
+  const isComplexDeal = ['carveout', 'cross_border'].includes(a.deal_complexity);
+  const hasBuyerInexperience = ['first_time', 'unclear_approval'].includes(a.buyer_experience);
+  const hasStakeholderMisalignment = ['significant_disagreement', 'misaligned_incentives'].includes(a.stakeholder_alignment);
+  const isOverwhelmed = a.process_comfort === 'overwhelmed';
+
+  // HIRE BANKER outcomes
+
+  // 1. Competitive interest + leverage
+  if (hasCompetitiveInterest && hasLeverage) {
+    return 'hire_banker_competitive';
+  }
+
+  // 2. Offer in hand + want to test market
+  if (hasOffer && offerBelowExpectations && hasLeverage) {
+    return 'hire_banker_price_discovery';
+  }
+
+  // 3. High complexity even without competition
+  if (isComplexDeal && !isExploring && !isBuildingRelationships) {
+    return 'hire_banker_complexity';
+  }
+
+  // 4. Stakeholder misalignment
+  if (hasStakeholderMisalignment) {
+    return 'hire_banker_alignment';
+  }
+
+  // CONDITIONAL outcomes
+
+  // 5. Multiple warm interest, could formalize
+  if (hasWarmMultiple && hasLeverage) {
+    return 'consider_banker_formalize';
+  }
+
+  // 6. Inexperienced buyer, banker can help educate
+  if (hasBuyerInexperience && !isExploring && !isBuildingRelationships && !hasNoRealInterest) {
+    return 'consider_banker_buyer_inexperience';
+  }
+
+  // 7. Good position but not ideal - be picky about banker
+  if (hasStrongRelationships && hasLeverage && !hasCompetitiveInterest && !hasWarmMultiple) {
+    return 'selective_banker_engagement';
+  }
+
+  // 8. Overwhelmed but no competition - get other help
+  if (isOverwhelmed && !hasCompetitiveInterest && !hasWarmMultiple) {
+    return 'get_other_help_first';
+  }
+
+  // 9. Attractive offer, may not need banker
+  if (hasOffer && offerVeryAttractive && !hasCompetitiveInterest) {
+    return 'early_consider_carefully';
+  }
+
+  // DON'T HIRE outcomes
+
+  // 10. Too early, build relationships
+  if ((isExploring || isBuildingRelationships) && hasNoRelationships) {
+    return 'build_relationships_first';
+  }
+
+  // 11. One warm lead, nurture directly
+  if (hasWarmSingle && !hasCompetitiveInterest) {
+    return 'nurture_relationship_directly';
+  }
+
+  // 12. Desperate + no interest
+  if (isDesperate && hasNoRealInterest) {
+    return 'banker_wont_help';
+  }
+
+  // 13. No relationships, need to build first
+  if (hasNoRelationships && hasNoRealInterest) {
+    return 'build_relationships_first';
+  }
+
+  // Default: If exploring or early stage, build relationships
+  if (isExploring || isBuildingRelationships) {
+    return 'build_relationships_first';
+  }
+
+  // Fallback: selective engagement if they have some pieces
+  return 'selective_banker_engagement';
+}
+
+function bankerGoBack() {
+  if (bankerQuestionHistory.length > 0) {
+    const prevIndex = bankerQuestionHistory.pop();
+    showBankerQuestion(prevIndex);
+  }
+}
+
+function showBankerResults(earlyOutcome) {
+  document.getElementById('banker-question-section').classList.add('hidden');
+  document.getElementById('banker-results-section').classList.remove('hidden');
+
+  const outcomeKey = earlyOutcome || calculateBankerOutcome();
+  const outcome = bankerOutcomes[outcomeKey];
+
+  document.getElementById('banker-result-title').textContent = outcome.title;
+  document.getElementById('banker-result-description').innerHTML = outcome.description;
+
+  const chaptersList = document.getElementById('banker-chapters-list');
+  chaptersList.innerHTML = '';
+  outcome.chapters.forEach(ch => {
+    const div = document.createElement('div');
+    div.className = 'q-chapter-item';
+    div.innerHTML = `<a href="ma-book.html#chapter-${ch.num}" class="q-chapter-link"><span class="q-chapter-num">Ch. ${ch.num}</span> ${ch.title}</a>`;
+    chaptersList.appendChild(div);
+  });
+}
+
+function restartBankerAssessment() {
+  bankerAnswers = {};
+  bankerCurrentQuestion = 0;
+  bankerQuestionHistory = [];
+  document.getElementById('banker-results-section').classList.add('hidden');
+  document.getElementById('banker-question-section').classList.add('hidden');
+  document.getElementById('banker-tool-content').classList.add('hidden');
+  document.getElementById('banker-start-btn').classList.remove('hidden');
 }
 
 </script>

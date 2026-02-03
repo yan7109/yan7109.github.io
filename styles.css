@@ -339,6 +339,13 @@ footer {
   margin-top: 0.5rem;
 }
 
+.q-hint {
+  font-size: 0.9rem;
+  color: #888;
+  font-style: italic;
+  margin: -0.5rem 0 1rem 0;
+}
+
 /* Question container */
 #question-container h2 {
   font-size: 1.4rem;
@@ -512,6 +519,66 @@ footer {
 .q-restart-btn:hover {
   border-color: #666;
   color: #c0c0c0;
+}
+
+/* Inbound Assessment Signal Badges */
+.inbound-signal-badge {
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  border-radius: 3px;
+  font-size: 0.85rem;
+  font-weight: normal;
+  margin-bottom: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.signal-high {
+  background: #1e3a2a;
+  color: #6fcf97;
+  border: 1px solid #2d5a3d;
+}
+
+.signal-medium {
+  background: #3a3520;
+  color: #e0c070;
+  border: 1px solid #5a5030;
+}
+
+.signal-low {
+  background: #3a2020;
+  color: #e07070;
+  border: 1px solid #5a3030;
+}
+
+/* Inbound Next Steps */
+.inbound-next-steps {
+  background: #222;
+  border: 1px solid #333;
+  border-radius: 4px;
+  padding: 1rem 1.2rem;
+  margin-top: 1.2rem;
+  margin-bottom: 1.2rem;
+}
+
+.inbound-step-item {
+  padding: 0.5rem 0 0.5rem 1.2rem;
+  position: relative;
+  color: #c0c0c0;
+  font-size: 0.95rem;
+  border-bottom: 1px solid #2a2a2a;
+}
+
+.inbound-step-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.inbound-step-item::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: #6db3f2;
 }
 
 /* Resources Section */
