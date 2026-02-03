@@ -175,10 +175,10 @@ I wrote a book on this whole bloody experience, hopefully to help founders think
 <h2>Tools</h2>
 <div class="tools-grid">
   <div class="tool-card tool-card-full" id="readiness-test-card">
-    <div class="tool-header" id="tool-header">
+    <div class="tool-header" id="tool-header" onclick="startQuestionnaire()">
       <div>
         <div class="tool-title">M&A Readiness Test</div>
-        <div class="tool-desc">10 questions to understand where you stand and what your realistic path might look like.</div>
+        <div class="tool-desc">10 questions to understand where you stand and what your realistic path might be.</div>
       </div>
       <button class="tool-start-btn" id="tool-start-btn" onclick="startQuestionnaire()">Take Assessment</button>
     </div>
@@ -214,11 +214,70 @@ I wrote a book on this whole bloody experience, hopefully to help founders think
 
           <div class="q-chapters">
             <strong>Recommended Reading</strong>
+            <p class="q-chapters-intro">From <a href="ma-book.html">The Toughest Sell</a>, my upcoming book on startup M&A:</p>
             <div id="chapters-list"></div>
           </div>
         </div>
 
         <button class="q-restart-btn" onclick="restartQuestionnaire()">Retake Assessment</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Valuation & Acquisition Type Estimator -->
+  <div class="tool-card tool-card-full" id="valuation-tool-card">
+    <div class="tool-header" id="valuation-tool-header" onclick="startValuationAssessment()">
+      <div>
+        <div class="tool-title">Valuation & Acquisition Type Estimator</div>
+        <div class="tool-desc">Understand your likely acquisition type and realistic valuation range.</div>
+      </div>
+      <button class="tool-start-btn" id="valuation-start-btn" onclick="startValuationAssessment()">Take Assessment</button>
+    </div>
+    <div class="tool-content hidden" id="valuation-tool-content">
+      <!-- Question Section -->
+      <div id="valuation-question-section" class="hidden">
+        <div class="q-progress">
+          <div class="q-progress-bar">
+            <div class="q-progress-fill" id="valuation-progress-fill"></div>
+          </div>
+          <div class="q-progress-text" id="valuation-progress-text">Question 1 of 10</div>
+        </div>
+
+        <div id="valuation-question-container">
+          <h3 id="valuation-question-text"></h3>
+          <div id="valuation-answers-container"></div>
+        </div>
+
+        <button class="q-back-btn hidden" id="valuation-back-btn" onclick="valuationGoBack()">Back</button>
+      </div>
+
+      <!-- Results Section -->
+      <div id="valuation-results-section" class="hidden">
+        <div id="valuation-warnings"></div>
+
+        <div class="q-result-box">
+          <h3 id="valuation-result-title"></h3>
+          <div id="valuation-result-description"></div>
+
+          <div class="valuation-range-box" id="valuation-range-box">
+            <div class="valuation-range-label">Estimated Valuation Range</div>
+            <div class="valuation-range-value" id="valuation-range-value"></div>
+            <div class="valuation-range-note" id="valuation-range-note"></div>
+          </div>
+
+          <div class="valuation-factors" id="valuation-factors">
+            <strong>Key Factors</strong>
+            <div id="valuation-factors-list"></div>
+          </div>
+
+          <div class="q-chapters">
+            <strong>Recommended Reading</strong>
+            <p class="q-chapters-intro">From <a href="ma-book.html">The Toughest Sell</a>, my upcoming book on startup M&A:</p>
+            <div id="valuation-chapters-list"></div>
+          </div>
+        </div>
+
+        <button class="q-restart-btn" onclick="restartValuationAssessment()">Retake Assessment</button>
       </div>
     </div>
   </div>
@@ -562,7 +621,7 @@ function showResults(earlyOutcome) {
   outcome.chapters.forEach(ch => {
     const div = document.createElement('div');
     div.className = 'q-chapter-item';
-    div.innerHTML = `<span class="q-chapter-num">Ch. ${ch.num}</span> ${ch.title}`;
+    div.innerHTML = `<a href="ma-book.html#chapter-${ch.num}" class="q-chapter-link"><span class="q-chapter-num">Ch. ${ch.num}</span> ${ch.title}</a>`;
     chaptersList.appendChild(div);
   });
 }
@@ -575,6 +634,1102 @@ function restartQuestionnaire() {
   document.getElementById('question-section').classList.add('hidden');
   document.getElementById('tool-content').classList.add('hidden');
   document.getElementById('tool-start-btn').classList.remove('hidden');
+}
+
+// ==========================================
+// VALUATION & ACQUISITION TYPE ESTIMATOR
+// ==========================================
+
+const valuationQuestions = [
+  {
+    id: 'arr',
+    text: 'What is your Annual Recurring Revenue (ARR)?',
+    answers: [
+      { value: 'pre_revenue', label: 'Pre-revenue or less than $500K' },
+      { value: 'arr_500k_2m', label: '$500K - $2M' },
+      { value: 'arr_2m_5m', label: '$2M - $5M' },
+      { value: 'arr_5m_10m', label: '$5M - $10M' },
+      { value: 'arr_10m_50m', label: '$10M - $50M' },
+      { value: 'arr_over_50m', label: 'More than $50M' }
+    ]
+  },
+  {
+    id: 'business_type',
+    text: 'What type of business are you building?',
+    answers: [
+      { value: 'deep_tech', label: 'Deep tech (AI/ML, robotics, biotech, quantum, aerospace)' },
+      { value: 'enterprise_saas', label: 'Enterprise SaaS or B2B software' },
+      { value: 'consumer', label: 'Consumer app or marketplace' },
+      { value: 'services', label: 'Services, agency, or consulting' },
+      { value: 'hardware', label: 'Hardware or physical products' },
+      { value: 'other', label: 'Other' }
+    ]
+  },
+  {
+    id: 'growth',
+    text: 'What is your revenue growth rate (year-over-year)?',
+    // Skip for pre-revenue companies
+    condition: (answers) => answers.arr !== 'pre_revenue',
+    answers: [
+      { value: 'declining', label: 'Declining (negative growth)' },
+      { value: 'flat', label: 'Flat (0-10%)' },
+      { value: 'moderate', label: 'Moderate (10-30%)' },
+      { value: 'strong', label: 'Strong (30-50%)' },
+      { value: 'hypergrowth', label: 'Hypergrowth (50-100%)' },
+      { value: 'exceptional', label: 'Exceptional (100%+)' }
+    ]
+  },
+  {
+    id: 'capital_raised',
+    text: 'How much total capital have you raised to date?',
+    answers: [
+      { value: 'bootstrapped', label: 'Bootstrapped / less than $1M' },
+      { value: 'seed', label: '$1M - $5M (Seed)' },
+      { value: 'series_a', label: '$5M - $15M (Series A)' },
+      { value: 'series_b', label: '$15M - $40M (Series B)' },
+      { value: 'series_c_plus', label: 'More than $40M (Series C+)' }
+    ]
+  },
+  {
+    id: 'last_fundraise',
+    text: 'When did you last raise funding?',
+    // Skip for bootstrapped companies
+    condition: (answers) => answers.capital_raised !== 'bootstrapped',
+    answers: [
+      { value: 'fundraise_under_12m', label: 'Less than 12 months ago' },
+      { value: 'fundraise_12_24m', label: '12-24 months ago' },
+      { value: 'fundraise_24_36m', label: '2-3 years ago' },
+      { value: 'fundraise_over_36m', label: 'More than 3 years ago' }
+    ]
+  },
+  {
+    id: 'last_valuation',
+    text: 'What was your valuation at the last round?',
+    // Skip for bootstrapped companies
+    condition: (answers) => answers.capital_raised !== 'bootstrapped',
+    answers: [
+      { value: 'val_under_10m', label: 'Less than $10M' },
+      { value: 'val_10m_30m', label: '$10M - $30M' },
+      { value: 'val_30m_75m', label: '$30M - $75M' },
+      { value: 'val_75m_150m', label: '$75M - $150M' },
+      { value: 'val_over_150m', label: 'More than $150M' }
+    ]
+  },
+  {
+    id: 'performance_since_raise',
+    text: 'How has your business performed since your last fundraise?',
+    // Skip for bootstrapped or very recent raises (not enough time to measure)
+    condition: (answers) => answers.capital_raised !== 'bootstrapped' && answers.last_fundraise !== 'fundraise_under_12m',
+    answers: [
+      { value: 'perf_declined_significantly', label: 'Declined significantly (revenue down 30%+)' },
+      { value: 'perf_declined_somewhat', label: 'Declined somewhat (revenue down 10-30%)' },
+      { value: 'perf_flat', label: 'Roughly flat (within +/- 10%)' },
+      { value: 'perf_grew_moderately', label: 'Grew moderately (up 10-50%)' },
+      { value: 'perf_grew_significantly', label: 'Grew significantly (up 50-100%)' },
+      { value: 'perf_doubled_plus', label: 'More than doubled (100%+)' }
+    ]
+  },
+  {
+    id: 'liq_pref',
+    text: 'What is your liquidation preference structure?',
+    // Skip for bootstrapped companies
+    condition: (answers) => answers.capital_raised !== 'bootstrapped',
+    answers: [
+      { value: 'liq_1x_non_part', label: '1x non-participating (founder-friendly)' },
+      { value: 'liq_1x_part', label: '1x participating' },
+      { value: 'liq_2x_plus', label: '2x+ or stacked preferences' },
+      { value: 'liq_complex', label: 'Complex/multiple classes with different terms' },
+      { value: 'liq_unsure', label: "I'm not sure" }
+    ]
+  },
+  {
+    id: 'gross_margin',
+    text: 'What is your gross margin?',
+    // Skip for pre-revenue companies
+    condition: (answers) => answers.arr !== 'pre_revenue',
+    answers: [
+      { value: 'margin_below_40', label: 'Below 40% (hardware/services-heavy)' },
+      { value: 'margin_40_60', label: '40-60% (mixed model)' },
+      { value: 'margin_60_75', label: '60-75% (typical SaaS)' },
+      { value: 'margin_above_75', label: 'Above 75% (high-margin SaaS/software)' }
+    ]
+  },
+  {
+    id: 'ebitda',
+    text: 'What is your EBITDA / profitability status?',
+    answers: [
+      { value: 'burn_high', label: 'Burning more than $500K/month' },
+      { value: 'burn_low', label: 'Burning less than $500K/month' },
+      { value: 'breakeven', label: 'Break-even' },
+      { value: 'ebitda_500k_2m', label: '$500K - $2M annual EBITDA' },
+      { value: 'ebitda_2m_5m', label: '$2M - $5M annual EBITDA' },
+      { value: 'ebitda_over_5m', label: 'More than $5M annual EBITDA' }
+    ]
+  },
+  {
+    id: 'key_talent',
+    text: 'How many key technical people (engineers/researchers) do you have?',
+    answers: [
+      { value: 'talent_1_3', label: '1-3 key technical people' },
+      { value: 'talent_4_7', label: '4-7 key technical people' },
+      { value: 'talent_8_15', label: '8-15 key technical people' },
+      { value: 'talent_15_plus', label: '15+ key technical people' }
+    ]
+  },
+  {
+    id: 'founder_commitment',
+    text: 'Would you and other key people stay at the acquiring company for 2+ years?',
+    answers: [
+      { value: 'commit_excited', label: 'Yes, excited about the right opportunity' },
+      { value: 'commit_willing', label: 'Yes, if the terms and fit are right' },
+      { value: 'commit_reluctant', label: 'Only if required for the deal' },
+      { value: 'commit_no', label: 'No, we want a clean exit' }
+    ]
+  },
+  {
+    id: 'buyer_relationships',
+    text: 'Do you have existing business relationships with potential acquirers?',
+    answers: [
+      { value: 'rel_deep_partnership', label: 'Yes, deep partnership or integration' },
+      { value: 'rel_customer_vendor', label: 'Yes, customer or vendor relationship' },
+      { value: 'rel_know_people', label: 'Know people but no business relationship' },
+      { value: 'rel_none', label: 'No existing relationships' }
+    ]
+  },
+  {
+    id: 'customer_concentration',
+    text: 'How concentrated is your customer base?',
+    // Skip for pre-revenue companies
+    condition: (answers) => answers.arr !== 'pre_revenue',
+    answers: [
+      { value: 'conc_top_50', label: 'Top customer is > 50% of revenue' },
+      { value: 'conc_top3_50', label: 'Top 3 customers are > 50% of revenue' },
+      { value: 'conc_diversified', label: 'Diversified (no customer > 20%)' },
+      { value: 'conc_highly_diversified', label: 'Highly diversified (hundreds/thousands of customers)' }
+    ]
+  },
+  {
+    id: 'comparables',
+    text: 'What comparable exits have occurred in your space (last 2 years)?',
+    answers: [
+      { value: 'comp_shutdowns', label: 'Mostly shutdowns or fire sales' },
+      { value: 'comp_acquihires', label: 'Mix of acquihires and small exits' },
+      { value: 'comp_10m_50m', label: 'Several $10-50M exits' },
+      { value: 'comp_notable_50m', label: 'Notable $50M+ strategic exits' },
+      { value: 'comp_major_100m', label: 'Major exits ($100M+) in the space' }
+    ]
+  },
+  {
+    id: 'value_driver',
+    text: 'What would a buyer most want from you?',
+    answers: [
+      { value: 'driver_team', label: 'Our team/talent (acquihire)' },
+      { value: 'driver_ip', label: 'Specific technology or IP (asset)' },
+      { value: 'driver_revenue', label: 'Revenue and customer base (PE/financial)' },
+      { value: 'driver_strategic', label: 'Strategic fit with their roadmap (strategic)' },
+      { value: 'driver_unsure', label: "Honestly, not sure what they'd want" }
+    ]
+  }
+];
+
+// Early exit scenarios - checked after each answer
+function checkValuationEarlyExit(answers) {
+  const capitalRaised = getCapitalRaised(answers.capital_raised);
+  const arrValue = getArrValue(answers.arr);
+  const lastValuation = getLastValuation(answers.last_valuation);
+  const isDeepTech = answers.business_type === 'deep_tech';
+
+  // Scenario 1: Pre-revenue + raised significant capital ($10M+) + NOT deep tech
+  // This is a challenging acquihire scenario - skip ahead
+  // Deep tech companies are excluded because they often require massive capital before revenue
+  // and can still command strategic acquisitions for their technology
+  if (answers.arr === 'pre_revenue' && answers.capital_raised &&
+      ['series_a', 'series_b', 'series_c_plus'].includes(answers.capital_raised) &&
+      !isDeepTech) {
+    return 'early_acquihire_difficult';
+  }
+
+  // Scenario 2: Declining revenue significantly + raised significant capital
+  // This is heading toward a distressed asset sale
+  if (answers.growth === 'declining' && capitalRaised >= 5000000) {
+    return 'early_asset_sale_distressed';
+  }
+
+  // Scenario 3: Recent raise at high valuation + performance declined significantly
+  // Reality check needed - very difficult exit
+  // Deep tech excluded - valuation may be based on technology milestones, not ARR
+  if (answers.last_fundraise === 'fundraise_under_12m' &&
+      ['val_75m_150m', 'val_over_150m'].includes(answers.last_valuation) &&
+      answers.arr && arrValue < lastValuation * 0.15 && !isDeepTech) {
+    return 'early_valuation_mismatch';
+  }
+
+  // Scenario 4: Raised at high valuation but business has declined significantly since
+  if (answers.performance_since_raise &&
+      ['perf_declined_significantly', 'perf_declined_somewhat'].includes(answers.performance_since_raise) &&
+      lastValuation >= 30000000) {
+    return 'early_down_round_territory';
+  }
+
+  return null;
+}
+
+// Additional early exit outcomes
+const valuationEarlyOutcomes = {
+  early_acquihire_difficult: {
+    title: 'Challenging Acquihire Scenario',
+    description: `
+      <p>You're pre-revenue but have raised significant venture capital. This creates a difficult dynamic: <strong>the math for a traditional acquihire doesn't work</strong> when investors have liquidation preferences in the tens of millions.</p>
+      <p>Acquirers typically pay $1-3M per key engineer. Even with a strong team, this rarely covers investor preferences, meaning common shareholders (including founders) may receive little to nothing.</p>
+      <p><strong>Your realistic options:</strong></p>
+      <ul>
+        <li>Negotiate with investors to reduce preferences in exchange for any return</li>
+        <li>Focus on building revenue before pursuing M&A</li>
+        <li>Accept that this may be a "soft landing" where the team gets jobs but investors write down</li>
+      </ul>
+    `,
+    chapters: [
+      { num: 10, title: 'Valuation Fantasies and the Art of Disappointment' },
+      { num: 30, title: 'The $$$ Expectation Alignment Conversation' },
+      { num: 40, title: "It's Okay to Shut it All Down" }
+    ]
+  },
+  early_asset_sale_distressed: {
+    title: 'Distressed Asset Sale Likely',
+    description: `
+      <p>With declining revenue and significant capital raised, you're likely heading toward a <strong>distressed asset sale</strong>—the corporate equivalent of a clearance sale.</p>
+      <p>Buyers will cherry-pick your most valuable assets (IP, key customers, specific technology) while leaving behind the liabilities. The price will almost certainly be below your liquidation preferences.</p>
+      <p><strong>What to do now:</strong></p>
+      <ul>
+        <li>Identify your most valuable assets and find buyers who specifically need them</li>
+        <li>Have honest conversations with investors about likely returns</li>
+        <li>Consider whether winding down gracefully is a better option than a fire sale</li>
+      </ul>
+    `,
+    chapters: [
+      { num: 10, title: 'Valuation Fantasies and the Art of Disappointment' },
+      { num: 35, title: "It's Not You, Not Your Bankers, Not Your Board, It's the Market" },
+      { num: 40, title: "It's Okay to Shut it All Down" }
+    ]
+  },
+  early_valuation_mismatch: {
+    title: 'Severe Valuation Mismatch',
+    description: `
+      <p>You recently raised at a high valuation, but your current ARR suggests the market may have shifted significantly. <strong>Your last round valuation likely doesn't reflect current market reality.</strong></p>
+      <p>Buyers will value you based on your current metrics, not your last round. This creates a painful gap between investor expectations and what the market will pay.</p>
+      <p><strong>Before pursuing M&A:</strong></p>
+      <ul>
+        <li>Have a frank conversation with your board about realistic exit values</li>
+        <li>Consider whether extending runway and growing is better than exiting now</li>
+        <li>Understand that any exit will likely require investor write-downs</li>
+      </ul>
+    `,
+    chapters: [
+      { num: 10, title: 'Valuation Fantasies and the Art of Disappointment' },
+      { num: 12, title: 'Herding Cats: Aligning Spouses, Cofounders, Investors, and Employees' },
+      { num: 38, title: "Managing Stakeholders When You Can't Sell" }
+    ]
+  },
+  early_down_round_territory: {
+    title: 'Down Round Territory',
+    description: `
+      <p>Your business has declined since your last raise at a significant valuation. This puts you firmly in <strong>down round territory</strong>—where any exit or new funding will be below your last valuation.</p>
+      <p>This isn't necessarily fatal, but it requires recalibrating expectations across all stakeholders. The psychological impact of a down round often exceeds the financial impact.</p>
+      <p><strong>Key considerations:</strong></p>
+      <ul>
+        <li>Focus on stabilizing the business before pursuing M&A</li>
+        <li>Understand that buyers will negotiate aggressively knowing your position</li>
+        <li>Consider whether new investors or a bridge round could help rebuild leverage</li>
+      </ul>
+    `,
+    chapters: [
+      { num: 10, title: 'Valuation Fantasies and the Art of Disappointment' },
+      { num: 9, title: 'Prepare for the Most Likely Case of No Acceptable Offer' },
+      { num: 38, title: "Managing Stakeholders When You Can't Sell" }
+    ]
+  }
+};
+
+function getLastValuation(valAnswer) {
+  const valMap = {
+    'val_under_10m': 5000000,
+    'val_10m_30m': 20000000,
+    'val_30m_75m': 52500000,
+    'val_75m_150m': 112500000,
+    'val_over_150m': 200000000
+  };
+  return valMap[valAnswer] || 0;
+}
+
+const valuationOutcomes = {
+  acquihire: {
+    title: 'Acquihire',
+    description: `
+      <p>Your most likely acquisition type is an <strong>acquihire</strong>—where a buyer is primarily interested in acquiring your team rather than your business.</p>
+      <p>In an acquihire, most of the compensation comes as <em>retention bonuses</em>, not up-front cash. Expect 70-90% of the deal value to be tied to key employees staying at the acquirer for 2+ years.</p>
+      <p><strong>What this means for you:</strong> The deal will be structured around keeping your key people. Your leverage is your team's willingness to stay and their market value.</p>
+    `,
+    chapters: [
+      { num: 10, title: 'Valuation Fantasies and the Art of Disappointment' },
+      { num: 32, title: 'Key Employee Interviews' },
+      { num: 30, title: 'The $$$ Expectation Alignment Conversation' }
+    ]
+  },
+  asset_sale: {
+    title: 'Asset Sale',
+    description: `
+      <p>Your most likely outcome is an <strong>asset sale</strong>—the corporate equivalent of a clearance sale where buyers pick specific pieces (IP, patents, customers) rather than acquiring the whole business.</p>
+      <p>Asset sales typically happen when the business is struggling but has valuable components. Prices are often below liquidation preferences, meaning common shareholders may receive little to nothing.</p>
+      <p><strong>What this means for you:</strong> Focus on identifying and highlighting your most valuable assets. Be prepared for difficult conversations with investors about returns.</p>
+    `,
+    chapters: [
+      { num: 10, title: 'Valuation Fantasies and the Art of Disappointment' },
+      { num: 40, title: "It's Okay to Shut it All Down" },
+      { num: 35, title: "It's Not You, Not Your Bankers, Not Your Board, It's the Market" }
+    ]
+  },
+  revenue_multiple: {
+    title: 'Revenue Multiple (PE)',
+    description: `
+      <p>You're positioned for a <strong>revenue multiple</strong> acquisition—typically from PE buyers or strategic acquirers who value predictable cash flows.</p>
+      <p>These deals are grounded in math: ARR, EBITDA, and growth predictability determine your multiple. Buyers look for sustainable unit economics and defensible market position.</p>
+      <p><strong>What this means for you:</strong> Get your financials audit-ready. PE buyers will scrutinize every line item. The cleaner your books and more predictable your growth, the higher your multiple.</p>
+    `,
+    chapters: [
+      { num: 10, title: 'Valuation Fantasies and the Art of Disappointment' },
+      { num: 16, title: 'Should You Hire a Banker?' },
+      { num: 31, title: 'Initial Due Diligence' }
+    ]
+  },
+  strategic: {
+    title: 'Strategic Acquisition',
+    description: `
+      <p>You may be positioned for a <strong>strategic acquisition</strong>—the dream scenario where valuation is driven by narrative, not just math.</p>
+      <p>Strategic deals happen when you have something unique that a larger company needs for their roadmap. These can't be engineered—they emerge from strong market position, unique differentiation, and often competitive dynamics among potential buyers.</p>
+      <p><strong>What this means for you:</strong> Don't optimize for one buyer. Your leverage comes from having multiple interested parties. Focus on building genuine relationships with potential acquirers before you need them.</p>
+    `,
+    chapters: [
+      { num: 10, title: 'Valuation Fantasies and the Art of Disappointment' },
+      { num: 5, title: "Manufacturing an M&A Market When None is There" },
+      { num: 21, title: 'Engage Inbound, Lean In and Learn' }
+    ]
+  }
+};
+
+let valuationCurrentQuestion = 0;
+let valuationAnswers = {};
+let valuationQuestionHistory = []; // Track which questions were shown for back navigation
+
+function startValuationAssessment() {
+  document.getElementById('valuation-start-btn').classList.add('hidden');
+  document.getElementById('valuation-tool-content').classList.remove('hidden');
+  document.getElementById('valuation-question-section').classList.remove('hidden');
+  valuationQuestionHistory = [];
+  showValuationQuestion(0);
+}
+
+// Find the next applicable question (skipping conditional ones that don't apply)
+function getNextValuationQuestion(fromIndex) {
+  for (let i = fromIndex + 1; i < valuationQuestions.length; i++) {
+    const question = valuationQuestions[i];
+    // If no condition or condition is met, this is the next question
+    if (!question.condition || question.condition(valuationAnswers)) {
+      return i;
+    }
+  }
+  return -1; // No more questions
+}
+
+// Count how many questions will be shown based on current answers
+function countApplicableQuestions() {
+  let count = 0;
+  for (let i = 0; i < valuationQuestions.length; i++) {
+    const question = valuationQuestions[i];
+    if (!question.condition || question.condition(valuationAnswers)) {
+      count++;
+    }
+  }
+  return count;
+}
+
+// Get the position of current question among applicable questions
+function getCurrentQuestionPosition() {
+  let position = 0;
+  for (let i = 0; i <= valuationCurrentQuestion; i++) {
+    const question = valuationQuestions[i];
+    if (!question.condition || question.condition(valuationAnswers)) {
+      position++;
+    }
+  }
+  return position;
+}
+
+function showValuationQuestion(index) {
+  valuationCurrentQuestion = index;
+  const question = valuationQuestions[index];
+
+  // Calculate progress based on applicable questions
+  const totalQuestions = countApplicableQuestions();
+  const currentPosition = getCurrentQuestionPosition();
+
+  document.getElementById('valuation-progress-fill').style.width = (currentPosition / totalQuestions * 100) + '%';
+  document.getElementById('valuation-progress-text').textContent = `Question ${currentPosition} of ${totalQuestions}`;
+  document.getElementById('valuation-question-text').textContent = question.text;
+
+  const container = document.getElementById('valuation-answers-container');
+  container.innerHTML = '';
+
+  question.answers.forEach(answer => {
+    const btn = document.createElement('button');
+    btn.className = 'q-answer-btn' + (valuationAnswers[question.id] === answer.value ? ' selected' : '');
+    btn.textContent = answer.label;
+    btn.onclick = function() { selectValuationAnswer(question.id, answer.value, this); };
+    container.appendChild(btn);
+  });
+
+  document.getElementById('valuation-back-btn').classList.toggle('hidden', valuationQuestionHistory.length === 0);
+}
+
+function selectValuationAnswer(questionId, value, element) {
+  valuationAnswers[questionId] = value;
+  document.querySelectorAll('#valuation-answers-container .q-answer-btn').forEach(btn => btn.classList.remove('selected'));
+  element.classList.add('selected');
+
+  setTimeout(() => {
+    // Check for early exit conditions
+    const earlyExit = checkValuationEarlyExit(valuationAnswers);
+    if (earlyExit) {
+      showValuationEarlyResults(earlyExit);
+      return;
+    }
+
+    // Find next applicable question
+    const nextIndex = getNextValuationQuestion(valuationCurrentQuestion);
+
+    if (nextIndex !== -1) {
+      valuationQuestionHistory.push(valuationCurrentQuestion);
+      showValuationQuestion(nextIndex);
+    } else {
+      showValuationResults();
+    }
+  }, 200);
+}
+
+function valuationGoBack() {
+  if (valuationQuestionHistory.length > 0) {
+    const prevIndex = valuationQuestionHistory.pop();
+    showValuationQuestion(prevIndex);
+  }
+}
+
+function showValuationEarlyResults(earlyOutcomeKey) {
+  document.getElementById('valuation-question-section').classList.add('hidden');
+  document.getElementById('valuation-results-section').classList.remove('hidden');
+
+  const outcome = valuationEarlyOutcomes[earlyOutcomeKey];
+
+  // Clear warnings for early exits (the outcome itself is the warning)
+  document.getElementById('valuation-warnings').innerHTML = '';
+
+  // Display title and description
+  document.getElementById('valuation-result-title').textContent = outcome.title;
+  document.getElementById('valuation-result-description').innerHTML = outcome.description;
+
+  // Hide valuation range for early exits (not enough data for accurate estimate)
+  document.getElementById('valuation-range-box').style.display = 'none';
+
+  // Hide factors for early exits
+  document.getElementById('valuation-factors').style.display = 'none';
+
+  // Display chapters
+  const chaptersList = document.getElementById('valuation-chapters-list');
+  chaptersList.innerHTML = '';
+  outcome.chapters.forEach(ch => {
+    const div = document.createElement('div');
+    div.className = 'q-chapter-item';
+    div.innerHTML = `<a href="ma-book.html#chapter-${ch.num}" class="q-chapter-link"><span class="q-chapter-num">Ch. ${ch.num}</span> ${ch.title}</a>`;
+    chaptersList.appendChild(div);
+  });
+}
+
+// Helper functions for valuation calculation
+function getArrValue(arrAnswer) {
+  const arrMap = {
+    'pre_revenue': 250000,
+    'arr_500k_2m': 1250000,
+    'arr_2m_5m': 3500000,
+    'arr_5m_10m': 7500000,
+    'arr_10m_50m': 30000000,
+    'arr_over_50m': 75000000
+  };
+  return arrMap[arrAnswer] || 0;
+}
+
+function getCapitalRaised(capitalAnswer) {
+  const capitalMap = {
+    'bootstrapped': 500000,
+    'seed': 3000000,
+    'series_a': 10000000,
+    'series_b': 27500000,
+    'series_c_plus': 60000000
+  };
+  return capitalMap[capitalAnswer] || 0;
+}
+
+function getKeyPeopleCount(talentAnswer) {
+  const talentMap = {
+    'talent_1_3': 2,
+    'talent_4_7': 5.5,
+    'talent_8_15': 11.5,
+    'talent_15_plus': 20
+  };
+  return talentMap[talentAnswer] || 2;
+}
+
+function getGrowthMultiplier(growthAnswer) {
+  const growthMap = {
+    'declining': 0,
+    'flat': 0.2,
+    'moderate': 0.5,
+    'strong': 0.8,
+    'hypergrowth': 1.2,
+    'exceptional': 1.5
+  };
+  return growthMap[growthAnswer] || 0.5;
+}
+
+function getMarginMultiplier(marginAnswer) {
+  const marginMap = {
+    'margin_below_40': 0,
+    'margin_40_60': 0.3,
+    'margin_60_75': 0.7,
+    'margin_above_75': 1
+  };
+  return marginMap[marginAnswer] || 0.5;
+}
+
+function calculateValuationType(answers) {
+  const arrValue = getArrValue(answers.arr);
+  const capitalRaised = getCapitalRaised(answers.capital_raised);
+  const lastValuation = getLastValuation(answers.last_valuation);
+  const hasEBITDA = ['ebitda_500k_2m', 'ebitda_2m_5m', 'ebitda_over_5m'].includes(answers.ebitda);
+  const hasStrongEBITDA = ['ebitda_2m_5m', 'ebitda_over_5m'].includes(answers.ebitda);
+  const isHighGrowth = ['strong', 'hypergrowth', 'exceptional'].includes(answers.growth);
+  const isExceptionalGrowth = ['hypergrowth', 'exceptional'].includes(answers.growth);
+  const isFlat = ['declining', 'flat'].includes(answers.growth);
+  const isBootstrapped = answers.capital_raised === 'bootstrapped';
+  const hasHighMargins = ['margin_60_75', 'margin_above_75'].includes(answers.gross_margin);
+  const selfAssessment = answers.value_driver;
+  const marketContext = answers.comparables;
+
+  // New question signals
+  const isDeepTech = answers.business_type === 'deep_tech';
+  const hasDeepBuyerRelationship = answers.buyer_relationships === 'rel_deep_partnership';
+  const hasBuyerRelationship = ['rel_deep_partnership', 'rel_customer_vendor'].includes(answers.buyer_relationships);
+  const founderWillStay = ['commit_excited', 'commit_willing'].includes(answers.founder_commitment);
+  const founderWontStay = answers.founder_commitment === 'commit_no';
+
+  // Check for performance decline since last raise
+  const hasDeclinedSinceRaise = ['perf_declined_significantly', 'perf_declined_somewhat', 'perf_flat'].includes(answers.performance_since_raise);
+  const hasGrownSinceRaise = ['perf_grew_significantly', 'perf_doubled_plus'].includes(answers.performance_since_raise);
+
+  // Strategic Path 1: Self-identifies as strategic + good market + meaningful revenue
+  if (selfAssessment === 'driver_strategic' && arrValue >= 2000000 &&
+      ['comp_notable_50m', 'comp_major_100m'].includes(marketContext)) {
+    return 'strategic';
+  }
+
+  // Strategic Path 2: Bootstrapped category-creator with exceptional metrics
+  // (Profitable, high-growth, high-margin, no investor pressure = maximum leverage)
+  if (isBootstrapped && hasStrongEBITDA && isExceptionalGrowth && hasHighMargins && arrValue >= 10000000) {
+    return 'strategic';
+  }
+
+  // Strategic Path 3: Strong growth since last raise + good current metrics + reasonable valuation
+  // (You've grown into/beyond your valuation = leverage)
+  if (hasGrownSinceRaise && isHighGrowth && hasHighMargins && arrValue >= 10000000 &&
+      arrValue >= lastValuation * 0.3) { // ARR at least 30% of last valuation suggests reasonable multiple
+    return 'strategic';
+  }
+
+  // Strategic Path 4: Deep buyer relationship + good metrics can unlock strategic premium
+  if (hasDeepBuyerRelationship && arrValue >= 5000000 && isHighGrowth) {
+    return 'strategic';
+  }
+
+  // Strategic Path 5: Deep tech with proprietary technology in hot market
+  // Deep tech companies often have massive capital requirements before revenue
+  // but can command strategic premiums for their technology/IP
+  if (isDeepTech && (selfAssessment === 'driver_ip' || selfAssessment === 'driver_strategic') &&
+      ['comp_notable_50m', 'comp_major_100m'].includes(marketContext)) {
+    return 'strategic';
+  }
+
+  // Strategic Path 6: Deep tech with deep buyer relationship (even pre-revenue)
+  if (isDeepTech && hasDeepBuyerRelationship) {
+    return 'strategic';
+  }
+
+  // Asset Sale Override: Raised significant capital but flat/declining growth
+  // When you've raised $5M+ but aren't growing, acquihire math doesn't work for investors
+  if (isFlat && capitalRaised >= 5000000 && arrValue < 10000000) {
+    return 'asset_sale';
+  }
+
+  // Asset Sale Override 2: Declined significantly since last raise at high valuation
+  if (hasDeclinedSinceRaise && lastValuation >= 30000000 && arrValue < lastValuation * 0.2) {
+    return 'asset_sale';
+  }
+
+  // PE/Revenue Multiple: $10M+ ARR or $2M+ EBITDA with growth
+  if ((arrValue >= 10000000 || hasEBITDA) && !isFlat) {
+    return 'revenue_multiple';
+  }
+
+  // Acquihire: Team is the value + limited revenue + NOT heavily funded + founders willing to stay
+  // Only qualifies if the company hasn't raised too much (acquihire math needs to work)
+  if ((selfAssessment === 'driver_team' || selfAssessment === 'driver_unsure') &&
+      arrValue < 5000000 && capitalRaised < 5000000 && founderWillStay) {
+    return 'acquihire';
+  }
+
+  // If team-focused but founders won't stay, it's an asset sale
+  if (selfAssessment === 'driver_team' && founderWontStay) {
+    return 'asset_sale';
+  }
+
+  // If IP-focused with limited revenue, asset sale (unless deep tech which was handled above)
+  if (selfAssessment === 'driver_ip' && arrValue < 5000000 && !isDeepTech) {
+    return 'asset_sale';
+  }
+
+  // If declining/flat growth, asset sale (regardless of margins)
+  if (isFlat) {
+    return 'asset_sale';
+  }
+
+  // Default based on revenue level
+  if (arrValue >= 5000000) {
+    return 'revenue_multiple';
+  }
+
+  return 'asset_sale';
+}
+
+function calculateValuationRange(answers, type) {
+  const arr = getArrValue(answers.arr);
+  const keyPeople = getKeyPeopleCount(answers.key_talent);
+  const growthMult = getGrowthMultiplier(answers.growth);
+  const marginMult = getMarginMultiplier(answers.gross_margin);
+  const lastValuation = getLastValuation(answers.last_valuation);
+  const isDeepTech = answers.business_type === 'deep_tech';
+  const isPreRevenue = answers.arr === 'pre_revenue';
+  const isRecentRaise = ['fundraise_under_12m', 'fundraise_12_24m'].includes(answers.last_fundraise);
+  const isStaleRaise = ['fundraise_24_36m', 'fundraise_over_36m'].includes(answers.last_fundraise);
+
+  let low, high;
+
+  switch(type) {
+    case 'acquihire':
+      // $1-3M per key person
+      low = keyPeople * 1000000;
+      high = keyPeople * 3000000;
+      break;
+
+    case 'asset_sale':
+      // 0.5-1.5x ARR or $500K-$5M floor
+      low = Math.max(500000, arr * 0.5);
+      high = Math.max(5000000, arr * 1.5);
+      break;
+
+    case 'revenue_multiple':
+      // 2-5x ARR adjusted for growth and margin
+      const baseMultiple = 2 + (growthMult * 1.5) + (marginMult * 0.5);
+      low = arr * baseMultiple * 0.8;
+      high = arr * baseMultiple * 1.2;
+      break;
+
+    case 'strategic':
+      // Deep tech with low/no revenue: base on last round valuation or team value
+      if (isDeepTech && isPreRevenue) {
+        if (lastValuation > 0 && isRecentRaise) {
+          // Recent round: valuation close to last financing
+          low = lastValuation * 0.8;
+          high = null; // Could exceed last round with right buyer dynamics
+        } else if (lastValuation > 0 && isStaleRaise) {
+          // Stale round (2+ years): significant discount
+          low = lastValuation * 0.4;
+          high = lastValuation * 0.7;
+        } else {
+          // Bootstrapped deep tech or no valuation data - base on team + IP value
+          low = keyPeople * 2000000;
+          high = null;
+        }
+      } else {
+        // Standard strategic: 5x+ ARR, no upper cap
+        low = arr * 5;
+        high = null; // No upper cap for strategic
+      }
+      break;
+  }
+
+  return { low, high };
+}
+
+function formatCurrency(value) {
+  if (value >= 1000000000) {
+    return '$' + (value / 1000000000).toFixed(1) + 'B';
+  } else if (value >= 1000000) {
+    return '$' + (value / 1000000).toFixed(1) + 'M';
+  } else if (value >= 1000) {
+    return '$' + (value / 1000).toFixed(0) + 'K';
+  }
+  return '$' + value.toFixed(0);
+}
+
+function generateWarnings(answers, type, valuationRange) {
+  const warnings = [];
+  const capitalRaised = getCapitalRaised(answers.capital_raised);
+  const lastValuation = getLastValuation(answers.last_valuation);
+  // For strategic (no upper cap), use low as baseline; otherwise use midpoint
+  const estimatedValue = valuationRange.high ? (valuationRange.low + valuationRange.high) / 2 : valuationRange.low;
+  const isBootstrapped = answers.capital_raised === 'bootstrapped';
+
+  // Underwater Exit: If total raised > estimated valuation
+  if (capitalRaised > estimatedValue) {
+    warnings.push({
+      type: 'critical',
+      text: 'Your liquidation preferences may exceed your likely exit value. Common shareholders (including founders with common stock) may receive little to nothing. Consider this carefully before proceeding.'
+    });
+  }
+
+  // Valuation vs Raised Mismatch (less than 1x)
+  if (estimatedValue < capitalRaised && estimatedValue >= capitalRaised * 0.5) {
+    warnings.push({
+      type: 'warning',
+      text: "Your likely exit value is below what you've raised. This will require difficult conversations with investors about write-downs and may limit your deal options."
+    });
+  }
+
+  // Down round warning: Last valuation significantly higher than estimated exit
+  if (!isBootstrapped && lastValuation > 0 && estimatedValue < lastValuation * 0.7) {
+    warnings.push({
+      type: 'warning',
+      text: `Your last round valuation was significantly higher than realistic exit values. This "down round" dynamic will require difficult conversations with your board and may complicate deal negotiations.`
+    });
+  }
+
+  // Recent raise at high valuation warning
+  if (answers.last_fundraise === 'fundraise_under_12m' && lastValuation >= 50000000) {
+    warnings.push({
+      type: 'info',
+      text: 'You raised recently at a high valuation. Buyers will question why you\'re selling so soon. Have a clear narrative that doesn\'t signal desperation.'
+    });
+  }
+
+  // Performance decline since raise
+  if (['perf_declined_significantly', 'perf_declined_somewhat'].includes(answers.performance_since_raise)) {
+    warnings.push({
+      type: 'warning',
+      text: 'Your business has declined since your last raise. Buyers will scrutinize what changed and whether the decline is reversible. Be prepared with honest answers.'
+    });
+  }
+
+  // Customer Concentration Risk
+  if (answers.customer_concentration === 'conc_top_50') {
+    warnings.push({
+      type: 'warning',
+      text: 'High customer concentration is a major red flag for buyers. Consider diversifying before engaging in M&A—or expect a significant discount.'
+    });
+  }
+
+  // PE Threshold Miss
+  if (answers.arr === 'arr_5m_10m' && ['burn_high', 'burn_low'].includes(answers.ebitda)) {
+    warnings.push({
+      type: 'info',
+      text: 'PE buyers typically require $2M+ EBITDA with predictable margins. Focus on reaching profitability before engaging financial buyers.'
+    });
+  }
+
+  // Acquihire market reality
+  if (type === 'acquihire') {
+    warnings.push({
+      type: 'info',
+      text: 'Since 2023, acquihires for “solid but generic” engineering or product teams have gotten much harder. AI has increased productivity per engineer, shrinking demand for headcount and pushing deals toward longer processes and lower prices. Unless the team includes standout AI research talent, this is a difficult path in the current market.'
+    });
+  }
+
+  // Earnout warning for PE/revenue-multiple deals
+  if (type === 'revenue_multiple') {
+    warnings.push({
+      type: 'info',
+      text: 'PE and financial buyers typically structure deals with earnouts tied to future performance. Expect 20-50% of the deal value to be contingent on hitting post-acquisition targets.'
+    });
+  }
+
+  // Distressed asset sale with significant capital raised
+  if (type === 'asset_sale' && capitalRaised >= 5000000) {
+    warnings.push({
+      type: 'warning',
+      text: 'With significant capital raised and limited growth, this will likely be a difficult exit. Investor returns may be minimal, and the deal structure will favor asset buyers who can cherry-pick what they want.'
+    });
+  }
+
+  // Complex liquidation preferences
+  if (['liq_2x_plus', 'liq_complex'].includes(answers.liq_pref)) {
+    warnings.push({
+      type: 'warning',
+      text: 'Complex or stacked liquidation preferences make deals harder to close. Buyers may require a cap table cleanup before proceeding.'
+    });
+  }
+
+  return warnings;
+}
+
+function generateKeyFactors(answers, type) {
+  const factors = [];
+  const arr = getArrValue(answers.arr);
+  const keyPeople = getKeyPeopleCount(answers.key_talent);
+  const capitalRaised = getCapitalRaised(answers.capital_raised);
+  const lastValuation = getLastValuation(answers.last_valuation);
+  const isBootstrapped = answers.capital_raised === 'bootstrapped';
+
+  switch(type) {
+    case 'acquihire':
+      factors.push({ text: `${Math.round(keyPeople)} key technical people valued at $1-3M each`, sentiment: 'positive' });
+      if (arr < 1000000) {
+        factors.push({ text: 'Limited revenue supports talent-focused valuation', sentiment: 'neutral' });
+      }
+      factors.push({ text: 'Deal structure will be 70-90% retention bonuses', sentiment: 'neutral' });
+      if (['commit_excited', 'commit_willing'].includes(answers.founder_commitment)) {
+        factors.push({ text: 'Team willingness to stay is essential for acquihire success', sentiment: 'positive' });
+      }
+      break;
+
+    case 'asset_sale':
+      if (['declining', 'flat'].includes(answers.growth)) {
+        factors.push({ text: 'Flat or declining growth limits buyer interest', sentiment: 'negative' });
+      }
+      if (capitalRaised >= 5000000) {
+        factors.push({ text: `${formatCurrency(capitalRaised)} raised creates investor expectations that may not be met`, sentiment: 'negative' });
+      }
+      if (['perf_declined_significantly', 'perf_declined_somewhat'].includes(answers.performance_since_raise)) {
+        factors.push({ text: 'Decline since last raise weakens negotiating position', sentiment: 'negative' });
+      }
+      if (answers.value_driver === 'driver_ip') {
+        factors.push({ text: 'IP/technology may have value separate from the business', sentiment: 'positive' });
+      }
+      if (answers.value_driver === 'driver_team') {
+        factors.push({ text: 'Team retention packages may supplement asset value', sentiment: 'neutral' });
+      }
+      factors.push({ text: 'Buyers will cherry-pick valuable assets', sentiment: 'neutral' });
+      break;
+
+    case 'revenue_multiple':
+      factors.push({ text: `${formatCurrency(arr)} ARR provides PE buyer foundation`, sentiment: 'positive' });
+      if (['strong', 'hypergrowth', 'exceptional'].includes(answers.growth)) {
+        factors.push({ text: 'Strong growth rate increases multiple', sentiment: 'positive' });
+      }
+      if (['margin_60_75', 'margin_above_75'].includes(answers.gross_margin)) {
+        factors.push({ text: 'SaaS-level margins are attractive to buyers', sentiment: 'positive' });
+      }
+      if (['ebitda_500k_2m', 'ebitda_2m_5m', 'ebitda_over_5m'].includes(answers.ebitda)) {
+        factors.push({ text: 'Positive EBITDA qualifies for PE consideration', sentiment: 'positive' });
+      }
+      if (isBootstrapped) {
+        factors.push({ text: 'No investor pressure gives you negotiating leverage', sentiment: 'positive' });
+      }
+      if (['perf_grew_significantly', 'perf_doubled_plus'].includes(answers.performance_since_raise)) {
+        factors.push({ text: 'Strong growth since last raise demonstrates momentum', sentiment: 'positive' });
+      }
+      if (lastValuation > 0 && arr >= lastValuation * 0.25) {
+        factors.push({ text: 'Current metrics support previous valuation', sentiment: 'positive' });
+      }
+      break;
+
+    case 'strategic':
+      if (isBootstrapped && ['ebitda_2m_5m', 'ebitda_over_5m'].includes(answers.ebitda)) {
+        factors.push({ text: 'Profitable and bootstrapped = maximum leverage', sentiment: 'positive' });
+      }
+      factors.push({ text: 'Strategic narrative can drive premium valuation', sentiment: 'positive' });
+      if (['comp_notable_50m', 'comp_major_100m'].includes(answers.comparables)) {
+        factors.push({ text: 'Strong comparable exits support higher multiples', sentiment: 'positive' });
+      }
+      if (['hypergrowth', 'exceptional'].includes(answers.growth)) {
+        factors.push({ text: 'Exceptional growth makes you a category-defining acquisition', sentiment: 'positive' });
+      }
+      if (['perf_grew_significantly', 'perf_doubled_plus'].includes(answers.performance_since_raise)) {
+        factors.push({ text: 'You\'ve grown into/beyond your last valuation', sentiment: 'positive' });
+      }
+      if (answers.buyer_relationships === 'rel_deep_partnership') {
+        factors.push({ text: 'Deep partnership gives you inside track with potential buyer', sentiment: 'positive' });
+      }
+      if (answers.business_type === 'deep_tech') {
+        factors.push({ text: 'Deep tech companies can command premiums for proprietary technology', sentiment: 'positive' });
+      }
+      factors.push({ text: 'Valuation depends on competitive buyer dynamics', sentiment: 'neutral' });
+      factors.push({ text: 'Deal structure varies—strategic buyers often pay more upfront', sentiment: 'neutral' });
+      break;
+  }
+
+  // Add concentration factor if relevant
+  if (answers.customer_concentration === 'conc_highly_diversified') {
+    factors.push({ text: 'Diversified customer base reduces deal risk', sentiment: 'positive' });
+  }
+
+  // Add stale fundraise factor
+  if (answers.last_fundraise === 'fundraise_over_36m') {
+    factors.push({ text: 'Last raise was 3+ years ago—valuation expectations may be adjustable', sentiment: 'neutral' });
+  }
+
+  // Add buyer relationship factors
+  if (answers.buyer_relationships === 'rel_deep_partnership') {
+    factors.push({ text: 'Deep buyer relationship increases strategic premium likelihood', sentiment: 'positive' });
+  } else if (answers.buyer_relationships === 'rel_customer_vendor') {
+    factors.push({ text: 'Existing business relationship provides warm intro path', sentiment: 'positive' });
+  } else if (answers.buyer_relationships === 'rel_none') {
+    factors.push({ text: 'No existing buyer relationships—will need to build from scratch', sentiment: 'negative' });
+  }
+
+  // Add founder commitment factors
+  if (answers.founder_commitment === 'commit_excited') {
+    factors.push({ text: 'Team excited to stay increases deal attractiveness', sentiment: 'positive' });
+  } else if (answers.founder_commitment === 'commit_no') {
+    if (type === 'acquihire') {
+      factors.push({ text: 'Clean exit preference limits acquihire options', sentiment: 'negative' });
+    } else {
+      factors.push({ text: 'Clean exit preference may reduce retention-heavy deal structures', sentiment: 'neutral' });
+    }
+  }
+
+  // Add deep tech factors
+  if (answers.business_type === 'deep_tech') {
+    if (type === 'strategic') {
+      factors.push({ text: 'Deep tech with defensible IP can command strategic premiums', sentiment: 'positive' });
+    }
+    if (arr < 2000000) {
+      factors.push({ text: 'Pre-revenue deep tech valued on technology milestones, not ARR', sentiment: 'neutral' });
+    }
+    // Round timing factors for deep tech
+    if (answers.arr === 'pre_revenue') {
+      if (['fundraise_24_36m', 'fundraise_over_36m'].includes(answers.last_fundraise)) {
+        factors.push({ text: 'Round is 2+ years old—expect significant discount to last valuation', sentiment: 'negative' });
+      } else if (['fundraise_under_12m', 'fundraise_12_24m'].includes(answers.last_fundraise)) {
+        factors.push({ text: 'Recent round supports valuation close to last financing', sentiment: 'positive' });
+      } else if (answers.capital_raised === 'bootstrapped') {
+        factors.push({ text: 'Bootstrapped deep tech valued on team and IP, not prior round', sentiment: 'neutral' });
+      }
+    }
+  }
+
+  return factors;
+}
+
+function showValuationResults() {
+  document.getElementById('valuation-question-section').classList.add('hidden');
+  document.getElementById('valuation-results-section').classList.remove('hidden');
+
+  // Make sure valuation range and factors are visible (may be hidden from early exit)
+  document.getElementById('valuation-range-box').style.display = 'block';
+  document.getElementById('valuation-factors').style.display = 'block';
+
+  const type = calculateValuationType(valuationAnswers);
+  const outcome = valuationOutcomes[type];
+  const valuationRange = calculateValuationRange(valuationAnswers, type);
+  const warnings = generateWarnings(valuationAnswers, type, valuationRange);
+  const factors = generateKeyFactors(valuationAnswers, type);
+
+  // Display warnings
+  const warningsContainer = document.getElementById('valuation-warnings');
+  warningsContainer.innerHTML = '';
+  warnings.forEach(warning => {
+    const div = document.createElement('div');
+    div.className = 'q-warning';
+    div.innerHTML = warning.text;
+    warningsContainer.appendChild(div);
+  });
+
+  // Display title and description
+  document.getElementById('valuation-result-title').textContent = outcome.title;
+  document.getElementById('valuation-result-description').innerHTML = outcome.description;
+
+  // Display valuation range
+  const rangeValue = document.getElementById('valuation-range-value');
+  const rangeNote = document.getElementById('valuation-range-note');
+
+  if (type === 'strategic') {
+    const arr = getArrValue(valuationAnswers.arr);
+    const isDeepTech = valuationAnswers.business_type === 'deep_tech';
+    const isPreRevenue = valuationAnswers.arr === 'pre_revenue';
+    const isBootstrapped = valuationAnswers.capital_raised === 'bootstrapped';
+    const lastVal = getLastValuation(valuationAnswers.last_valuation);
+
+    if (valuationRange.high === null) {
+      // No upper cap for strategic deals
+      if (isDeepTech && isPreRevenue) {
+        rangeValue.textContent = `${formatCurrency(valuationRange.low)}+`;
+        if (isBootstrapped || lastVal === 0) {
+          rangeNote.textContent = 'Based on team and IP value. Strategic premiums possible with right buyer dynamics.';
+        } else {
+          rangeNote.textContent = 'Based on last round valuation. Strategic premiums possible with right buyer dynamics.';
+        }
+      } else {
+        const lowMult = (valuationRange.low / arr).toFixed(0);
+        rangeValue.textContent = `${formatCurrency(valuationRange.low)}+`;
+        rangeNote.textContent = `${lowMult}x+ ARR. Strategic premiums are narrative-driven with no ceiling.`;
+      }
+    } else {
+      // Deep tech with stale round - has upper cap
+      rangeValue.textContent = `${formatCurrency(valuationRange.low)} - ${formatCurrency(valuationRange.high)}`;
+      rangeNote.textContent = 'Stale round (2+ years) typically means significant discount to last valuation.';
+    }
+  } else {
+    rangeValue.textContent = `${formatCurrency(valuationRange.low)} - ${formatCurrency(valuationRange.high)}`;
+
+    if (type === 'acquihire') {
+      rangeNote.textContent = 'Based on key personnel count. 70-90% will be retention.';
+    } else if (type === 'asset_sale') {
+      rangeNote.textContent = 'Asset sales vary widely based on specific buyer needs.';
+    } else if (type === 'revenue_multiple') {
+      const arr = getArrValue(valuationAnswers.arr);
+      const lowMult = (valuationRange.low / arr).toFixed(1);
+      const highMult = (valuationRange.high / arr).toFixed(1);
+      rangeNote.textContent = `${lowMult}x - ${highMult}x ARR based on growth and margins.`;
+    }
+  }
+
+  // Display key factors
+  const factorsList = document.getElementById('valuation-factors-list');
+  factorsList.innerHTML = '';
+  factors.forEach(factor => {
+    const div = document.createElement('div');
+    div.className = 'valuation-factor-item valuation-factor-' + factor.sentiment;
+    div.textContent = factor.text;
+    factorsList.appendChild(div);
+  });
+
+  // Display chapters
+  const chaptersList = document.getElementById('valuation-chapters-list');
+  chaptersList.innerHTML = '';
+  outcome.chapters.forEach(ch => {
+    const div = document.createElement('div');
+    div.className = 'q-chapter-item';
+    div.innerHTML = `<a href="ma-book.html#chapter-${ch.num}" class="q-chapter-link"><span class="q-chapter-num">Ch. ${ch.num}</span> ${ch.title}</a>`;
+    chaptersList.appendChild(div);
+  });
+}
+
+function restartValuationAssessment() {
+  valuationAnswers = {};
+  valuationCurrentQuestion = 0;
+  valuationQuestionHistory = [];
+  document.getElementById('valuation-results-section').classList.add('hidden');
+  document.getElementById('valuation-question-section').classList.add('hidden');
+  document.getElementById('valuation-tool-content').classList.add('hidden');
+  document.getElementById('valuation-start-btn').classList.remove('hidden');
+  // Reset visibility of optional sections
+  document.getElementById('valuation-range-box').style.display = 'block';
+  document.getElementById('valuation-factors').style.display = 'block';
 }
 
 </script>

@@ -451,6 +451,22 @@ footer {
   color: #c0c0c0;
 }
 
+.q-chapters-intro {
+  font-size: 0.9rem;
+  color: #999;
+  margin: 0.5rem 0 1rem;
+  font-style: italic;
+}
+
+.q-chapters-intro a {
+  color: #6db3f2;
+  text-decoration: none;
+}
+
+.q-chapters-intro a:hover {
+  text-decoration: underline;
+}
+
 .q-chapter-item {
   padding: 0.6rem 0;
   border-bottom: 1px solid #2a2a2a;
@@ -465,6 +481,20 @@ footer {
 .q-chapter-num {
   color: #6db3f2;
   margin-right: 0.5rem;
+}
+
+.q-chapter-link {
+  color: #c0c0c0;
+  text-decoration: none;
+  display: block;
+}
+
+.q-chapter-link:hover {
+  color: #e0e0e0;
+}
+
+.q-chapter-link:hover .q-chapter-num {
+  color: #9ccfff;
 }
 
 /* Restart button */
@@ -700,8 +730,22 @@ footer {
 .tool-header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   gap: 1rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  margin: -0.5rem;
+  border-radius: 4px;
+  transition: background-color 0.15s ease;
+}
+
+.tool-header:hover {
+  background: rgba(109, 179, 242, 0.08);
+}
+
+.tool-header:hover .tool-start-btn {
+  background: #6db3f2;
+  color: #121212;
 }
 
 .tool-title {
@@ -764,5 +808,68 @@ footer {
 .connect-link:hover {
   color: #9ccfff;
   text-decoration: underline;
+}
+
+/* Valuation Tool Specific Styles */
+.valuation-range-box {
+  background: #1e3a5f;
+  border: 1px solid #3a6ea5;
+  border-radius: 4px;
+  padding: 1.2rem;
+  margin: 1.5rem 0;
+  text-align: center;
+}
+
+.valuation-range-label {
+  font-size: 0.85rem;
+  color: #9ccfff;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.valuation-range-value {
+  font-size: 1.5rem;
+  color: #fff;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.valuation-range-note {
+  font-size: 0.85rem;
+  color: #a0c4e8;
+  font-style: italic;
+}
+
+.valuation-factors {
+  background: #222;
+  border: 1px solid #333;
+  border-radius: 4px;
+  padding: 1rem 1.2rem;
+  margin: 1.2rem 0;
+}
+
+.valuation-factor-item {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #2a2a2a;
+  font-size: 0.95rem;
+  color: #c0c0c0;
+}
+
+.valuation-factor-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.valuation-factor-positive {
+  color: #7fba7f;
+}
+
+.valuation-factor-negative {
+  color: #d4a574;
+}
+
+.valuation-factor-neutral {
+  color: #a0a0a0;
 }
 
