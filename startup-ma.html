@@ -119,8 +119,9 @@
   <nav id="nav">
     <span class="nav-track">
       <a href="index.html">Home</a>
-      <a href="startup-ma.html">Startup M&A</a>
-            <a href="https://medium.com/@derekzhyan" target="_blank" rel="noopener">Past Writing</a>
+      <a href="startup-ma.html">M&A Resources</a>
+      <a href="ma-book/index.html">The Toughest Sell</a>
+      <a href="https://medium.com/@derekzhyan" target="_blank" rel="noopener">Past Writing</a>
       <a href="https://derekyanphotography.pixieset.com" target="_blank" rel="noopener">Photography</a>
       <a href="contact.html">Contact</a>
       <span class="nav-spacer"></span>
@@ -163,9 +164,9 @@ I wrote a book on this whole bloody experience, hopefully to help founders think
     <a href="ma-data-room-checklist.html" class="resource-link">View Checklist</a>
   </div>
   <div class="resource-card resource-card-full">
-    <div class="resource-title">My Upcoming Book on Startup M&A</div>
-    <div class="resource-desc">The full story behind the four-year journey to sell my company. 53 chapters of hard lessons, mistakes, and how perseverance paid off in the end.</div>
-    <a href="ma-book.html" class="resource-link">Read More</a>
+    <div class="resource-title">The Toughest Sell: A Founder's Guide to Startup Exits</div>
+    <div class="resource-desc">A culmination of all the mistakes and learnings from my four-year journey to sell my company. 53 chapters of hard lessons, what worked, what didn't, and how perseverance paid off in the end. Free to read online.</div>
+    <a href="ma-book/index.html" class="resource-link">Read the Book</a>
   </div>
 </div>
 </div>
@@ -214,7 +215,7 @@ I wrote a book on this whole bloody experience, hopefully to help founders think
 
           <div class="q-chapters">
             <strong>Recommended Reading</strong>
-            <p class="q-chapters-intro">From <a href="ma-book.html">The Toughest Sell</a>, my upcoming book on startup M&A:</p>
+            <p class="q-chapters-intro">From <a href="ma-book/index.html">The Toughest Sell</a>, my book on startup M&A:</p>
             <div id="chapters-list"></div>
           </div>
         </div>
@@ -272,7 +273,7 @@ I wrote a book on this whole bloody experience, hopefully to help founders think
 
           <div class="q-chapters">
             <strong>Recommended Reading</strong>
-            <p class="q-chapters-intro">From <a href="ma-book.html">The Toughest Sell</a>, my upcoming book on startup M&A:</p>
+            <p class="q-chapters-intro">From <a href="ma-book/index.html">The Toughest Sell</a>, my book on startup M&A:</p>
             <div id="valuation-chapters-list"></div>
           </div>
         </div>
@@ -326,7 +327,7 @@ I wrote a book on this whole bloody experience, hopefully to help founders think
 
           <div class="q-chapters">
             <strong>Recommended Reading</strong>
-            <p class="q-chapters-intro">From <a href="ma-book.html">The Toughest Sell</a>, my upcoming book on startup M&A:</p>
+            <p class="q-chapters-intro">From <a href="ma-book/index.html">The Toughest Sell</a>, my book on startup M&A:</p>
             <div id="inbound-chapters-list"></div>
           </div>
         </div>
@@ -372,7 +373,7 @@ I wrote a book on this whole bloody experience, hopefully to help founders think
 
           <div class="q-chapters">
             <strong>Recommended Reading</strong>
-            <p class="q-chapters-intro">From <a href="ma-book.html">The Toughest Sell</a>, my upcoming book on startup M&A:</p>
+            <p class="q-chapters-intro">From <a href="ma-book/index.html">The Toughest Sell</a>, my book on startup M&A:</p>
             <div id="banker-chapters-list"></div>
           </div>
         </div>
@@ -721,7 +722,7 @@ function showResults(earlyOutcome) {
   outcome.chapters.forEach(ch => {
     const div = document.createElement('div');
     div.className = 'q-chapter-item';
-    div.innerHTML = `<a href="ma-book.html#chapter-${ch.num}" class="q-chapter-link"><span class="q-chapter-num">Ch. ${ch.num}</span> ${ch.title}</a>`;
+    div.innerHTML = `<a href="ma-book/chapter-${ch.num}.html" class="q-chapter-link"><span class="q-chapter-num">Ch. ${ch.num}</span> ${ch.title}</a>`;
     chaptersList.appendChild(div);
   });
 }
@@ -1247,7 +1248,7 @@ function showValuationEarlyResults(earlyOutcomeKey) {
   outcome.chapters.forEach(ch => {
     const div = document.createElement('div');
     div.className = 'q-chapter-item';
-    div.innerHTML = `<a href="ma-book.html#chapter-${ch.num}" class="q-chapter-link"><span class="q-chapter-num">Ch. ${ch.num}</span> ${ch.title}</a>`;
+    div.innerHTML = `<a href="ma-book/chapter-${ch.num}.html" class="q-chapter-link"><span class="q-chapter-num">Ch. ${ch.num}</span> ${ch.title}</a>`;
     chaptersList.appendChild(div);
   });
 }
@@ -1814,7 +1815,7 @@ function showValuationResults() {
   outcome.chapters.forEach(ch => {
     const div = document.createElement('div');
     div.className = 'q-chapter-item';
-    div.innerHTML = `<a href="ma-book.html#chapter-${ch.num}" class="q-chapter-link"><span class="q-chapter-num">Ch. ${ch.num}</span> ${ch.title}</a>`;
+    div.innerHTML = `<a href="ma-book/chapter-${ch.num}.html" class="q-chapter-link"><span class="q-chapter-num">Ch. ${ch.num}</span> ${ch.title}</a>`;
     chaptersList.appendChild(div);
   });
 }
@@ -2467,7 +2468,7 @@ function showInboundResults() {
   outcome.chapters.forEach(ch => {
     const div = document.createElement('div');
     div.className = 'q-chapter-item';
-    div.innerHTML = `<a href="ma-book.html#chapter-${ch.num}" class="q-chapter-link"><span class="q-chapter-num">Ch. ${ch.num}</span> ${ch.title}</a>`;
+    div.innerHTML = `<a href="ma-book/chapter-${ch.num}.html" class="q-chapter-link"><span class="q-chapter-num">Ch. ${ch.num}</span> ${ch.title}</a>`;
     chaptersList.appendChild(div);
   });
 }
@@ -3137,7 +3138,7 @@ function showBankerResults(earlyOutcome) {
   outcome.chapters.forEach(ch => {
     const div = document.createElement('div');
     div.className = 'q-chapter-item';
-    div.innerHTML = `<a href="ma-book.html#chapter-${ch.num}" class="q-chapter-link"><span class="q-chapter-num">Ch. ${ch.num}</span> ${ch.title}</a>`;
+    div.innerHTML = `<a href="ma-book/chapter-${ch.num}.html" class="q-chapter-link"><span class="q-chapter-num">Ch. ${ch.num}</span> ${ch.title}</a>`;
     chaptersList.appendChild(div);
   });
 }

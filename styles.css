@@ -940,3 +940,462 @@ footer {
   color: #a0a0a0;
 }
 
+/* Book Page Styles */
+.book-page {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* Book Header (on chapter pages) */
+.book-header {
+  padding: 1rem 0;
+  margin-bottom: 0;
+  border-bottom: 1px solid #333;
+}
+
+.book-title-link {
+  font-size: 1.1rem;
+  color: #6db3f2;
+  text-decoration: none;
+}
+
+.book-title-link:hover {
+  text-decoration: underline;
+}
+
+.book-subtitle {
+  font-size: 0.9rem;
+  color: #888;
+  margin-left: 0.5rem;
+}
+
+/* Book Index Page */
+.book-title-header {
+  text-align: center;
+  margin: 2rem 0 2.5rem;
+}
+
+.book-title-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.3rem;
+}
+
+.book-subtitle-large {
+  font-size: 1.2rem;
+  color: #999;
+  margin: 0.5rem 0;
+  font-style: italic;
+}
+
+.book-author {
+  font-size: 1rem;
+  color: #888;
+  margin: 0.5rem 0;
+}
+
+.book-intro {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 4px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+}
+
+.book-intro p {
+  margin: 0.8rem 0;
+}
+
+.book-start-link {
+  display: inline-block;
+  margin-top: 0.5rem;
+  color: #6db3f2;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.book-start-link:hover {
+  text-decoration: underline;
+}
+
+/* Table of Contents */
+.book-toc {
+  margin: 2rem 0;
+}
+
+.book-toc h2 {
+  margin-bottom: 1.5rem;
+}
+
+.toc-section {
+  margin-bottom: 1.5rem;
+}
+
+.toc-part {
+  font-size: 1rem;
+  color: #6db3f2;
+  margin: 1.5rem 0 0.8rem;
+  font-weight: normal;
+}
+
+.toc-item {
+  display: block;
+  padding: 0.5rem 0;
+  color: #c0c0c0;
+  text-decoration: none;
+  font-size: 0.95rem;
+  border-bottom: 1px solid #252525;
+}
+
+.toc-item:hover {
+  color: #e0e0e0;
+  background: #1a1a1a;
+  margin: 0 -0.5rem;
+  padding: 0.5rem 0.5rem;
+}
+
+.toc-item.toc-special {
+  font-style: italic;
+  color: #999;
+}
+
+.toc-num {
+  display: inline-block;
+  width: 2rem;
+  color: #666;
+}
+
+/* Chapter Navigation */
+.chapter-nav-top,
+.chapter-nav-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 0;
+  margin: 0;
+}
+
+.chapter-nav-top {
+  border-bottom: 1px solid #333;
+}
+
+.chapter-nav-bottom {
+  border-top: 1px solid #333;
+}
+
+.chapter-nav-link {
+  color: #6db3f2;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.chapter-nav-link:hover {
+  text-decoration: underline;
+}
+
+.chapter-nav-link.disabled {
+  color: #555;
+  cursor: default;
+}
+
+.chapter-progress {
+  color: #888;
+  font-size: 0.85rem;
+}
+
+.chapter-toc-link {
+  color: #888;
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+
+.chapter-toc-link:hover {
+  color: #c0c0c0;
+  text-decoration: underline;
+}
+
+/* Chapter Content */
+.chapter-content {
+  margin: 2.5rem 0;
+}
+
+.chapter-header {
+  margin-bottom: 2.5rem;
+}
+
+.part-label {
+  display: block;
+  font-size: 0.85rem;
+  color: #6db3f2;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.chapter-header h1 {
+  font-size: 1.8rem;
+  line-height: 1.3;
+  margin: 0;
+}
+
+.chapter-number {
+  display: block;
+  font-size: 1.1rem;
+  color: #888;
+  font-weight: normal;
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.5px;
+}
+
+.chapter-body {
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+.chapter-body p {
+  margin: 1.2rem 0;
+}
+
+/* Email formatting */
+.email-block {
+  background: #1a1a1a;
+  border-left: 3px solid #444;
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  font-family: 'Courier New', monospace;
+  font-size: 0.95rem;
+}
+
+.email-block p {
+  margin: 0.5rem 0;
+}
+
+.email-header {
+  color: #6db3f2;
+  font-weight: 500;
+}
+
+.short-line {
+  margin: 0.4rem 0 !important;
+}
+
+/* Q&A formatting */
+.qa-block {
+  background: #1a1a1a;
+  border-left: 3px solid #6db3f2;
+  padding: 1.5rem 2rem;
+  margin: 1.5rem 0;
+}
+
+.qa-block p {
+  margin: 0.8rem 0;
+}
+
+.qa-question {
+  color: #6db3f2;
+  font-weight: 600;
+  margin-top: 1.2rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.qa-question:first-child {
+  margin-top: 0 !important;
+}
+
+.qa-answer {
+  padding-left: 1.5rem;
+  color: #d4d4d4;
+  line-height: 1.7;
+}
+
+/* Term sheet formatting */
+.term-sheet-block {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  padding: 1.5rem 2rem;
+  margin: 1.5rem 0;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.term-sheet-block .ts-header {
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: #6db3f2;
+}
+
+.term-sheet-block .ts-section {
+  margin: 1rem 0;
+  display: flex;
+  align-items: flex-start;
+}
+
+.term-sheet-block .ts-section > div {
+  display: flex;
+  width: 100%;
+}
+
+.term-sheet-block .ts-label {
+  font-weight: 600;
+  flex-shrink: 0;
+  width: 200px;
+  color: #aaa;
+}
+
+.term-sheet-block .ts-content {
+  flex: 1;
+  padding-left: 0;
+}
+
+.term-sheet-block .ts-indent-1 {
+  padding-left: 2rem;
+  margin: 0.3rem 0;
+}
+
+.term-sheet-block .ts-indent-2 {
+  padding-left: 4rem;
+  margin: 0.3rem 0;
+}
+
+.term-sheet-block .ts-footer {
+  margin-top: 2rem;
+  padding-left: 200px;
+  font-style: italic;
+  color: #888;
+}
+
+.term-sheet-block .ts-signature {
+  margin-top: 2rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Text emphasis */
+.chapter-body strong {
+  font-weight: 600;
+}
+
+.chapter-body em {
+  font-style: italic;
+}
+
+/* Sub-headers in chapters */
+.chapter-body .sub-header {
+  font-weight: 700;
+  margin: 1.5rem 0 0.8rem 0;
+  font-size: 1.05rem;
+}
+
+/* Indented subsections */
+.chapter-body .sub-section {
+  margin-left: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Table styling */
+.chapter-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  background: #1a1a1a;
+  border: 1px solid #333;
+  font-size: 0.9rem;
+}
+
+.chapter-body table thead {
+  background: #252525;
+}
+
+.chapter-body table th {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: #6db3f2;
+  border-bottom: 2px solid #444;
+}
+
+.chapter-body table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #2a2a2a;
+  vertical-align: top;
+}
+
+.chapter-body table tbody tr:hover {
+  background: #222;
+}
+
+.chapter-body table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.chapter-body table ul {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.chapter-body table li {
+  margin: 0.3rem 0;
+  line-height: 1.5;
+}
+
+/* Chapter Feedback */
+.chapter-feedback {
+  text-align: center;
+  padding: 1rem 0;
+  color: #888;
+  font-size: 0.9rem;
+}
+
+.chapter-feedback a {
+  color: #6db3f2;
+}
+
+/* Book Copyright */
+.book-copyright {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 4px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  font-size: 0.85rem;
+  color: #888;
+}
+
+.book-copyright p {
+  margin: 0.5rem 0;
+}
+
+.book-copyright a {
+  color: #6db3f2;
+}
+
+.copyright-details {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .book-title-header h1 {
+    font-size: 2rem;
+  }
+
+  .chapter-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .chapter-nav-top,
+  .chapter-nav-bottom {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .chapter-progress {
+    order: -1;
+    width: 100%;
+    text-align: center;
+    padding-bottom: 0.5rem;
+  }
+}
+
