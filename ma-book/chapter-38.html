@@ -22,11 +22,13 @@
 <meta name="twitter:description" content="Due diligence process explained. Prepare for buyer investigations. Organize documentation and manage the DD process efficiently.">
 <meta name="twitter:image" content="https://derekyan.com/derek-yan.jpg">
 
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/site.webmanifest">
+<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="manifest" href="../site.webmanifest">
 <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../nav-styles.css">
+    <link rel="stylesheet" href="../chapter-nav-styles.css">
 
 <!-- Structured Data -->
 <script type="application/ld+json">
@@ -64,17 +66,7 @@
 <body>
 
 <div class="container">
-  <nav id="nav">
-    <span class="nav-track">
-      <a href="../index.html">Home</a>
-      <a href="../startup-ma.html">M&amp;A Resources</a>
-      <a href="index.html">The Toughest Sell</a>
-      <a href="https://medium.com/@derekzhyan" target="_blank" rel="noopener">Past Writing</a>
-      <a href="https://derekyanphotography.pixieset.com" target="_blank" rel="noopener">Photography</a>
-      <a href="../contact.html">Contact</a>
-      <span class="nav-spacer"></span>
-    </span>
-  </nav>
+    <div id="nav-container"></div>
 </div>
 
 <div class="container book-page">
@@ -84,11 +76,7 @@
   <span class="book-subtitle">A Founder's Guide to Startup Exits</span>
 </div>
 
-<div class="chapter-nav-top">
-  <a href="chapter-37.html" class="chapter-nav-link">&larr; Previous</a>
-  <span class="chapter-progress">Chapter 38 of 53</span>
-  <a href="chapter-39.html" class="chapter-nav-link">Next &rarr;</a>
-</div>
+<div id="chapter-nav-top-container"></div>
 
 <article class="chapter-content">
   <div class="chapter-header">
@@ -104,11 +92,7 @@
   </div>
 </article>
 
-<div class="chapter-nav-bottom">
-  <a href="chapter-37.html" class="chapter-nav-link">&larr; Previous</a>
-  <a href="index.html" class="chapter-toc-link">Table of Contents</a>
-  <a href="chapter-39.html" class="chapter-nav-link">Next &rarr;</a>
-</div>
+<div id="chapter-nav-bottom-container"></div>
 
 <div class="chapter-feedback">
   Questions about this chapter? <a href="../contact.html">Contact me</a>
@@ -122,6 +106,7 @@
 
 </div>
 
-<script src="../nav.js"></script>
+    <script src="../nav-component.js"></script>
+    <script src="../chapter-nav-component.js"></script>
 </body>
 </html>

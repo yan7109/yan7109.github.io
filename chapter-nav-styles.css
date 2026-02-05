@@ -1,0 +1,65 @@
+/* Chapter Navigation Styles */
+
+/* Desktop Navigation */
+.chapter-nav-top,
+.chapter-nav-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 0;
+  margin: 0;
+}
+
+.chapter-nav-top {
+  border-bottom: 1px solid #333;
+}
+
+.chapter-nav-bottom {
+  border-top: 1px solid #333;
+  margin-top: 2.5rem;
+}
+
+.chapter-nav-link {
+  color: #6db3f2;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.chapter-nav-link:hover {
+  color: #9ccfff;
+}
+
+.chapter-nav-link.disabled {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.chapter-progress {
+  color: #888;
+  font-size: 0.9rem;
+}
+
+.chapter-toc-link {
+  color: #6db3f2;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.chapter-toc-link:hover {
+  color: #9ccfff;
+}
+
+/* Mobile Navigation - Keep same layout as desktop */
+@media (max-width: 600px) {
+  .chapter-nav-link {
+    font-size: 0.85rem;  /* Slightly smaller text to fit */
+  }
+
+  .chapter-progress {
+    font-size: 0.8rem;   /* Slightly smaller text to fit */
+  }
+
+  .chapter-toc-link {
+    font-size: 0.85rem;  /* Slightly smaller text to fit */
+  }
+}

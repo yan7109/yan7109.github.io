@@ -1,0 +1,132 @@
+/* Navigation Styles */
+
+/* Desktop Navigation */
+#nav {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+#nav::-webkit-scrollbar {
+  display: none;
+}
+
+.nav-toggle {
+  display: none;
+}
+
+.nav-menu {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+#nav a {
+  display: inline-block;
+  color: #6db3f2;
+  margin-right: 15px;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+#nav a:hover {
+  color: #9ccfff;
+}
+
+#nav a:last-child {
+  margin-right: 0;
+}
+
+/* Mobile Navigation */
+@media (max-width: 760px) {
+  #nav {
+    overflow-x: visible;
+    overflow-y: visible;
+    white-space: normal;
+    margin-bottom: 20px;
+  }
+
+  .nav-toggle {
+    display: block;
+    background: none;
+    border: none;
+    color: #6db3f2;
+    font-size: 24px;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-toggle:hover {
+    color: #9ccfff;
+  }
+
+  .nav-toggle:focus {
+    outline: 2px solid #6db3f2;
+    outline-offset: 2px;
+  }
+
+  .hamburger-icon {
+    display: block;
+    line-height: 1;
+    font-size: 28px;
+  }
+
+  .nav-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #0a0a0a;
+    border: 1px solid #333;
+    border-top: none;
+    z-index: 1000;
+    white-space: nowrap;
+    flex-direction: column;
+    width: max-content;
+  }
+
+  .nav-menu.open {
+    display: flex;
+    animation: slideDown 0.3s ease;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .nav-menu a {
+    display: block;
+    padding: 14px 16px;
+    margin-right: 0;
+    border-bottom: 1px solid #222;
+    box-sizing: border-box;
+    white-space: nowrap;
+  }
+
+  .nav-menu a:last-child {
+    border-bottom: none;
+  }
+
+  .nav-menu a:hover,
+  .nav-menu a:focus {
+    background: rgba(109, 179, 242, 0.1);
+  }
+}

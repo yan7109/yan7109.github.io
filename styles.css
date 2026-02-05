@@ -21,49 +21,7 @@ a:hover {
   padding: 0 20px;
 }
 
-/* Navigation */
-nav {
-  margin-bottom: 0.7rem;
-  font-size: 0.95rem;
-  overflow-x: auto;
-  white-space: nowrap;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-@media (max-width: 760px) {
-  nav {
-    margin-left: -20px;
-    margin-right: -20px;
-    padding-left: 20px;
-  }
-}
-
-nav::-webkit-scrollbar {
-  display: none;
-}
-
-nav .nav-track {
-  display: inline-block;
-}
-
-nav a {
-  margin-right: 14px;
-  color: #6db3f2;
-  text-decoration: none;
-  display: inline-block;
-}
-
-nav a:hover {
-  text-decoration: underline;
-  color: #9ccfff;
-}
-
-nav .nav-spacer {
-  display: inline-block;
-  width: 30px;
-}
+/* Navigation styles moved to nav-styles.css */
 
 /* Typography */
 h1 {
@@ -1066,54 +1024,7 @@ footer {
   color: #666;
 }
 
-/* Chapter Navigation */
-.chapter-nav-top,
-.chapter-nav-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.5rem 0;
-  margin: 0;
-}
-
-.chapter-nav-top {
-  border-bottom: 1px solid #333;
-}
-
-.chapter-nav-bottom {
-  border-top: 1px solid #333;
-}
-
-.chapter-nav-link {
-  color: #6db3f2;
-  text-decoration: none;
-  font-size: 0.9rem;
-}
-
-.chapter-nav-link:hover {
-  text-decoration: underline;
-}
-
-.chapter-nav-link.disabled {
-  color: #555;
-  cursor: default;
-}
-
-.chapter-progress {
-  color: #888;
-  font-size: 0.85rem;
-}
-
-.chapter-toc-link {
-  color: #888;
-  text-decoration: none;
-  font-size: 0.85rem;
-}
-
-.chapter-toc-link:hover {
-  color: #c0c0c0;
-  text-decoration: underline;
-}
+/* Chapter navigation styles moved to chapter-nav-styles.css */
 
 /* Chapter Content */
 .chapter-content {
@@ -1387,17 +1298,5 @@ footer {
     font-size: 1.5rem;
   }
 
-  .chapter-nav-top,
-  .chapter-nav-bottom {
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-
-  .chapter-progress {
-    order: -1;
-    width: 100%;
-    text-align: center;
-    padding-bottom: 0.5rem;
-  }
 }
 

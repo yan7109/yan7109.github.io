@@ -106,27 +106,18 @@
 }
 </script>
 
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/site.webmanifest">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="manifest" href="site.webmanifest">
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="nav-styles.css">
 </head>
 
 <body>
 
 <div class="container">
-  <nav id="nav">
-    <span class="nav-track">
-      <a href="index.html">Home</a>
-      <a href="startup-ma.html">M&A Resources</a>
-      <a href="ma-book/index.html">The Toughest Sell</a>
-      <a href="https://medium.com/@derekzhyan" target="_blank" rel="noopener">Past Writing</a>
-      <a href="https://derekyanphotography.pixieset.com" target="_blank" rel="noopener">Photography</a>
-      <a href="contact.html">Contact</a>
-      <span class="nav-spacer"></span>
-    </span>
-  </nav>
+  <div id="nav-container"></div>
 </div>
 
 <div class="container">
@@ -398,7 +389,7 @@ I wrote a book on this whole bloody experience, hopefully to help founders think
 
 </div>
 
-<script src="nav.js"></script>
+<script src="nav-component.js"></script>
 <script>
 const questions = [
   {
