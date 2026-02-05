@@ -1038,12 +1038,13 @@ footer {
 }
 
 .toc-item {
-  display: block;
+  display: flex;
   padding: 0.5rem 0;
   color: #c0c0c0;
   text-decoration: none;
   font-size: 0.95rem;
   border-bottom: 1px solid #252525;
+  align-items: flex-start;
 }
 
 .toc-item:hover {
@@ -1061,6 +1062,7 @@ footer {
 .toc-num {
   display: inline-block;
   width: 2rem;
+  flex-shrink: 0;
   color: #666;
 }
 
