@@ -111,7 +111,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="manifest" href="site.webmanifest">
-<link rel="stylesheet" href="styles.css?v=4">
+<link rel="stylesheet" href="styles.css?v=8">
 <link rel="stylesheet" href="nav-styles.css?v=2">
 </head>
 
@@ -131,203 +131,27 @@ Companies that go out looking for a buyer almost <em>always</em> never find one.
 I wrote a <a href="ma-book/index.html">book</a> on this whole bloody experience, hopefully to help founders think clearly and not make the same mistakes I did. The stakes are way too high for the slightest errors.
 </p>
 
-<!-- M&A Journey Section -->
+<!-- M&A Journey -->
 <div class="journey-section">
 <h2>The M&A Journey</h2>
-<p class="journey-intro">Eight stages from preparation to closing. Timeline varies widely, some deals close in 3 months, others take years, and each stage fraught with risks.</p>
+<p class="journey-intro">M&A is not linear. Founders cycle through exploration, preparation, and buyer conversations multiple times. Navigate phase by phase — choose your own path.</p>
 
-<div class="journey-timeline">
-  <div class="journey-stage journey-start" data-stage="1">
-    <div class="journey-node"><span class="journey-icon"></span></div>
-    <div class="journey-content">
-      <button class="journey-header" aria-expanded="false">
-        <span class="journey-title">Preparation</span>
-        <span class="journey-desc">Get your house in order</span>
-        <span class="journey-chevron"></span>
-      </button>
-      <div class="journey-details">
-        <ul class="journey-items">
-          <li>Develop relationships with potential acquirers <a href="ma-book/chapter-14.html" class="journey-chapter-link">Ch. 14</a></li>
-          <li>Maintain 12+ months runway <a href="ma-book/chapter-1.html" class="journey-chapter-link">Ch. 1</a></li>
-          <li>Clean up cap table <a href="ma-book/chapter-13.html" class="journey-chapter-link">Ch. 13</a></li>
-          <li>Prepare audited financials <a href="ma-book/chapter-18.html" class="journey-chapter-link">Ch. 18</a></li>
-          <li>Organize data room <a href="ma-book/chapter-18.html" class="journey-chapter-link">Ch. 18</a></li>
-          <li>Prepare outreach materials <a href="ma-book/chapter-15.html" class="journey-chapter-link">Ch. 15</a></li>
-        </ul>
-      </div>
-    </div>
+<div class="phase-navigator" id="phase-navigator">
+  <div class="phase-breadcrumbs" id="phase-breadcrumbs"></div>
+  <div class="phase-top-nav">
+    <button class="phase-back-btn hidden" id="phase-back-btn" onclick="navigateBack()" aria-label="Go back">&larr; Back</button>
+    <button class="phase-start-over-btn hidden" id="phase-start-over-btn" onclick="startOver()">Start Over</button>
   </div>
-
-  <div class="journey-stage" data-stage="2">
-    <div class="journey-node"><span class="journey-number">2</span></div>
-    <div class="journey-content">
-      <button class="journey-header" aria-expanded="false">
-        <span class="journey-title">Activation</span>
-        <span class="journey-desc">Start M&A conversations</span>
-        <span class="journey-chevron"></span>
-      </button>
-      <div class="journey-details">
-        <ul class="journey-items">
-          <li>Respond to inbound interest <a href="ma-book/chapter-21.html" class="journey-chapter-link">Ch. 21</a></li>
-          <li>Reach out to target acquirers <a href="ma-book/chapter-23.html" class="journey-chapter-link">Ch. 23</a></li>
-          <li>Signal openness to M&A <a href="ma-book/chapter-5.html" class="journey-chapter-link">Ch. 5</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="journey-stage" data-stage="3">
-    <div class="journey-node"><span class="journey-number">3</span></div>
-    <div class="journey-content">
-      <button class="journey-header" aria-expanded="false">
-        <span class="journey-title">Discovery</span>
-        <span class="journey-desc">Find the right fit</span>
-        <span class="journey-chevron"></span>
-      </button>
-      <div class="journey-details">
-        <ul class="journey-items">
-          <li>Initial meetings with potential buyers <a href="ma-book/chapter-26.html" class="journey-chapter-link">Ch. 26</a></li>
-          <li>Sign NDAs <a href="ma-book/chapter-27.html" class="journey-chapter-link">Ch. 27</a></li>
-          <li>Determine strategic fit <a href="ma-book/chapter-27.html" class="journey-chapter-link">Ch. 27</a></li>
-          <li>Preliminary due diligence <a href="ma-book/chapter-31.html" class="journey-chapter-link">Ch. 31</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="journey-stage" data-stage="4">
-    <div class="journey-node"><span class="journey-number">4</span></div>
-    <div class="journey-content">
-      <button class="journey-header" aria-expanded="false">
-        <span class="journey-title">Term Alignment</span>
-        <span class="journey-desc">Agree on the big picture</span>
-        <span class="journey-chevron"></span>
-      </button>
-      <div class="journey-details">
-        <ul class="journey-items">
-          <li>Discuss deal structure <a href="ma-book/chapter-30.html" class="journey-chapter-link">Ch. 30</a></li>
-          <li>Negotiate consideration (cash vs stock) <a href="ma-book/chapter-41.html" class="journey-chapter-link">Ch. 41</a></li>
-          <li>Align on retention packages <a href="ma-book/chapter-41.html" class="journey-chapter-link">Ch. 41</a></li>
-          <li>Address earnout expectations <a href="ma-book/chapter-41.html" class="journey-chapter-link">Ch. 41</a></li>
-          <li>Align internal stakeholders <a href="ma-book/chapter-12.html" class="journey-chapter-link">Ch. 12</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="journey-stage journey-critical" data-stage="5">
-    <div class="journey-node"><span class="journey-number">5</span></div>
-    <div class="journey-content">
-      <button class="journey-header" aria-expanded="false">
-        <span class="journey-title">Term Sheet</span>
-        <span class="journey-desc">Point of no return</span>
-        <span class="journey-chevron"></span>
-      </button>
-      <div class="journey-details">
-        <ul class="journey-items">
-          <li>LOI negotiation <a href="ma-book/chapter-42.html" class="journey-chapter-link">Ch. 42</a></li>
-          <li>Exclusivity period begins <a href="ma-book/chapter-43.html" class="journey-chapter-link">Ch. 43</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="journey-stage" data-stage="6">
-    <div class="journey-node"><span class="journey-number">6</span></div>
-    <div class="journey-content">
-      <button class="journey-header" aria-expanded="false">
-        <span class="journey-title">Due Diligence</span>
-        <span class="journey-desc">Everything gets put under a microscope</span>
-        <span class="journey-chevron"></span>
-      </button>
-      <div class="journey-details">
-        <ul class="journey-items">
-          <li>Full DD (legal, financial, tech, HR) <a href="ma-book/chapter-43.html" class="journey-chapter-link">Ch. 43</a></li>
-          <li>Complete disclosure schedules <a href="ma-book/chapter-43.html" class="journey-chapter-link">Ch. 43</a></li>
-          <li>Draft definitive agreements <a href="ma-book/chapter-44.html" class="journey-chapter-link">Ch. 44</a></li>
-          <li>Key employee interviews <a href="ma-book/chapter-32.html" class="journey-chapter-link">Ch. 32</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="journey-stage" data-stage="7">
-    <div class="journey-node"><span class="journey-number">7</span></div>
-    <div class="journey-content">
-      <button class="journey-header" aria-expanded="false">
-        <span class="journey-title">Final Documents</span>
-        <span class="journey-desc">Terms become legally binding</span>
-        <span class="journey-chevron"></span>
-      </button>
-      <div class="journey-details">
-        <ul class="journey-items">
-          <li>Finalize definitive agreements <a href="ma-book/chapter-47.html" class="journey-chapter-link">Ch. 47</a></li>
-          <li>Employment contracts <a href="ma-book/chapter-47.html" class="journey-chapter-link">Ch. 47</a></li>
-          <li>280G analysis and approvals <a href="ma-book/chapter-45.html" class="journey-chapter-link">Ch. 45</a></li>
-          <li>Board and shareholder approvals <a href="ma-book/chapter-48.html" class="journey-chapter-link">Ch. 48</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="journey-stage journey-finish" data-stage="8">
-    <div class="journey-node"><span class="journey-icon"></span></div>
-    <div class="journey-content">
-      <button class="journey-header" aria-expanded="false">
-        <span class="journey-title">Closing</span>
-        <span class="journey-desc">Cross the finish line</span>
-        <span class="journey-chevron"></span>
-      </button>
-      <div class="journey-details">
-        <ul class="journey-items">
-          <li>Document execution <a href="ma-book/chapter-50.html" class="journey-chapter-link">Ch. 50</a></li>
-          <li>Asset and IP transfer <a href="ma-book/chapter-50.html" class="journey-chapter-link">Ch. 50</a></li>
-          <li>Wire funds <a href="ma-book/chapter-50.html" class="journey-chapter-link">Ch. 50</a></li>
-          <li>Distribute to shareholders <a href="ma-book/chapter-50.html" class="journey-chapter-link">Ch. 50</a></li>
-          <li>Press release <a href="ma-book/chapter-50.html" class="journey-chapter-link">Ch. 50</a></li>
-        </ul>
-      </div>
+  <div class="phase-card-container" id="phase-card-container">
+    <div class="phase-card" id="phase-card">
+      <!-- Populated by JS -->
     </div>
   </div>
 </div>
 </div>
 
-<!-- Resources Section -->
-<div class="resources-section">
-<h2>Resources</h2>
-<div class="resources-grid">
-  <div class="resource-card">
-    <div class="resource-title">M&A Readiness Checklist</div>
-    <div class="resource-desc">12 items to check off before engaging with potential buyers. Don't start conversations until you're ready.</div>
-    <a href="ma-readiness-checklist.html" class="resource-link">View Checklist</a>
-  </div>
-  <div class="resource-card">
-    <div class="resource-title">Sample Outreach Emails</div>
-    <div class="resource-desc">Copy-paste templates for reaching out to potential acquirers, whether you have offers in hand or not.</div>
-    <a href="ma-outreach-email.html" class="resource-link">View Templates</a>
-  </div>
-  <div class="resource-card">
-    <div class="resource-title">Outreach Deck Guide</div>
-    <div class="resource-desc">How to structure your M&A introduction deck. What to include, what to leave out, and how to invite conversation.</div>
-    <a href="ma-outreach-deck.html" class="resource-link">View Guide</a>
-  </div>
-  <div class="resource-card">
-    <div class="resource-title">Data Room Checklist</div>
-    <div class="resource-desc">Comprehensive due diligence document list across 16 categories. Have these ready before buyers ask.</div>
-    <a href="ma-data-room-checklist.html" class="resource-link">View Checklist</a>
-  </div>
-  <div class="resource-card resource-card-full">
-    <div class="resource-title">The Toughest Sell: A Founder's Guide to Startup Exits</div>
-    <div class="resource-desc">A culmination of all the mistakes and learnings from my four-year journey to sell my company. 53 chapters of hard lessons, what worked, what didn't, and how perseverance paid off in the end. Free to read online.</div>
-    <a href="ma-book/index.html" class="resource-link">Read the Book</a>
-  </div>
-</div>
-</div>
-
-<!-- Tools Section -->
-<div class="tools-section">
-<h2>Tools</h2>
-<div class="tools-grid">
+<!-- Tool cards stored here, moved into phase cards on demand -->
+<div id="tool-storage" class="hidden">
   <div class="tool-card tool-card-full" id="readiness-test-card">
     <div class="tool-header" id="tool-header" onclick="startQuestionnaire()">
       <div>
@@ -548,7 +372,14 @@ I wrote a <a href="ma-book/index.html">book</a> on this whole bloody experience,
     </div>
   </div>
 </div>
-</div>
+
+<!-- All Resources Index -->
+<details class="resources-index" id="resources-index">
+  <summary>All Resources</summary>
+  <div class="resources-index-body" id="resources-index-body">
+    <!-- Populated by JS -->
+  </div>
+</details>
 
 <!-- Connect Section -->
 <div class="connect-section">
@@ -806,6 +637,7 @@ function startQuestionnaire() {
     document.getElementById('question-section').classList.remove('hidden');
     showQuestion(0);
   }
+  collapseResourceSiblings(document.getElementById('readiness-test-card'));
 }
 
 function showQuestion(index) {
@@ -1354,6 +1186,7 @@ function startValuationAssessment() {
     valuationQuestionHistory = [];
     showValuationQuestion(0);
   }
+  collapseResourceSiblings(document.getElementById('valuation-tool-card'));
 }
 
 // Find the next applicable question (skipping conditional ones that don't apply)
@@ -2497,6 +2330,7 @@ function startInboundAssessment() {
     inboundQuestionHistory = [];
     showInboundQuestion(0);
   }
+  collapseResourceSiblings(document.getElementById('inbound-tool-card'));
 }
 
 function showInboundQuestion(index) {
@@ -3193,6 +3027,7 @@ function startBankerAssessment() {
     bankerQuestionHistory = [];
     showBankerQuestion(0);
   }
+  collapseResourceSiblings(document.getElementById('banker-tool-card'));
 }
 
 function getNextBankerQuestion(fromIndex) {
@@ -3472,45 +3307,729 @@ function restartBankerAssessment() {
   btn.classList.remove('hidden');
 }
 
-// M&A Journey Timeline Accordion
-document.addEventListener('DOMContentLoaded', function() {
-  const journeyStages = document.querySelectorAll('.journey-stage');
+// ==========================================
+// M&A MOUNTAIN JOURNEY
+// ==========================================
 
-  journeyStages.forEach(function(stage, index) {
-    const header = stage.querySelector('.journey-header');
-    const details = stage.querySelector('.journey-details');
+const JOURNEY_PHASES = {
+  'decision': {
+    id: 'decision',
+    zone: 'basecamp',
+    number: 1,
+    name: 'Start',
+    subtitle: 'Should I explore M&A?',
+    context: 'The first question isn\'t "how do I sell?" — it\'s "should I?" Most founders don\'t think about M&A until they\'re forced to, either by a surprise offer or dwindling options. This is where you get honest about your motivations and whether exit is the right path.',
+    chapters: [
+      { num: 1, title: 'Chances Are, It is Already Too Late' },
+      { num: 2, title: 'An Exit is Not the Silver Bullet You\'ve Been Looking for' },
+      { num: 3, title: 'It\'s Not You, It\'s the Acquirer' },
+      { num: 7, title: 'Sell for the Right Reasons' },
+      { num: 8, title: 'Rewire Your Brain: Getting Into Exit Mode' },
+      { num: 9, title: 'Prepare for the Most Likely Case of No Acceptable Offer' },
+      { num: 10, title: 'Valuation Fantasies and the Art of Disappointment' }
+    ],
+    resources: [],
+    tools: [
+      { title: 'M&A Readiness Test', desc: '10 questions to understand where you stand', toolId: 'readiness-test-card' }
+    ],
+    paid: [],
+    nextSteps: [
+      { id: 'preparations', label: 'Yes, start preparing for M&A' },
+      { id: 'alternatives', label: 'No \u2014 what are my other options?' }
+    ]
+  },
+  'preparations': {
+    id: 'preparations',
+    zone: 'basecamp',
+    number: 2,
+    name: 'Preparations',
+    subtitle: 'Am I sellable? Get ready.',
+    context: 'Wanting to sell and being sellable are different things. Take a hard look at whether acquirers would actually want your company — and at what price. Then get your house in order: clean financials, an organized data room, proper IP assignment, aligned stakeholders. Start this 12-18 months before you want to sell.',
+    chapters: [
+      { num: 4, title: 'Caught Off Guard: Handling M&A Inquiries Before You\'re Ready' },
+      { num: 5, title: 'Manufacturing an M&A Market When None is There' },
+      { num: 6, title: 'Know Thyself' },
+      { num: 11, title: 'Get Your Personal Finances in Order' },
+      { num: 12, title: 'Herding Cats: Aligning Spouses, Cofounders, Investors, and Employees' },
+      { num: 13, title: 'Paint the Walls: Nobody Buys a Fixer-Upper' },
+      { num: 15, title: 'Outbound Slide Decks: Incomplete Canvas with Details To Be Filled In' },
+      { num: 16, title: 'Should You Hire a Banker?' },
+      { num: 17, title: 'Find a Law Firm Who Knows M&A' },
+      { num: 18, title: 'Get Your (Data) Room in Order' },
+      { num: 19, title: 'Checklist Before Engaging with Potential Buyers' }
+    ],
+    resources: [
+      { title: 'M&A Readiness Checklist', desc: '12 items to check off before engaging with potential buyers', url: 'ma-readiness-checklist.html' },
+      { title: 'Data Room Checklist', desc: 'Comprehensive due diligence document list across 16 categories', url: 'ma-data-room-checklist.html' },
+      { title: 'Outreach Deck Guide', desc: 'How to structure your M&A introduction deck', url: 'ma-outreach-deck.html' }
+    ],
+    tools: [
+      { title: 'Valuation Estimator', desc: 'Understand your likely acquisition type and realistic valuation range', toolId: 'valuation-tool-card' },
+      { title: 'Do You Need a Banker?', desc: 'Determine whether hiring an investment banker will help or hurt', toolId: 'banker-tool-card' }
+    ],
+    paid: [],
+    nextSteps: [
+      { id: 'discovery', label: 'I\'m ready \u2014 let\'s find buyers' },
+      { id: 'decision', label: 'That\'s a lot of work, let\'s go back to the start' }
+    ]
+  },
+  'discovery': {
+    id: 'discovery',
+    zone: 'basecamp',
+    number: 3,
+    name: 'Discovery',
+    subtitle: 'Find buyers',
+    context: 'Finding buyers is part art, part science. Warm intros beat cold outreach, but sometimes you have to manufacture a market where none exists. Cast a wide net but prioritize strategic fit.',
+    chapters: [
+      { num: 14, title: 'Come Up with an Outreach List of Potential Acquirers' },
+      { num: 20, title: 'Don\'t Forget You Still Have a Company to Run' },
+      { num: 23, title: 'Activate Outbound, Plant the Seed' },
+      { num: 24, title: 'The Inside View from an Outbound Reach Out' },
+      { num: 25, title: 'Expect Radio Silence from Outbound Reach Outs' },
+      { num: 28, title: 'Should You Run an Official Process?' },
+      { num: 29, title: 'Common Pitfalls in the Opening Game' }
+    ],
+    resources: [
+      { title: 'Sample Outreach Emails', desc: 'Copy-paste templates for reaching out to potential acquirers', url: 'ma-outreach-email.html' }
+    ],
+    tools: [],
+    paid: [
+      { title: 'Outbound Playbook', price: 'coming soon', url: null }
+    ],
+    nextSteps: [
+      { id: 'first-contact', label: 'I\'ve found potential buyers' }
+    ],
+    fallback: 'preparations',
+    fallbackLabel: 'No buyers found \u2014 regroup and reassess'
+  },
+  'first-contact': {
+    id: 'first-contact',
+    zone: 'basecamp',
+    number: 4,
+    name: 'First Contact',
+    subtitle: 'Initial meetings & alignment',
+    context: 'First meetings are smoke tests — both sides are sizing each other up. The acquirer is deciding if you\'re worth their time. You\'re deciding if they\'re serious or just tire-kicking.',
+    chapters: [
+      { num: 21, title: 'Engage Inbound, Lean In and Learn' },
+      { num: 22, title: 'The Inside View from an Inbound Reach Out' },
+      { num: 26, title: 'First Meetings Are Typically Smoke Tests' },
+      { num: 27, title: 'Second Meetings Are When Things Get Real' },
+      { num: 30, title: 'The $$$ Expectation Alignment Conversation' }
+    ],
+    resources: [],
+    tools: [
+      { title: 'Vet Your Inbound', desc: 'Evaluate whether an acquisition inquiry is real interest or a fishing expedition', toolId: 'inbound-tool-card' }
+    ],
+    paid: [
+      { title: 'Inbound Playbook', price: 'coming soon', url: null }
+    ],
+    nextSteps: [
+      { id: 'evaluation', label: 'We\'ve had meetings \u2014 time to evaluate' }
+    ]
+  },
+  'evaluation': {
+    id: 'evaluation',
+    zone: 'basecamp',
+    number: 5,
+    name: 'Evaluation',
+    subtitle: 'Evaluate offers',
+    context: 'You have interest, maybe even a verbal indication of terms. Now the question becomes: is this offer worth pursuing? Should you negotiate, create competition, or walk away and try again?',
+    chapters: [
+      { num: 33, title: 'Surviving the Middle Game' },
+      { num: 34, title: 'Staying in the Race' }
+    ],
+    resources: [],
+    tools: [],
+    paid: [
+      { title: 'Competitive Process Playbook', price: 'coming soon', url: null }
+    ],
+    nextSteps: [
+      { id: 'term-sheet', label: 'We have an offer worth pursuing' },
+      { id: 'decision', label: 'No acceptable offer \u2014 reassess from the start' }
+    ]
+  },
+  'term-sheet': {
+    id: 'term-sheet',
+    zone: 'ascent',
+    number: 6,
+    name: 'Term Sheet',
+    subtitle: 'Negotiate & sign',
+    context: 'This is where it gets real. LOI negotiation, exclusivity periods, and the beginning of a process that will consume your life. Once you sign, your leverage shifts dramatically.',
+    chapters: [
+      { num: 41, title: 'Pre Term Sheet Negotiations with the Buyer' },
+      { num: 42, title: 'Term Sheet Received - Where to Go from Here' },
+      { num: 43, title: 'Term Sheet Signed, Start of a Thousand Paper Cuts' },
+      { num: 44, title: 'More Negotiations with the Buyer' }
+    ],
+    resources: [],
+    tools: [],
+    paid: [],
+    nextSteps: [
+      { id: 'due-diligence', label: 'Term sheet signed \u2014 into due diligence' }
+    ],
+    fallback: 'discovery',
+    fallbackLabel: 'Deal falls apart \u2014 find new buyers'
+  },
+  'due-diligence': {
+    id: 'due-diligence',
+    zone: 'ascent',
+    number: 7,
+    name: 'Due Diligence',
+    subtitle: 'Everything under a microscope',
+    context: 'Every claim you\'ve made gets verified. Every document gets scrutinized. Every skeleton gets found. This is where deals die — not from bad financials, but from surprises.',
+    chapters: [
+      { num: 31, title: 'Initial Due Diligence' },
+      { num: 32, title: 'Key Employee Interviews' },
+      { num: 43, title: 'Term Sheet Signed, Start of a Thousand Paper Cuts' },
+      { num: 45, title: '280G Analysis' },
+      { num: 46, title: 'What to Do When the Buyer Stops Answering Emails' }
+    ],
+    resources: [],
+    tools: [],
+    paid: [],
+    nextSteps: [
+      { id: 'final-docs', label: 'DD complete \u2014 finalize the deal' }
+    ],
+    fallback: 'discovery',
+    fallbackLabel: 'Deal falls apart \u2014 find new buyers'
+  },
+  'final-docs': {
+    id: 'final-docs',
+    zone: 'ascent',
+    number: 8,
+    name: 'Final Docs & Closing',
+    subtitle: 'Cross the finish line',
+    context: 'The finish line is in sight but the deal can still fall apart. Final agreements, board approvals, 280G analysis, and the ever-present risk of last-minute retrading.',
+    chapters: [
+      { num: 47, title: 'Final Definitive Agreement' },
+      { num: 48, title: 'Final Approval Process' },
+      { num: 49, title: 'Where the Deal Could Still Blow Up' },
+      { num: 50, title: 'Closing It Out' }
+    ],
+    resources: [],
+    tools: [],
+    paid: [],
+    nextSteps: [
+      { id: 'closed', label: 'Deal closed!' }
+    ],
+    fallback: 'discovery',
+    fallbackLabel: 'Deal falls apart \u2014 find new buyers'
+  },
+  'closed': {
+    id: 'closed',
+    zone: 'summit',
+    number: 9,
+    name: 'Closed',
+    subtitle: 'After the exit',
+    context: 'You did it. Now what? The transition from founder-CEO to acquired employee is one of the most disorienting shifts you\'ll experience. Take time to process before diving into the new role.',
+    chapters: [
+      { num: 51, title: 'Finding What Brings You Joy Again' },
+      { num: 52, title: 'Thank Those Who Helped You Along the Way' },
+      { num: 53, title: 'Your Best Days Are Ahead' }
+    ],
+    resources: [],
+    tools: [],
+    paid: [],
+    nextSteps: []
+  },
+  'alternatives': {
+    id: 'alternatives',
+    zone: 'alternative',
+    name: 'Options Outside M&A',
+    subtitle: 'Paths that don\'t involve selling the company',
+    context: 'Selling isn\'t the only option. Depending on your situation, you might keep building, raise more capital, seek personal liquidity, wind down, or run it as a lifestyle business.',
+    chapters: [],
+    resources: [],
+    tools: [],
+    paid: [],
+    nextSteps: [
+      { id: 'keep-building', label: 'Keep building the company' },
+      { id: 'raise-capital', label: 'Raise more capital first' },
+      { id: 'secondary-sale', label: 'Get personal liquidity without selling' },
+      { id: 'wind-down', label: 'Wind down the company' },
+      { id: 'lifestyle', label: 'Run it as a lifestyle business' }
+    ]
+  },
+  'keep-building': {
+    id: 'keep-building',
+    zone: 'alternative',
+    name: 'Keep Building',
+    subtitle: 'Return to the company',
+    context: 'No acceptable offer doesn\'t mean failure. Sometimes the best move is to return to building, strengthen the business, and revisit M&A when conditions are better.',
+    chapters: [
+      { num: 37, title: 'Act on What You Learned' }
+    ],
+    resources: [],
+    tools: [],
+    paid: [],
+    nextSteps: [
+      { id: 'decision', label: 'Ready to revisit M&A' }
+    ]
+  },
+  'raise-capital': {
+    id: 'raise-capital',
+    zone: 'alternative',
+    name: 'Raise Capital',
+    subtitle: 'Extend runway and grow',
+    context: 'If the business has potential but needs more runway or scale to command the right acquisition price, raising additional capital can reset the clock. Come back to M&A from a position of strength.',
+    chapters: [],
+    resources: [],
+    tools: [],
+    paid: [],
+    nextSteps: [
+      { id: 'decision', label: 'Ready to revisit M&A' }
+    ]
+  },
+  'secondary-sale': {
+    id: 'secondary-sale',
+    zone: 'alternative',
+    name: 'Secondary Sale',
+    subtitle: 'Personal liquidity without selling the company',
+    context: 'You don\'t have to sell the company to get liquidity. Selling your vested or exercised shares — back to the company via a buyback, or to an outside investor on the secondary market — gives you personal financial breathing room while keeping the company intact.',
+    chapters: [],
+    resources: [],
+    tools: [],
+    paid: [],
+    nextSteps: [
+      { id: 'decision', label: 'Ready to revisit M&A' }
+    ]
+  },
+  'wind-down': {
+    id: 'wind-down',
+    zone: 'alternative',
+    name: 'Wind Down',
+    subtitle: 'Return capital, shut down',
+    context: 'If you\'ve decided to stop building and can\'t find a buyer, a clean shutdown protects everyone — founders, employees, and investors. Do it on your own terms.',
+    chapters: [
+      { num: 35, title: 'It\'s Not You, Not Your Bankers, Not Your Board, It\'s the Market' },
+      { num: 36, title: 'There is No Shame Approaching Your Competitors' },
+      { num: 38, title: 'Managing Stakeholders When You Can\'t Sell' },
+      { num: 39, title: 'What Not to Do' },
+      { num: 40, title: 'It\'s Okay to Shut it All Down, But Do it On Your Own Terms' }
+    ],
+    resources: [],
+    tools: [],
+    paid: [],
+    nextSteps: []
+  },
+  'lifestyle': {
+    id: 'lifestyle',
+    zone: 'alternative',
+    name: 'Lifestyle Business',
+    subtitle: 'Recapitalize and run profitably',
+    context: 'Not every company needs to exit. Returning capital to investors, right-sizing the team, and running a profitable business is a legitimate and often overlooked outcome.',
+    chapters: [
+      { num: 40, title: 'It\'s Okay to Shut it All Down, But Do it On Your Own Terms' }
+    ],
+    resources: [],
+    tools: [],
+    paid: [],
+    nextSteps: [
+      { id: 'decision', label: 'Ready to revisit M&A' }
+    ]
+  }
+};
 
-    // Staggered fade-in animation
-    stage.style.animationDelay = (index * 0.05) + 's';
+// Navigation state
+var navHistory = [];
+var currentPhaseId = null;
+var isAnimating = false;
 
-    header.addEventListener('click', function() {
-      const isExpanded = header.getAttribute('aria-expanded') === 'true';
+var MAIN_PATH = ['decision','preparations','discovery','first-contact','evaluation','term-sheet','due-diligence','final-docs','closed'];
+var BREADCRUMB_NAMES = {
+  'decision': 'Start',
+  'preparations': 'Preparations',
+  'discovery': 'Discovery',
+  'first-contact': 'First Contact',
+  'evaluation': 'Evaluation',
+  'term-sheet': 'Term Sheet',
+  'due-diligence': 'Due Diligence',
+  'final-docs': 'Final Docs',
+  'closed': 'Closed'
+};
 
-      // Close all other stages
-      journeyStages.forEach(function(otherStage) {
-        const otherHeader = otherStage.querySelector('.journey-header');
-        const otherDetails = otherStage.querySelector('.journey-details');
-        otherHeader.setAttribute('aria-expanded', 'false');
-        otherStage.classList.remove('active');
-        otherDetails.style.maxHeight = null;
+function navigateTo(phaseId, direction) {
+  var phase = JOURNEY_PHASES[phaseId];
+  if (!phase || isAnimating) return;
+
+  // Return any embedded tools to storage
+  returnAllTools();
+
+  var card = document.getElementById('phase-card');
+  var backBtn = document.getElementById('phase-back-btn');
+  var startOverBtn = document.getElementById('phase-start-over-btn');
+  var topNav = document.querySelector('.phase-top-nav');
+
+  direction = direction || 'forward';
+
+  if (currentPhaseId) {
+    if (direction === 'forward') {
+      navHistory.push(currentPhaseId);
+    }
+
+    isAnimating = true;
+    var outClass = direction === 'forward' ? 'slide-out-left' : 'slide-out-right';
+    card.classList.add(outClass);
+
+    setTimeout(function() {
+      card.classList.remove(outClass);
+      card.innerHTML = buildPhaseCard(phase);
+      currentPhaseId = phaseId;
+      embedPhaseTools();
+
+      var inClass = direction === 'forward' ? 'slide-in-right' : 'slide-in-left';
+      card.classList.add(inClass);
+      setTimeout(function() {
+        card.classList.remove(inClass);
+        isAnimating = false;
+      }, 250);
+
+      var hasHistory = navHistory.length > 0;
+      backBtn.classList.toggle('hidden', !hasHistory);
+      startOverBtn.classList.toggle('hidden', !hasHistory);
+      topNav.classList.toggle('hidden', !hasHistory);
+      buildBreadcrumbs();
+      history.replaceState(null, '', '#' + phaseId);
+      document.getElementById('phase-navigator').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 200);
+  } else {
+    card.innerHTML = buildPhaseCard(phase);
+    currentPhaseId = phaseId;
+    embedPhaseTools();
+    var hasHistory = navHistory.length > 0;
+    backBtn.classList.toggle('hidden', !hasHistory);
+    startOverBtn.classList.toggle('hidden', !hasHistory);
+    topNav.classList.toggle('hidden', !hasHistory);
+    buildBreadcrumbs();
+    if (phaseId !== 'decision') {
+      history.replaceState(null, '', '#' + phaseId);
+    }
+  }
+}
+
+function navigateBack() {
+  if (navHistory.length === 0 || isAnimating) return;
+  var prevId = navHistory.pop();
+  navigateTo(prevId, 'back');
+}
+
+function startOver() {
+  if (isAnimating) return;
+  navHistory = [];
+  navigateTo('decision', 'back');
+}
+
+function buildBreadcrumbs() {
+  var container = document.getElementById('phase-breadcrumbs');
+  if (navHistory.length === 0) {
+    container.innerHTML = '';
+    return;
+  }
+  var visited = navHistory.concat([currentPhaseId]);
+  var phase = JOURNEY_PHASES[currentPhaseId];
+  var isAlternative = phase && phase.zone === 'alternative';
+  var isAlternativesHub = currentPhaseId === 'alternatives';
+
+  var html = '';
+
+  if (isAlternative || isAlternativesHub) {
+    // Alternative path: Start · Options Outside M&A · [current phase]
+    html += '<a class="crumb crumb-active" href="#" onclick="navigateTo(\'decision\', \'back\'); return false;">Start</a>';
+    html += '<span class="crumb-separator">\u00b7</span>';
+    if (isAlternativesHub) {
+      html += '<span class="crumb crumb-current">Options Outside M&A</span>';
+    } else {
+      html += '<a class="crumb crumb-active" href="#" onclick="navigateTo(\'alternatives\', \'back\'); return false;">Options Outside M&A</a>';
+      html += '<span class="crumb-separator">\u00b7</span>';
+      html += '<span class="crumb crumb-current">' + phase.name + '</span>';
+    }
+  } else {
+    // Main path breadcrumbs
+    MAIN_PATH.forEach(function(id, i) {
+      if (i > 0) html += '<span class="crumb-separator">\u00b7</span>';
+      var isVisited = visited.indexOf(id) !== -1;
+      var isCurrent = id === currentPhaseId;
+      var cls = 'crumb';
+      if (isCurrent) cls += ' crumb-current';
+      else if (isVisited) cls += ' crumb-active';
+      else cls += ' crumb-dimmed';
+
+      if (isVisited && !isCurrent) {
+        html += '<a class="' + cls + '" href="#" onclick="navigateTo(\'' + id + '\', \'back\'); return false;">' + BREADCRUMB_NAMES[id] + '</a>';
+      } else {
+        html += '<span class="' + cls + '">' + BREADCRUMB_NAMES[id] + '</span>';
+      }
+    });
+  }
+
+  container.innerHTML = html;
+}
+
+function buildPhaseCard(phase) {
+  var html = '';
+
+  // Header
+  html += '<h3 class="phase-header-name">' + phase.name + '</h3>';
+  html += '<p class="phase-header-subtitle">' + phase.subtitle + '</p>';
+
+  // Context
+  html += '<p class="phase-context">' + phase.context + '</p>';
+
+  // Resources section with collapsible sub-sections
+  var hasContent = phase.chapters.length > 0 || phase.resources.length > 0 || phase.tools.length > 0 || phase.paid.length > 0;
+  if (hasContent) {
+    html += '<div class="phase-resources">';
+    html += '<div class="phase-resources-label">Resources</div>';
+
+    // Chapters
+    if (phase.chapters.length > 0) {
+      html += '<details class="phase-details">';
+      html += '<summary>Book Chapters (' + phase.chapters.length + ')</summary>';
+      html += '<div class="phase-details-body">';
+      phase.chapters.forEach(function(ch) {
+        html += '<a href="ma-book/chapter-' + ch.num + '.html" class="phase-chapter-link" target="_blank">';
+        html += '<span class="phase-chapter-num">Ch. ' + ch.num + '</span>';
+        html += '<span class="phase-chapter-title">' + ch.title + '</span>';
+        html += '</a>';
       });
+      html += '</div></details>';
+    }
 
-      // Toggle current stage
-      if (!isExpanded) {
-        header.setAttribute('aria-expanded', 'true');
-        stage.classList.add('active');
-        details.style.maxHeight = details.scrollHeight + 'px';
+    // Resources
+    if (phase.resources.length > 0) {
+      html += '<details class="phase-details">';
+      html += '<summary>Guides &amp; Checklists (' + phase.resources.length + ')</summary>';
+      html += '<div class="phase-details-body">';
+      phase.resources.forEach(function(r) {
+        html += '<a href="' + r.url + '" class="phase-resource-link" target="_blank">';
+        html += '<span class="phase-resource-title">' + r.title + '</span>';
+        html += '<span class="phase-resource-desc">' + r.desc + '</span>';
+        html += '</a>';
+      });
+      html += '</div></details>';
+    }
+
+    // Tools — embedded directly
+    if (phase.tools.length > 0) {
+      html += '<details class="phase-details phase-tools-details">';
+      html += '<summary>Tools &amp; Assessments (' + phase.tools.length + ')</summary>';
+      html += '<div class="phase-details-body phase-tool-embed">';
+      phase.tools.forEach(function(t) {
+        html += '<div class="phase-tool-slot" data-tool-id="' + t.toolId + '"></div>';
+      });
+      html += '</div></details>';
+    }
+
+    // Playbooks
+    if (phase.paid.length > 0) {
+      html += '<details class="phase-details">';
+      html += '<summary>Playbooks (' + phase.paid.length + ')</summary>';
+      html += '<div class="phase-details-body">';
+      phase.paid.forEach(function(p) {
+        if (p.url) {
+          html += '<a href="' + p.url + '" class="phase-resource-link" target="_blank">';
+          html += '<span class="phase-resource-title">' + p.title + '</span>';
+          html += '<span class="phase-resource-desc">' + p.price + '</span>';
+          html += '</a>';
+        } else {
+          html += '<div class="phase-resource-link phase-paid-disabled">';
+          html += '<span class="phase-resource-title">' + p.title + '</span>';
+          html += '<span class="phase-resource-desc">' + p.price + '</span>';
+          html += '</div>';
+        }
+      });
+      html += '</div></details>';
+    }
+
+    html += '</div>';
+  }
+
+  // Where to go next
+  if (phase.nextSteps.length > 0 || phase.fallback) {
+    html += '<div class="phase-nav">';
+    html += '<div class="phase-nav-label">Next Step</div>';
+    var currentIdx = MAIN_PATH.indexOf(phase.id);
+    phase.nextSteps.forEach(function(step) {
+      if (JOURNEY_PHASES[step.id]) {
+        var targetIdx = MAIN_PATH.indexOf(step.id);
+        var isBackward = targetIdx !== -1 && currentIdx !== -1 && targetIdx < currentIdx;
+        html += '<button class="phase-nav-btn' + (isBackward ? ' phase-nav-backward' : '') + '" onclick="navigateTo(\'' + step.id + '\', \'forward\')">';
+        html += isBackward ? ('&larr; ' + step.label) : (step.label + ' &rarr;');
+        html += '</button>';
       }
     });
+    if (phase.fallback && JOURNEY_PHASES[phase.fallback]) {
+      var fallbackText = phase.fallbackLabel || ('Deal falls apart \u2192 ' + JOURNEY_PHASES[phase.fallback].name);
+      html += '<button class="phase-nav-btn phase-nav-backward" onclick="navigateTo(\'' + phase.fallback + '\', \'forward\')">';
+      html += '&larr; ' + fallbackText;
+      html += '</button>';
+    }
+    html += '</div>';
+  }
 
-    // Keyboard accessibility
-    header.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        header.click();
-      }
-    });
+  return html;
+}
+
+// Move tool card from #tool-storage into a phase card slot
+function embedTool(toolId, container) {
+  var toolCard = document.getElementById(toolId);
+  if (!toolCard || !container) return;
+  container.appendChild(toolCard);
+}
+
+// Embed all tools for the current phase card
+function embedPhaseTools() {
+  var slots = document.querySelectorAll('.phase-tool-slot');
+  slots.forEach(function(slot) {
+    embedTool(slot.getAttribute('data-tool-id'), slot);
   });
+}
+
+// Return all embedded tools back to #tool-storage
+function returnAllTools() {
+  var storage = document.getElementById('tool-storage');
+  document.querySelectorAll('.phase-tool-slot .tool-card').forEach(function(card) {
+    storage.appendChild(card);
+  });
+}
+
+// Collapse sibling <details> when a tool is expanded
+function collapseResourceSiblings(toolCardEl) {
+  if (!toolCardEl) return;
+  var parentDetails = toolCardEl.closest('.phase-details');
+  if (!parentDetails) return;
+  var phaseResources = parentDetails.parentElement;
+  if (!phaseResources) return;
+  var allDetails = phaseResources.querySelectorAll('.phase-details');
+  allDetails.forEach(function(d) {
+    if (d !== parentDetails) d.removeAttribute('open');
+  });
+}
+
+// Build the master resources index at bottom of page
+function buildResourcesIndex() {
+  var body = document.getElementById('resources-index-body');
+  if (!body) return;
+
+  var html = '';
+
+  // Book
+  html += '<div class="resources-index-group">';
+  html += '<h4>The Book</h4>';
+  html += '<a href="ma-book/index.html">The Toughest Sell \u2014 Full Table of Contents (53 chapters)</a>';
+  html += '</div>';
+
+  // Interactive Tools
+  html += '<div class="resources-index-group">';
+  html += '<h4>Interactive Tools</h4>';
+  var tools = [
+    { title: 'M&A Readiness Test', desc: '10 questions to understand where you stand', phase: 'decision' },
+    { title: 'Valuation & Acquisition Type Estimator', desc: 'Understand your likely acquisition type and realistic valuation range', phase: 'preparations' },
+    { title: 'Do You Need a Banker?', desc: 'Determine whether hiring an investment banker will help or hurt', phase: 'preparations' },
+    { title: 'Vet Your Inbound', desc: 'Evaluate whether an acquisition inquiry is real interest or a fishing expedition', phase: 'first-contact' }
+  ];
+  tools.forEach(function(t) {
+    html += '<a href="#" class="resources-index-link" onclick="navigateTo(\'' + t.phase + '\'); document.getElementById(\'phase-navigator\').scrollIntoView({behavior:\'smooth\',block:\'start\'}); return false;">';
+    html += '<span class="resources-index-title">' + t.title + '</span>';
+    html += '<span class="resources-index-desc">' + t.desc + '</span>';
+    html += '</a>';
+  });
+  html += '</div>';
+
+  // Guides & Checklists
+  html += '<div class="resources-index-group">';
+  html += '<h4>Guides &amp; Checklists</h4>';
+  var resources = [
+    { title: 'M&A Readiness Checklist', desc: '12 items to check off before engaging with potential buyers', url: 'ma-readiness-checklist.html' },
+    { title: 'Data Room Checklist', desc: 'Comprehensive due diligence document list across 16 categories', url: 'ma-data-room-checklist.html' },
+    { title: 'Outreach Deck Guide', desc: 'How to structure your M&A introduction deck', url: 'ma-outreach-deck.html' },
+    { title: 'Sample Outreach Emails', desc: 'Copy-paste templates for reaching out to potential acquirers', url: 'ma-outreach-email.html' }
+  ];
+  resources.forEach(function(r) {
+    html += '<a href="' + r.url + '" class="resources-index-link">';
+    html += '<span class="resources-index-title">' + r.title + '</span>';
+    html += '<span class="resources-index-desc">' + r.desc + '</span>';
+    html += '</a>';
+  });
+  html += '</div>';
+
+  // Playbooks
+  html += '<div class="resources-index-group">';
+  html += '<h4>Playbooks</h4>';
+  var playbooks = [
+    { title: 'Inbound Playbook', price: 'coming soon', url: null },
+    { title: 'Outbound Playbook', price: 'coming soon', url: null },
+    { title: 'Competitive Process Playbook', price: 'coming soon', url: null }
+  ];
+  playbooks.forEach(function(p) {
+    if (p.url) {
+      html += '<a href="' + p.url + '" class="resources-index-link">';
+      html += '<span class="resources-index-title">' + p.title + '</span>';
+      html += '<span class="resources-index-desc">' + p.price + '</span>';
+      html += '</a>';
+    } else {
+      html += '<div class="resources-index-link resources-index-disabled">';
+      html += '<span class="resources-index-title">' + p.title + '</span>';
+      html += '<span class="resources-index-desc">' + p.price + '</span>';
+      html += '</div>';
+    }
+  });
+  html += '</div>';
+
+  body.innerHTML = html;
+}
+
+// Phase navigator initialization
+document.addEventListener('DOMContentLoaded', function() {
+  var startPhase = 'decision';
+  if (window.location.hash) {
+    var hashPhase = window.location.hash.substring(1);
+    if (JOURNEY_PHASES[hashPhase]) {
+      startPhase = hashPhase;
+    }
+  }
+  // If deep-linking to a non-start phase, seed history so Back/Start Over work
+  if (startPhase !== 'decision') {
+    var mainIdx = MAIN_PATH.indexOf(startPhase);
+    if (mainIdx > 0) {
+      navHistory = MAIN_PATH.slice(0, mainIdx);
+    } else {
+      // Alternative phase — seed with decision (and alternatives hub if applicable)
+      navHistory = ['decision'];
+      var altPhase = JOURNEY_PHASES[startPhase];
+      if (altPhase && altPhase.zone === 'alternative' && startPhase !== 'alternatives') {
+        navHistory.push('alternatives');
+      }
+    }
+  }
+  navigateTo(startPhase);
+  buildResourcesIndex();
+
+  // Touch swipe support
+  var touchStartX = 0;
+  var touchStartY = 0;
+  var nav = document.getElementById('phase-navigator');
+
+  nav.addEventListener('touchstart', function(e) {
+    touchStartX = e.changedTouches[0].screenX;
+    touchStartY = e.changedTouches[0].screenY;
+  }, { passive: true });
+
+  nav.addEventListener('touchend', function(e) {
+    var dx = e.changedTouches[0].screenX - touchStartX;
+    var dy = e.changedTouches[0].screenY - touchStartY;
+
+    if (Math.abs(dx) < 50 || Math.abs(dx) < Math.abs(dy)) return;
+
+    if (dx < 0) {
+      var phase = JOURNEY_PHASES[currentPhaseId];
+      if (phase && phase.nextSteps.length > 0) {
+        navigateTo(phase.nextSteps[0].id, 'forward');
+      }
+    } else {
+      navigateBack();
+    }
+  }, { passive: true });
 });
 
 </script>
