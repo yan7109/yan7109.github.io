@@ -111,7 +111,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="manifest" href="site.webmanifest">
-<link rel="stylesheet" href="styles.css?v=3">
+<link rel="stylesheet" href="styles.css?v=4">
 <link rel="stylesheet" href="nav-styles.css?v=2">
 </head>
 
@@ -334,7 +334,7 @@ I wrote a <a href="ma-book/index.html">book</a> on this whole bloody experience,
         <div class="tool-title">M&A Readiness Test</div>
         <div class="tool-desc">10 questions to understand where you stand and what your realistic path might be.</div>
       </div>
-      <button class="tool-start-btn" id="tool-start-btn" onclick="startQuestionnaire()">Take Assessment</button>
+      <button class="tool-start-btn" id="tool-start-btn">Start</button>
     </div>
     <div class="tool-content hidden" id="tool-content">
       <!-- Question Section -->
@@ -351,7 +351,10 @@ I wrote a <a href="ma-book/index.html">book</a> on this whole bloody experience,
           <div id="answers-container"></div>
         </div>
 
-        <button class="q-back-btn hidden" id="back-btn" onclick="goBack()">Back</button>
+        <div class="q-nav-btns">
+          <button class="q-back-btn hidden" id="back-btn" onclick="goBack()">Back</button>
+          <button class="q-start-over-btn hidden" id="start-over-btn" onclick="resetQuestionnaire()">Start Over</button>
+        </div>
       </div>
 
       <!-- Results Section -->
@@ -373,7 +376,7 @@ I wrote a <a href="ma-book/index.html">book</a> on this whole bloody experience,
           </div>
         </div>
 
-        <button class="q-restart-btn" onclick="restartQuestionnaire()">Retake Assessment</button>
+        <button class="q-restart-btn" onclick="resetQuestionnaire()">Retake Assessment</button>
       </div>
     </div>
   </div>
@@ -385,7 +388,7 @@ I wrote a <a href="ma-book/index.html">book</a> on this whole bloody experience,
         <div class="tool-title">Valuation & Acquisition Type Estimator</div>
         <div class="tool-desc">Understand your likely acquisition type and realistic valuation range.</div>
       </div>
-      <button class="tool-start-btn" id="valuation-start-btn" onclick="startValuationAssessment()">Take Assessment</button>
+      <button class="tool-start-btn" id="valuation-start-btn">Start</button>
     </div>
     <div class="tool-content hidden" id="valuation-tool-content">
       <!-- Question Section -->
@@ -402,7 +405,10 @@ I wrote a <a href="ma-book/index.html">book</a> on this whole bloody experience,
           <div id="valuation-answers-container"></div>
         </div>
 
-        <button class="q-back-btn hidden" id="valuation-back-btn" onclick="valuationGoBack()">Back</button>
+        <div class="q-nav-btns">
+          <button class="q-back-btn hidden" id="valuation-back-btn" onclick="valuationGoBack()">Back</button>
+          <button class="q-start-over-btn hidden" id="valuation-start-over-btn" onclick="resetValuationAssessment()">Start Over</button>
+        </div>
       </div>
 
       <!-- Results Section -->
@@ -431,7 +437,7 @@ I wrote a <a href="ma-book/index.html">book</a> on this whole bloody experience,
           </div>
         </div>
 
-        <button class="q-restart-btn" onclick="restartValuationAssessment()">Retake Assessment</button>
+        <button class="q-restart-btn" onclick="resetValuationAssessment()">Retake Assessment</button>
       </div>
     </div>
   </div>
@@ -443,7 +449,7 @@ I wrote a <a href="ma-book/index.html">book</a> on this whole bloody experience,
         <div class="tool-title">Vet Your Inbound</div>
         <div class="tool-desc">Evaluate whether an acquisition inquiry is real interest or a fishing expedition.</div>
       </div>
-      <button class="tool-start-btn" id="inbound-start-btn" onclick="startInboundAssessment()">Take Assessment</button>
+      <button class="tool-start-btn" id="inbound-start-btn">Start</button>
     </div>
     <div class="tool-content hidden" id="inbound-tool-content">
       <!-- Question Section -->
@@ -461,7 +467,10 @@ I wrote a <a href="ma-book/index.html">book</a> on this whole bloody experience,
           <div id="inbound-answers-container"></div>
         </div>
 
-        <button class="q-back-btn hidden" id="inbound-back-btn" onclick="inboundGoBack()">Back</button>
+        <div class="q-nav-btns">
+          <button class="q-back-btn hidden" id="inbound-back-btn" onclick="inboundGoBack()">Back</button>
+          <button class="q-start-over-btn hidden" id="inbound-start-over-btn" onclick="resetInboundAssessment()">Start Over</button>
+        </div>
       </div>
 
       <!-- Results Section -->
@@ -485,7 +494,7 @@ I wrote a <a href="ma-book/index.html">book</a> on this whole bloody experience,
           </div>
         </div>
 
-        <button class="q-restart-btn" onclick="restartInboundAssessment()">Evaluate Another Inquiry</button>
+        <button class="q-restart-btn" onclick="resetInboundAssessment()">Evaluate Another Inquiry</button>
       </div>
     </div>
   </div>
@@ -497,7 +506,7 @@ I wrote a <a href="ma-book/index.html">book</a> on this whole bloody experience,
         <div class="tool-title">Do You Need a Banker?</div>
         <div class="tool-desc">Determine whether hiring an investment banker will help or hurt your M&A process.</div>
       </div>
-      <button class="tool-start-btn" id="banker-start-btn" onclick="startBankerAssessment()">Take Assessment</button>
+      <button class="tool-start-btn" id="banker-start-btn">Start</button>
     </div>
     <div class="tool-content hidden" id="banker-tool-content">
       <!-- Question Section -->
@@ -515,7 +524,10 @@ I wrote a <a href="ma-book/index.html">book</a> on this whole bloody experience,
           <div id="banker-answers-container"></div>
         </div>
 
-        <button class="q-back-btn hidden" id="banker-back-btn" onclick="bankerGoBack()">Back</button>
+        <div class="q-nav-btns">
+          <button class="q-back-btn hidden" id="banker-back-btn" onclick="bankerGoBack()">Back</button>
+          <button class="q-start-over-btn hidden" id="banker-start-over-btn" onclick="resetBankerAssessment()">Start Over</button>
+        </div>
       </div>
 
       <!-- Results Section -->
@@ -531,7 +543,7 @@ I wrote a <a href="ma-book/index.html">book</a> on this whole bloody experience,
           </div>
         </div>
 
-        <button class="q-restart-btn" onclick="restartBankerAssessment()">Retake Assessment</button>
+        <button class="q-restart-btn" onclick="resetBankerAssessment()">Retake Assessment</button>
       </div>
     </div>
   </div>
@@ -766,10 +778,34 @@ let currentQuestion = 0;
 let answers = {};
 
 function startQuestionnaire() {
-  document.getElementById('tool-start-btn').classList.add('hidden');
-  document.getElementById('tool-content').classList.remove('hidden');
-  document.getElementById('question-section').classList.remove('hidden');
-  showQuestion(0);
+  const content = document.getElementById('tool-content');
+  const btn = document.getElementById('tool-start-btn');
+  // If already expanded, collapse without resetting state
+  if (!content.classList.contains('hidden')) {
+    content.classList.add('hidden');
+    if (!document.getElementById('results-section').classList.contains('hidden')) {
+      btn.textContent = 'Results';
+      btn.classList.remove('tool-continue-btn');
+      btn.classList.add('tool-results-btn');
+    } else if (Object.keys(answers).length > 0) {
+      btn.textContent = 'Continue';
+      btn.classList.remove('tool-results-btn');
+      btn.classList.add('tool-continue-btn');
+    } else {
+      btn.textContent = 'Start';
+      btn.classList.remove('tool-continue-btn');
+      btn.classList.remove('tool-results-btn');
+    }
+    btn.classList.remove('hidden');
+    return;
+  }
+  btn.classList.add('hidden');
+  content.classList.remove('hidden');
+  // Only initialize if not already in progress
+  if (Object.keys(answers).length === 0 && document.getElementById('results-section').classList.contains('hidden')) {
+    document.getElementById('question-section').classList.remove('hidden');
+    showQuestion(0);
+  }
 }
 
 function showQuestion(index) {
@@ -792,6 +828,7 @@ function showQuestion(index) {
   });
 
   document.getElementById('back-btn').classList.toggle('hidden', index === 0);
+  document.getElementById('start-over-btn').classList.toggle('hidden', index === 0);
 }
 
 function selectAnswer(questionId, value, element) {
@@ -880,6 +917,15 @@ function showResults(earlyOutcome) {
   });
 }
 
+function resetQuestionnaire() {
+  answers = {};
+  currentQuestion = 0;
+  document.getElementById('results-section').classList.add('hidden');
+  document.getElementById('burnout-warning').classList.add('hidden');
+  document.getElementById('question-section').classList.remove('hidden');
+  showQuestion(0);
+}
+
 function restartQuestionnaire() {
   answers = {};
   currentQuestion = 0;
@@ -887,7 +933,11 @@ function restartQuestionnaire() {
   document.getElementById('burnout-warning').classList.add('hidden');
   document.getElementById('question-section').classList.add('hidden');
   document.getElementById('tool-content').classList.add('hidden');
-  document.getElementById('tool-start-btn').classList.remove('hidden');
+  const btn = document.getElementById('tool-start-btn');
+  btn.textContent = 'Start';
+  btn.classList.remove('tool-continue-btn');
+  btn.classList.remove('tool-results-btn');
+  btn.classList.remove('hidden');
 }
 
 // ==========================================
@@ -1275,11 +1325,35 @@ let valuationAnswers = {};
 let valuationQuestionHistory = []; // Track which questions were shown for back navigation
 
 function startValuationAssessment() {
-  document.getElementById('valuation-start-btn').classList.add('hidden');
-  document.getElementById('valuation-tool-content').classList.remove('hidden');
-  document.getElementById('valuation-question-section').classList.remove('hidden');
-  valuationQuestionHistory = [];
-  showValuationQuestion(0);
+  const content = document.getElementById('valuation-tool-content');
+  const btn = document.getElementById('valuation-start-btn');
+  // If already expanded, collapse without resetting state
+  if (!content.classList.contains('hidden')) {
+    content.classList.add('hidden');
+    if (!document.getElementById('valuation-results-section').classList.contains('hidden')) {
+      btn.textContent = 'Results';
+      btn.classList.remove('tool-continue-btn');
+      btn.classList.add('tool-results-btn');
+    } else if (Object.keys(valuationAnswers).length > 0) {
+      btn.textContent = 'Continue';
+      btn.classList.remove('tool-results-btn');
+      btn.classList.add('tool-continue-btn');
+    } else {
+      btn.textContent = 'Start';
+      btn.classList.remove('tool-continue-btn');
+      btn.classList.remove('tool-results-btn');
+    }
+    btn.classList.remove('hidden');
+    return;
+  }
+  btn.classList.add('hidden');
+  content.classList.remove('hidden');
+  // Only initialize if not already in progress
+  if (Object.keys(valuationAnswers).length === 0 && document.getElementById('valuation-results-section').classList.contains('hidden')) {
+    document.getElementById('valuation-question-section').classList.remove('hidden');
+    valuationQuestionHistory = [];
+    showValuationQuestion(0);
+  }
 }
 
 // Find the next applicable question (skipping conditional ones that don't apply)
@@ -1342,6 +1416,7 @@ function showValuationQuestion(index) {
   });
 
   document.getElementById('valuation-back-btn').classList.toggle('hidden', valuationQuestionHistory.length === 0);
+  document.getElementById('valuation-start-over-btn').classList.toggle('hidden', valuationQuestionHistory.length === 0);
 }
 
 function selectValuationAnswer(questionId, value, element) {
@@ -1973,6 +2048,17 @@ function showValuationResults() {
   });
 }
 
+function resetValuationAssessment() {
+  valuationAnswers = {};
+  valuationCurrentQuestion = 0;
+  valuationQuestionHistory = [];
+  document.getElementById('valuation-results-section').classList.add('hidden');
+  document.getElementById('valuation-question-section').classList.remove('hidden');
+  document.getElementById('valuation-range-box').style.display = 'block';
+  document.getElementById('valuation-factors').style.display = 'block';
+  showValuationQuestion(0);
+}
+
 function restartValuationAssessment() {
   valuationAnswers = {};
   valuationCurrentQuestion = 0;
@@ -1980,7 +2066,11 @@ function restartValuationAssessment() {
   document.getElementById('valuation-results-section').classList.add('hidden');
   document.getElementById('valuation-question-section').classList.add('hidden');
   document.getElementById('valuation-tool-content').classList.add('hidden');
-  document.getElementById('valuation-start-btn').classList.remove('hidden');
+  const btn = document.getElementById('valuation-start-btn');
+  btn.textContent = 'Start';
+  btn.classList.remove('tool-continue-btn');
+  btn.classList.remove('tool-results-btn');
+  btn.classList.remove('hidden');
   // Reset visibility of optional sections
   document.getElementById('valuation-range-box').style.display = 'block';
   document.getElementById('valuation-factors').style.display = 'block';
@@ -2378,11 +2468,35 @@ let inboundAnswers = {};
 let inboundQuestionHistory = [];
 
 function startInboundAssessment() {
-  document.getElementById('inbound-start-btn').classList.add('hidden');
-  document.getElementById('inbound-tool-content').classList.remove('hidden');
-  document.getElementById('inbound-question-section').classList.remove('hidden');
-  inboundQuestionHistory = [];
-  showInboundQuestion(0);
+  const content = document.getElementById('inbound-tool-content');
+  const btn = document.getElementById('inbound-start-btn');
+  // If already expanded, collapse without resetting state
+  if (!content.classList.contains('hidden')) {
+    content.classList.add('hidden');
+    if (!document.getElementById('inbound-results-section').classList.contains('hidden')) {
+      btn.textContent = 'Results';
+      btn.classList.remove('tool-continue-btn');
+      btn.classList.add('tool-results-btn');
+    } else if (Object.keys(inboundAnswers).length > 0) {
+      btn.textContent = 'Continue';
+      btn.classList.remove('tool-results-btn');
+      btn.classList.add('tool-continue-btn');
+    } else {
+      btn.textContent = 'Start';
+      btn.classList.remove('tool-continue-btn');
+      btn.classList.remove('tool-results-btn');
+    }
+    btn.classList.remove('hidden');
+    return;
+  }
+  btn.classList.add('hidden');
+  content.classList.remove('hidden');
+  // Only initialize if not already in progress
+  if (Object.keys(inboundAnswers).length === 0 && document.getElementById('inbound-results-section').classList.contains('hidden')) {
+    document.getElementById('inbound-question-section').classList.remove('hidden');
+    inboundQuestionHistory = [];
+    showInboundQuestion(0);
+  }
 }
 
 function showInboundQuestion(index) {
@@ -2413,6 +2527,7 @@ function showInboundQuestion(index) {
   });
 
   document.getElementById('inbound-back-btn').classList.toggle('hidden', inboundQuestionHistory.length === 0);
+  document.getElementById('inbound-start-over-btn').classList.toggle('hidden', inboundQuestionHistory.length === 0);
 }
 
 function selectInboundAnswer(questionId, value, element) {
@@ -2626,6 +2741,15 @@ function showInboundResults() {
   });
 }
 
+function resetInboundAssessment() {
+  inboundAnswers = {};
+  inboundCurrentQuestion = 0;
+  inboundQuestionHistory = [];
+  document.getElementById('inbound-results-section').classList.add('hidden');
+  document.getElementById('inbound-question-section').classList.remove('hidden');
+  showInboundQuestion(0);
+}
+
 function restartInboundAssessment() {
   inboundAnswers = {};
   inboundCurrentQuestion = 0;
@@ -2633,7 +2757,11 @@ function restartInboundAssessment() {
   document.getElementById('inbound-results-section').classList.add('hidden');
   document.getElementById('inbound-question-section').classList.add('hidden');
   document.getElementById('inbound-tool-content').classList.add('hidden');
-  document.getElementById('inbound-start-btn').classList.remove('hidden');
+  const btn = document.getElementById('inbound-start-btn');
+  btn.textContent = 'Start';
+  btn.classList.remove('tool-continue-btn');
+  btn.classList.remove('tool-results-btn');
+  btn.classList.remove('hidden');
 }
 
 // ==========================================
@@ -3036,11 +3164,35 @@ let bankerAnswers = {};
 let bankerQuestionHistory = [];
 
 function startBankerAssessment() {
-  document.getElementById('banker-start-btn').classList.add('hidden');
-  document.getElementById('banker-tool-content').classList.remove('hidden');
-  document.getElementById('banker-question-section').classList.remove('hidden');
-  bankerQuestionHistory = [];
-  showBankerQuestion(0);
+  const content = document.getElementById('banker-tool-content');
+  const btn = document.getElementById('banker-start-btn');
+  // If already expanded, collapse without resetting state
+  if (!content.classList.contains('hidden')) {
+    content.classList.add('hidden');
+    if (!document.getElementById('banker-results-section').classList.contains('hidden')) {
+      btn.textContent = 'Results';
+      btn.classList.remove('tool-continue-btn');
+      btn.classList.add('tool-results-btn');
+    } else if (Object.keys(bankerAnswers).length > 0) {
+      btn.textContent = 'Continue';
+      btn.classList.remove('tool-results-btn');
+      btn.classList.add('tool-continue-btn');
+    } else {
+      btn.textContent = 'Start';
+      btn.classList.remove('tool-continue-btn');
+      btn.classList.remove('tool-results-btn');
+    }
+    btn.classList.remove('hidden');
+    return;
+  }
+  btn.classList.add('hidden');
+  content.classList.remove('hidden');
+  // Only initialize if not already in progress
+  if (Object.keys(bankerAnswers).length === 0 && document.getElementById('banker-results-section').classList.contains('hidden')) {
+    document.getElementById('banker-question-section').classList.remove('hidden');
+    bankerQuestionHistory = [];
+    showBankerQuestion(0);
+  }
 }
 
 function getNextBankerQuestion(fromIndex) {
@@ -3106,6 +3258,7 @@ function showBankerQuestion(index) {
   });
 
   document.getElementById('banker-back-btn').classList.toggle('hidden', bankerQuestionHistory.length === 0);
+  document.getElementById('banker-start-over-btn').classList.toggle('hidden', bankerQuestionHistory.length === 0);
 }
 
 function selectBankerAnswer(questionId, value, element) {
@@ -3296,6 +3449,15 @@ function showBankerResults(earlyOutcome) {
   });
 }
 
+function resetBankerAssessment() {
+  bankerAnswers = {};
+  bankerCurrentQuestion = 0;
+  bankerQuestionHistory = [];
+  document.getElementById('banker-results-section').classList.add('hidden');
+  document.getElementById('banker-question-section').classList.remove('hidden');
+  showBankerQuestion(0);
+}
+
 function restartBankerAssessment() {
   bankerAnswers = {};
   bankerCurrentQuestion = 0;
@@ -3303,7 +3465,11 @@ function restartBankerAssessment() {
   document.getElementById('banker-results-section').classList.add('hidden');
   document.getElementById('banker-question-section').classList.add('hidden');
   document.getElementById('banker-tool-content').classList.add('hidden');
-  document.getElementById('banker-start-btn').classList.remove('hidden');
+  const btn = document.getElementById('banker-start-btn');
+  btn.textContent = 'Start';
+  btn.classList.remove('tool-continue-btn');
+  btn.classList.remove('tool-results-btn');
+  btn.classList.remove('hidden');
 }
 
 // M&A Journey Timeline Accordion

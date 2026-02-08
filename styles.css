@@ -345,6 +345,12 @@ footer {
 }
 
 /* Back button */
+.q-nav-btns {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
 .q-back-btn {
   background: transparent;
   border: 1px solid #444;
@@ -354,10 +360,26 @@ footer {
   font-size: 0.9rem;
   border-radius: 4px;
   cursor: pointer;
-  margin-top: 1rem;
+  margin-top: 0;
 }
 
 .q-back-btn:hover {
+  border-color: #666;
+  color: #c0c0c0;
+}
+
+.q-start-over-btn {
+  background: transparent;
+  border: 1px solid #444;
+  color: #888;
+  padding: 0.6rem 1.2rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.q-start-over-btn:hover {
   border-color: #666;
   color: #c0c0c0;
 }
@@ -806,6 +828,28 @@ footer {
 
 .tool-start-btn:hover {
   background: #6db3f2;
+  color: #121212;
+}
+
+.tool-continue-btn {
+  border-color: #e0a040;
+  color: #e0a040;
+}
+
+.tool-continue-btn:hover,
+.tool-header:hover .tool-continue-btn {
+  background: #e0a040;
+  color: #121212;
+}
+
+.tool-results-btn {
+  border-color: #6bc9a0;
+  color: #6bc9a0;
+}
+
+.tool-results-btn:hover,
+.tool-header:hover .tool-results-btn {
+  background: #6bc9a0;
   color: #121212;
 }
 
