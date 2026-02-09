@@ -28,9 +28,23 @@ node_modules/
 # Original source files (like docx)
 *.docx
 *.doc
-*.txt
+
+# PDFs - ignore by default, allow specific ones
 *.pdf
+!ma-book/*.pdf
+!manuscript/*.pdf
+
+# Text files - ignore by default, allow specific ones
+*.txt
 !robots.txt
+!manuscript/*.txt
+
+# Build artifacts
+scripts/
+ma-book/book-full.html
+
+# Sensitive / personal files
+sensitive/
 
 # Secrets and credentials
 .env

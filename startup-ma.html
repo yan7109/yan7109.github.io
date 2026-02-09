@@ -3335,7 +3335,7 @@ const JOURNEY_PHASES = {
     paid: [],
     nextSteps: [
       { id: 'preparations', label: 'Yes, start preparing for M&A' },
-      { id: 'alternatives', label: 'No \u2014 what are my other options?' }
+      { id: 'alternatives', label: 'No, what are my other options?' }
     ]
   },
   'preparations': {
@@ -3369,7 +3369,7 @@ const JOURNEY_PHASES = {
     ],
     paid: [],
     nextSteps: [
-      { id: 'discovery', label: 'I\'m ready \u2014 let\'s find buyers' },
+      { id: 'discovery', label: 'I\'m ready, let\'s find buyers' },
       { id: 'decision', label: 'That\'s a lot of work, let\'s go back to the start' }
     ]
   },
@@ -3400,7 +3400,7 @@ const JOURNEY_PHASES = {
       { id: 'first-contact', label: 'I\'ve found potential buyers' }
     ],
     fallback: 'preparations',
-    fallbackLabel: 'No buyers found \u2014 regroup and reassess'
+    fallbackLabel: 'No buyers found, regroup and reassess'
   },
   'first-contact': {
     id: 'first-contact',
@@ -3424,7 +3424,7 @@ const JOURNEY_PHASES = {
       { title: 'Inbound Playbook', price: 'coming soon', url: null }
     ],
     nextSteps: [
-      { id: 'evaluation', label: 'We\'ve had meetings \u2014 time to evaluate' }
+      { id: 'evaluation', label: 'We\'ve had meetings, time to evaluate' }
     ]
   },
   'evaluation': {
@@ -3445,7 +3445,7 @@ const JOURNEY_PHASES = {
     ],
     nextSteps: [
       { id: 'term-sheet', label: 'We have an offer worth pursuing' },
-      { id: 'decision', label: 'No acceptable offer \u2014 reassess from the start' }
+      { id: 'decision', label: 'No acceptable offer, reassess from the start' }
     ]
   },
   'term-sheet': {
@@ -3465,10 +3465,10 @@ const JOURNEY_PHASES = {
     tools: [],
     paid: [],
     nextSteps: [
-      { id: 'due-diligence', label: 'Term sheet signed \u2014 into due diligence' }
+      { id: 'due-diligence', label: 'Term sheet signed, into due diligence' }
     ],
     fallback: 'discovery',
-    fallbackLabel: 'Deal falls apart \u2014 find new buyers'
+    fallbackLabel: 'Deal falls apart, find new buyers'
   },
   'due-diligence': {
     id: 'due-diligence',
@@ -3488,10 +3488,10 @@ const JOURNEY_PHASES = {
     tools: [],
     paid: [],
     nextSteps: [
-      { id: 'final-docs', label: 'DD complete \u2014 finalize the deal' }
+      { id: 'final-docs', label: 'DD complete, finalize the deal' }
     ],
     fallback: 'discovery',
-    fallbackLabel: 'Deal falls apart \u2014 find new buyers'
+    fallbackLabel: 'Deal falls apart, find new buyers'
   },
   'final-docs': {
     id: 'final-docs',
@@ -3513,7 +3513,7 @@ const JOURNEY_PHASES = {
       { id: 'closed', label: 'Deal closed!' }
     ],
     fallback: 'discovery',
-    fallbackLabel: 'Deal falls apart \u2014 find new buyers'
+    fallbackLabel: 'Deal falls apart, find new buyers'
   },
   'closed': {
     id: 'closed',
@@ -3906,6 +3906,41 @@ function collapseResourceSiblings(toolCardEl) {
   });
 }
 
+// Navigate to a phase and open the Tools section
+var TOOL_START_FN = {
+  'readiness-test-card': startQuestionnaire,
+  'valuation-tool-card': startValuationAssessment,
+  'inbound-tool-card': startInboundAssessment,
+  'banker-tool-card': startBankerAssessment
+};
+
+function navigateToTool(phaseId, toolId) {
+  // Return tools and rebuild card immediately (no slide animation)
+  var phase = JOURNEY_PHASES[phaseId];
+  if (!phase) return;
+  returnAllTools();
+  var card = document.getElementById('phase-card');
+  var backBtn = document.getElementById('phase-back-btn');
+  var startOverBtn = document.getElementById('phase-start-over-btn');
+  var topNav = document.querySelector('.phase-top-nav');
+  if (currentPhaseId) navHistory.push(currentPhaseId);
+  card.innerHTML = buildPhaseCard(phase);
+  currentPhaseId = phaseId;
+  embedPhaseTools();
+  var hasHistory = navHistory.length > 0;
+  backBtn.classList.toggle('hidden', !hasHistory);
+  startOverBtn.classList.toggle('hidden', !hasHistory);
+  topNav.classList.toggle('hidden', !hasHistory);
+  buildBreadcrumbs();
+  history.replaceState(null, '', '#' + phaseId);
+
+  // Open tools section and auto-start the assessment
+  var toolsDetails = document.querySelector('.phase-tools-details');
+  if (toolsDetails) toolsDetails.setAttribute('open', '');
+  if (toolId && TOOL_START_FN[toolId]) TOOL_START_FN[toolId]();
+  document.getElementById('phase-navigator').scrollIntoView({behavior: 'smooth', block: 'start'});
+}
+
 // Build the master resources index at bottom of page
 function buildResourcesIndex() {
   var body = document.getElementById('resources-index-body');
@@ -3916,20 +3951,20 @@ function buildResourcesIndex() {
   // Book
   html += '<div class="resources-index-group">';
   html += '<h4>The Book</h4>';
-  html += '<a href="ma-book/index.html">The Toughest Sell \u2014 Full Table of Contents (53 chapters)</a>';
+  html += '<a href="ma-book/index.html">The Toughest Sell, Full Table of Contents (53 chapters)</a>';
   html += '</div>';
 
   // Interactive Tools
   html += '<div class="resources-index-group">';
   html += '<h4>Interactive Tools</h4>';
   var tools = [
-    { title: 'M&A Readiness Test', desc: '10 questions to understand where you stand', phase: 'decision' },
-    { title: 'Valuation & Acquisition Type Estimator', desc: 'Understand your likely acquisition type and realistic valuation range', phase: 'preparations' },
-    { title: 'Do You Need a Banker?', desc: 'Determine whether hiring an investment banker will help or hurt', phase: 'preparations' },
-    { title: 'Vet Your Inbound', desc: 'Evaluate whether an acquisition inquiry is real interest or a fishing expedition', phase: 'first-contact' }
+    { title: 'M&A Readiness Test', desc: '10 questions to understand where you stand', phase: 'decision', toolId: 'readiness-test-card' },
+    { title: 'Valuation & Acquisition Type Estimator', desc: 'Understand your likely acquisition type and realistic valuation range', phase: 'preparations', toolId: 'valuation-tool-card' },
+    { title: 'Do You Need a Banker?', desc: 'Determine whether hiring an investment banker will help or hurt', phase: 'preparations', toolId: 'banker-tool-card' },
+    { title: 'Vet Your Inbound', desc: 'Evaluate whether an acquisition inquiry is real interest or a fishing expedition', phase: 'first-contact', toolId: 'inbound-tool-card' }
   ];
   tools.forEach(function(t) {
-    html += '<a href="#" class="resources-index-link" onclick="navigateTo(\'' + t.phase + '\'); document.getElementById(\'phase-navigator\').scrollIntoView({behavior:\'smooth\',block:\'start\'}); return false;">';
+    html += '<a href="#" class="resources-index-link" onclick="navigateToTool(\'' + t.phase + '\', \'' + t.toolId + '\'); return false;">';
     html += '<span class="resources-index-title">' + t.title + '</span>';
     html += '<span class="resources-index-desc">' + t.desc + '</span>';
     html += '</a>';
