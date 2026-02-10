@@ -63,6 +63,29 @@
 
   const TOTAL_CHAPTERS = 53;
 
+  // Detect if we're on a Chinese page
+  function isChinesePage() {
+    return window.location.pathname.includes('/ma-book-zh/');
+  }
+
+  // Get localized strings
+  function getStrings() {
+    if (isChinesePage()) {
+      return {
+        previous: '上一章',
+        next: '下一章',
+        chapterOf: function(num) { return '第' + num + '章 / 共' + TOTAL_CHAPTERS + '章'; },
+        toc: '目录'
+      };
+    }
+    return {
+      previous: 'Previous',
+      next: 'Next',
+      chapterOf: function(num) { return 'Chapter ' + num + ' of ' + TOTAL_CHAPTERS; },
+      toc: 'Table of Contents'
+    };
+  }
+
   // Get current page filename
   function getCurrentPage() {
     const path = window.location.pathname;
@@ -77,16 +100,18 @@
 
   // Render top navigation
   function renderTopNav(chapterData) {
+    const s = getStrings();
+
     const prevLink = chapterData.prev
-      ? `<a href="${chapterData.prev}" class="chapter-nav-link">&larr; Previous</a>`
+      ? `<a href="${chapterData.prev}" class="chapter-nav-link">&larr; ${s.previous}</a>`
       : '<span class="chapter-nav-link disabled"></span>';
 
     const nextLink = chapterData.next
-      ? `<a href="${chapterData.next}" class="chapter-nav-link">Next &rarr;</a>`
+      ? `<a href="${chapterData.next}" class="chapter-nav-link">${s.next} &rarr;</a>`
       : '<span class="chapter-nav-link disabled"></span>';
 
     const progress = chapterData.num > 0 && chapterData.num <= TOTAL_CHAPTERS
-      ? `<span class="chapter-progress">Chapter ${chapterData.num} of ${TOTAL_CHAPTERS}</span>`
+      ? `<span class="chapter-progress">${s.chapterOf(chapterData.num)}</span>`
       : '<span class="chapter-progress"></span>';
 
     return `
@@ -99,18 +124,20 @@
 
   // Render bottom navigation
   function renderBottomNav(chapterData) {
+    const s = getStrings();
+
     const prevLink = chapterData.prev
-      ? `<a href="${chapterData.prev}" class="chapter-nav-link">&larr; Previous</a>`
+      ? `<a href="${chapterData.prev}" class="chapter-nav-link">&larr; ${s.previous}</a>`
       : '<span class="chapter-nav-link disabled"></span>';
 
     const nextLink = chapterData.next
-      ? `<a href="${chapterData.next}" class="chapter-nav-link">Next &rarr;</a>`
+      ? `<a href="${chapterData.next}" class="chapter-nav-link">${s.next} &rarr;</a>`
       : '<span class="chapter-nav-link disabled"></span>';
 
     return `
   <div class="chapter-nav-bottom">
     ${prevLink}
-    <a href="index.html" class="chapter-toc-link">Table of Contents</a>
+    <a href="index.html" class="chapter-toc-link">${s.toc}</a>
     ${nextLink}
   </div>`;
   }

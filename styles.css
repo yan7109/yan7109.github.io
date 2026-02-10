@@ -3,8 +3,12 @@ body {
   margin: 0;
   background: #121212;
   color: #e0e0e0;
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: Georgia, "Times New Roman", "Noto Serif SC", "Source Han Serif SC", "SimSun", serif;
   line-height: 1.7;
+}
+
+[lang="zh-CN"] {
+  line-height: 1.8;
 }
 
 a {

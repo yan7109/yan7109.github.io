@@ -49,10 +49,16 @@
     overflow-y: visible;
     white-space: normal;
     margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
   }
 
   .nav-toggle {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: none;
     border: none;
     color: #6db3f2;
@@ -62,9 +68,6 @@
     transition: color 0.2s ease;
     min-width: 44px;
     min-height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 
   .nav-toggle:hover {
@@ -129,4 +132,39 @@
   .nav-menu a:focus {
     background: rgba(109, 179, 242, 0.1);
   }
+
+  .lang-toggle {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    margin-left: auto;
+  }
+}
+
+/* Language Toggle */
+.lang-toggle {
+  display: inline-block;
+  margin-left: 10px;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.lang-toggle-link {
+  color: #6db3f2 !important;
+  text-decoration: none;
+  margin-right: 0 !important;
+}
+
+.lang-toggle-link:hover {
+  color: #9ccfff !important;
+}
+
+.lang-toggle-active {
+  color: #e0e0e0;
+  font-weight: bold;
+}
+
+.lang-toggle-sep {
+  color: #555;
+  margin: 0 6px;
 }

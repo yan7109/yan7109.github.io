@@ -18,7 +18,9 @@
       {
         text: 'The Toughest Sell',
         rootHref: 'ma-book/index.html',
-        bookHref: 'index.html'
+        bookHref: 'index.html',
+        bookHrefZh: '../ma-book-zh/index.html',
+        rootHrefZh: 'ma-book-zh/index.html'
       },
       {
         text: 'Past Writing',
@@ -38,9 +40,21 @@
     ]
   };
 
-  // Detect if we're in a subdirectory
+  // Detect if we're in a book subdirectory
   function isInSubdirectory() {
-    return window.location.pathname.includes('/ma-book/');
+    const path = window.location.pathname;
+    return path.includes('/ma-book/') || path.includes('/ma-book-zh/');
+  }
+
+  // Detect if we're on a Chinese book page
+  function isChinesePage() {
+    return window.location.pathname.includes('/ma-book-zh/');
+  }
+
+  // Detect if we're on any book page (EN or ZH)
+  function isBookPage() {
+    const path = window.location.pathname;
+    return path.includes('/ma-book/') || path.includes('/ma-book-zh/');
   }
 
   // Get the correct href for a nav item based on context
@@ -48,7 +62,52 @@
     if (item.external) {
       return item.href;
     }
-    return isInSubdirectory() ? item.bookHref : item.rootHref;
+    if (isInSubdirectory()) {
+      // Resolve "The Toughest Sell" link based on current language
+      if (item.bookHrefZh && isChinesePage()) {
+        return item.bookHrefZh;
+      }
+      return item.bookHref;
+    }
+    return item.rootHref;
+  }
+
+  // Get the URL for the equivalent page in the other language
+  function getLanguageToggleUrl() {
+    const path = window.location.pathname;
+    const page = path.substring(path.lastIndexOf('/') + 1) || 'index.html';
+
+    if (isChinesePage()) {
+      // Currently Chinese, link to English
+      if (isInSubdirectory()) {
+        return '../ma-book/' + page;
+      }
+      return 'ma-book/' + page;
+    } else {
+      // Currently English, link to Chinese
+      if (isInSubdirectory()) {
+        return '../ma-book-zh/' + page;
+      }
+      return 'ma-book-zh/' + page;
+    }
+  }
+
+  // Build language toggle HTML
+  function buildLanguageToggle() {
+    if (!isBookPage()) return '';
+
+    const zhUrl = isChinesePage() ? null : getLanguageToggleUrl();
+    const enUrl = isChinesePage() ? getLanguageToggleUrl() : null;
+
+    const enPart = enUrl
+      ? `<a href="${enUrl}" class="lang-toggle-link">EN</a>`
+      : '<span class="lang-toggle-active">EN</span>';
+
+    const zhPart = zhUrl
+      ? `<a href="${zhUrl}" class="lang-toggle-link">中文</a>`
+      : '<span class="lang-toggle-active">中文</span>';
+
+    return `<span class="lang-toggle">${enPart}<span class="lang-toggle-sep">|</span>${zhPart}</span>`;
   }
 
   // Render navigation HTML
@@ -59,11 +118,14 @@
       return `<a href="${href}"${target}>${item.text}</a>`;
     }).join('\n    ');
 
+    const langToggle = buildLanguageToggle();
+
     return `
   <nav id="nav">
     <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
       <span class="hamburger-icon">☰</span>
     </button>
+    ${langToggle}
     <div class="nav-menu">
       ${navItems}
     </div>
