@@ -134,19 +134,21 @@
   }
 
   .lang-toggle {
+    float: none;
     display: flex;
     align-items: center;
     padding: 8px 12px;
     margin-left: auto;
+    margin-top: 0;
   }
 }
 
 /* Language Toggle */
 .lang-toggle {
-  display: inline-block;
-  margin-left: 10px;
+  float: right;
   font-size: 0.85rem;
   white-space: nowrap;
+  margin-top: 2px;
 }
 
 .lang-toggle-link {
