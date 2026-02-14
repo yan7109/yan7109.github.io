@@ -29,7 +29,7 @@
       },
       {
         text: 'Photography',
-        href: 'https://derekyanphotography.pixieset.com',
+        href: 'https://photography.derekyan.com',
         external: true
       },
       {
