@@ -151,12 +151,12 @@
 
   // Close menu when clicking outside
   function handleClickOutside(event) {
-    const nav = document.getElementById('nav');
     const menu = document.querySelector('.nav-menu');
-    const toggle = document.querySelector('.nav-toggle');
+    if (!menu || !menu.classList.contains('open')) return;
 
-    if (menu.classList.contains('open') &&
-        !nav.contains(event.target)) {
+    const nav = document.getElementById('nav');
+    if (!nav.contains(event.target)) {
+      const toggle = document.querySelector('.nav-toggle');
       menu.classList.remove('open');
       toggle.setAttribute('aria-expanded', 'false');
       toggle.querySelector('.hamburger-icon').textContent = '☰';
