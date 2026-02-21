@@ -1005,11 +1005,27 @@ footer {
   margin: 0.5rem 0;
 }
 
-.book-top-row {
-  display: flex;
-  gap: 1.5rem;
-  margin: 2rem 0;
-  align-items: stretch;
+.book-cover-img {
+  float: left;
+  width: 200px;
+  height: auto;
+  margin: 0 1.2rem 0.8rem 0;
+}
+
+.book-amazon-note {
+  padding-top: 0.8rem;
+  border-top: 1px solid #333;
+  font-size: 0.85rem;
+  color: #888;
+}
+
+.book-amazon-note a {
+  color: #6db3f2;
+  text-decoration: none;
+}
+
+.book-amazon-note a:hover {
+  text-decoration: underline;
 }
 
 .book-intro {
@@ -1017,8 +1033,12 @@ footer {
   border: 1px solid #333;
   border-radius: 4px;
   padding: 1.5rem;
-  flex: 1;
-  margin: 0;
+  margin: 2rem 0;
+  overflow: hidden;
+}
+
+.book-intro p:first-of-type {
+  margin-top: 0;
 }
 
 .book-intro p {
@@ -1035,61 +1055,6 @@ footer {
 
 .book-start-link:hover {
   text-decoration: underline;
-}
-
-/* Amazon book card */
-.book-amazon-card {
-  display: block;
-  position: relative;
-  flex-shrink: 0;
-  width: 180px;
-  border-radius: 4px;
-  overflow: hidden;
-  text-decoration: none;
-  background: #111;
-}
-
-.book-amazon-card img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  border-radius: 4px;
-}
-
-.book-amazon-overlay {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0, 0, 0, 0.45);
-  color: #6db3f2;
-  font-size: 0.75rem;
-  text-align: center;
-  pointer-events: none;
-  padding: 1rem;
-}
-
-.book-amazon-card:hover .book-amazon-overlay {
-  background: rgba(0, 0, 0, 0.65);
-  color: #9ccfff;
-}
-
-@media (max-width: 768px) {
-  .book-top-row {
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .book-amazon-card {
-    width: 100%;
-    max-height: 300px;
-  }
-
-  .book-amazon-overlay {
-    font-size: 0.85rem;
-  }
 }
 
 /* Table of Contents */
@@ -1409,6 +1374,11 @@ footer {
 @media (max-width: 600px) {
   .book-title-header h1 {
     font-size: 2rem;
+  }
+
+  .book-cover-img {
+    width: 140px;
+    margin: 0 1rem 0.5rem 0;
   }
 
   .chapter-header h1 {
