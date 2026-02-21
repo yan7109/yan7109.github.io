@@ -29,19 +29,31 @@ node_modules/
 *.docx
 *.doc
 
-# PDFs - ignore by default, allow specific ones
+# PDFs - ignore by default, allow the free public PDF only
 *.pdf
-!ma-book/*.pdf
-!manuscript/*.pdf
+!ma-book/The Toughest Sell - A Founders Guide to Startup Exits.pdf
+
+# eBooks
+*.epub
+*.mobi
 
 # Text files - ignore by default, allow specific ones
 *.txt
 !robots.txt
-!manuscript/*.txt
+
+# Book internal/private files
+ma-book/book-creator.md
+ma-book/ISBN.txt
+ma-book/summary.txt
 
 # Build artifacts
 scripts/
 ma-book/book-full.html
+test-results/
+miscellaneous/
+
+# Claude Code
+.claude/
 
 # Sensitive / personal files
 sensitive/
