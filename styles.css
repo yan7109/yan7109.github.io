@@ -1005,12 +1005,40 @@ footer {
   margin: 0.5rem 0;
 }
 
+.book-cover-img {
+  float: left;
+  width: 200px;
+  height: auto;
+  margin: 0 1.2rem 0.8rem 0;
+}
+
+.book-amazon-note {
+  padding-top: 0.8rem;
+  border-top: 1px solid #333;
+  font-size: 0.85rem;
+  color: #888;
+}
+
+.book-amazon-note a {
+  color: #6db3f2;
+  text-decoration: none;
+}
+
+.book-amazon-note a:hover {
+  text-decoration: underline;
+}
+
 .book-intro {
   background: #1a1a1a;
   border: 1px solid #333;
   border-radius: 4px;
   padding: 1.5rem;
   margin: 2rem 0;
+  overflow: hidden;
+}
+
+.book-intro p:first-of-type {
+  margin-top: 0;
 }
 
 .book-intro p {
@@ -1346,6 +1374,11 @@ footer {
 @media (max-width: 600px) {
   .book-title-header h1 {
     font-size: 2rem;
+  }
+
+  .book-cover-img {
+    width: 140px;
+    margin: 0 1rem 0.5rem 0;
   }
 
   .chapter-header h1 {
