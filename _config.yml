@@ -1,0 +1,4 @@
+# Site settings for GitHub Pages
+# This tells Jekyll/GitHub Pages the canonical URL of the site
+url: "https://derekyan.com"
+baseurl: ""
