@@ -11,21 +11,14 @@
         bookHref: '../index.html'
       },
       {
-        text: 'M&A Resources',
-        rootHref: 'startup-ma.html',
-        bookHref: '../startup-ma.html'
+        text: 'Projects',
+        rootHref: 'projects.html',
+        bookHref: '../projects.html'
       },
       {
-        text: 'The Toughest Sell',
-        rootHref: 'ma-book/index.html',
-        bookHref: 'index.html',
-        bookHrefZh: '../ma-book-zh/index.html',
-        rootHrefZh: 'ma-book-zh/index.html'
-      },
-      {
-        text: 'Past Writing',
-        href: 'https://medium.com/@derekzhyan',
-        external: true
+        text: 'Writing',
+        rootHref: 'writing.html',
+        bookHref: '../writing.html'
       },
       {
         text: 'Photography',
