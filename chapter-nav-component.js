@@ -58,7 +58,8 @@
     'chapter-51.html': { num: 51, title: 'Chapter 51', prev: 'chapter-50.html', next: 'chapter-52.html' },
     'chapter-52.html': { num: 52, title: 'Chapter 52', prev: 'chapter-51.html', next: 'chapter-53.html' },
     'chapter-53.html': { num: 53, title: 'Chapter 53', prev: 'chapter-52.html', next: 'epilogue.html' },
-    'epilogue.html': { num: 54, title: 'Epilogue', prev: 'chapter-53.html', next: null }
+    'epilogue.html': { num: 54, title: 'Epilogue', prev: 'chapter-53.html', next: 'acknowledgement.html' },
+    'acknowledgement.html': { num: 55, title: 'Acknowledgements', prev: 'epilogue.html', next: null }
   };
 
   const TOTAL_CHAPTERS = 53;
